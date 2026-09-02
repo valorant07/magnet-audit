@@ -10,7 +10,7 @@
 <style>
 
   :root{
-    --paper:#F5F5F2;
+    --paper:#FAFAFA;
     --surface:#FFFFFF;
     --ink:#15181C;
     --ink-soft:#565C60;
@@ -105,10 +105,11 @@
   .tree-parent.active .tnum{ color:rgba(255,255,255,0.55); }
 
   .tree-toggle{
-    all:unset; box-sizing:border-box; cursor:pointer; flex:none; width:26px;
+    all:unset; box-sizing:border-box; cursor:pointer; flex:none; width:30px;
     display:flex; align-items:center; justify-content:center; border-radius:6px;
-    color:var(--ink-faint); font-size:9px; transition:transform .15s ease, background .15s ease, color .15s ease;
+    color:var(--ink-soft); transition:transform .15s ease, background .15s ease, color .15s ease;
   }
+  .tree-toggle svg{ display:block; }
   .tree-toggle:hover{ background:var(--paper); color:var(--ink); }
   .tree-node.expanded .tree-toggle{ transform:rotate(90deg); color:var(--ink-soft); }
 
@@ -377,7 +378,7 @@
 
   <nav class="sidebar" aria-label="Audit fejezetek">
     <div class="sb-brand">
-      <div class="sb-logo-box"><img src="magnet-logo.png" alt="MagNet Bank logó"></div>
+      <div class="sb-logo-box"><img src="magnet-logo.svg" alt="MagNet Bank logó"></div>
       <div class="sb-brand-title">Design System<br>Audit</div>
     </div>
     <button class="expand-all-btn" id="expandAllBtn">Mindent kinyit</button>
@@ -385,8 +386,8 @@
     <ul class="tree">
       <li class="tree-node">
         <div class="tree-parent-row">
-          <button class="tree-parent active" data-page="overview"><span class="tnum">—</span> Áttekintés</button>
-          <button class="tree-toggle" data-toggle="overview" aria-label="Alfejezetek megjelenítése">▸</button>
+          <button class="tree-parent active" data-page="overview"><span class="tnum"></span>Áttekintés</button>
+          <button class="tree-toggle" data-toggle="overview" aria-label="Alfejezetek megjelenítése"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
         <ul class="tree-children">
           <li><button class="tree-child" data-page="overview-methodology">Módszertan</button></li>
@@ -396,8 +397,8 @@
       </li>
       <li class="tree-node">
         <div class="tree-parent-row">
-          <button class="tree-parent" data-page="filters"><span class="tnum">—</span> Szűrési nézetek</button>
-          <button class="tree-toggle" data-toggle="filters" aria-label="Alfejezetek megjelenítése">▸</button>
+          <button class="tree-parent" data-page="filters"><span class="tnum"></span>Szűrési nézetek</button>
+          <button class="tree-toggle" data-toggle="filters" aria-label="Alfejezetek megjelenítése"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
         <ul class="tree-children">
           <li><button class="tree-child" data-page="filters-area">Érintett terület szerint</button></li>
@@ -408,7 +409,7 @@
       <li class="tree-node">
         <div class="tree-parent-row">
           <button class="tree-parent" data-page="quality"><span class="tnum">01</span> Komponensminőség</button>
-          <button class="tree-toggle" data-toggle="quality" aria-label="Alfejezetek megjelenítése">▸</button>
+          <button class="tree-toggle" data-toggle="quality" aria-label="Alfejezetek megjelenítése"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
         <ul class="tree-children">
           <li><button class="tree-child" data-page="quality-structure">Felépítés és beállíthatóság</button></li>
@@ -420,7 +421,7 @@
       <li class="tree-node">
         <div class="tree-parent-row">
           <button class="tree-parent" data-page="organization"><span class="tnum">02</span> Rendezettség, kereshetőség</button>
-          <button class="tree-toggle" data-toggle="organization" aria-label="Alfejezetek megjelenítése">▸</button>
+          <button class="tree-toggle" data-toggle="organization" aria-label="Alfejezetek megjelenítése"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
         <ul class="tree-children">
           <li><button class="tree-child" data-page="organization-pages">Oldalakra rendezettség</button></li>
@@ -431,7 +432,7 @@
       <li class="tree-node">
         <div class="tree-parent-row">
           <button class="tree-parent" data-page="brand"><span class="tnum">03</span> Brandeltség, esztétika</button>
-          <button class="tree-toggle" data-toggle="brand" aria-label="Alfejezetek megjelenítése">▸</button>
+          <button class="tree-toggle" data-toggle="brand" aria-label="Alfejezetek megjelenítése"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
         <ul class="tree-children">
           <li><button class="tree-child" data-page="brand-visual">Vizuális egységesség és brandeltség</button></li>
@@ -441,7 +442,7 @@
       <li class="tree-node">
         <div class="tree-parent-row">
           <button class="tree-parent" data-page="accessibility"><span class="tnum">04</span> Accessibility</button>
-          <button class="tree-toggle" data-toggle="accessibility" aria-label="Alfejezetek megjelenítése">▸</button>
+          <button class="tree-toggle" data-toggle="accessibility" aria-label="Alfejezetek megjelenítése"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
         <ul class="tree-children">
           <li><button class="tree-child" data-page="accessibility-wcag">WCAG 2.1 AA</button></li>
@@ -454,7 +455,7 @@
       <li class="tree-node">
         <div class="tree-parent-row">
           <button class="tree-parent" data-page="maturity"><span class="tnum">05</span> Fejleszthetőség, teljesség</button>
-          <button class="tree-toggle" data-toggle="maturity" aria-label="Alfejezetek megjelenítése">▸</button>
+          <button class="tree-toggle" data-toggle="maturity" aria-label="Alfejezetek megjelenítése"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
         <ul class="tree-children">
           <li><button class="tree-child" data-page="maturity-scalability">Bővíthetőség, skálázhatóság</button></li>
@@ -465,7 +466,7 @@
       <li class="tree-node">
         <div class="tree-parent-row">
           <button class="tree-parent" data-page="dna"><span class="tnum">06</span> Tokenstruktúra</button>
-          <button class="tree-toggle" data-toggle="dna" aria-label="Alfejezetek megjelenítése">▸</button>
+          <button class="tree-toggle" data-toggle="dna" aria-label="Alfejezetek megjelenítése"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
         <ul class="tree-children">
           <li><button class="tree-child" data-page="dna-color-tokens">Color Tokens</button></li>
@@ -476,7 +477,7 @@
       <li class="tree-node">
         <div class="tree-parent-row">
           <button class="tree-parent" data-page="anatomy"><span class="tnum">07</span> Alapvető komponensek</button>
-          <button class="tree-toggle" data-toggle="anatomy" aria-label="Alfejezetek megjelenítése">▸</button>
+          <button class="tree-toggle" data-toggle="anatomy" aria-label="Alfejezetek megjelenítése"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
         <ul class="tree-children">
           <li><button class="tree-child" data-page="anatomy-buttons">Gombok</button></li>
@@ -489,7 +490,7 @@
       <li class="tree-node tree-divider">
         <div class="tree-parent-row">
           <button class="tree-parent" data-page="composition"><span class="tnum">08</span> Komplex komponensek</button>
-          <button class="tree-toggle" data-toggle="composition" aria-label="Alfejezetek megjelenítése">▸</button>
+          <button class="tree-toggle" data-toggle="composition" aria-label="Alfejezetek megjelenítése"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
         <ul class="tree-children">
           <li><button class="tree-child" data-page="composition-appbar">Appbar</button></li>
