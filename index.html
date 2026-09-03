@@ -26,21 +26,21 @@
     --critical-bg:#FBE7E2;
     --critical-ink:#7A2115;
 
-    --jelentos:#C5601C;
-    --jelentos-bg:#F8E4D2;
-    --jelentos-ink:#6B330D;
+    --jelentos:#E2792B;
+    --jelentos-bg:#FBEBDB;
+    --jelentos-ink:#7A3D0E;
 
-    --javitando:#B79A1E;
-    --javitando-bg:#F5EDCB;
-    --javitando-ink:#5F4E0C;
+    --javitando:#E8B23C;
+    --javitando-bg:#FBF1D8;
+    --javitando-ink:#6B4D0A;
 
-    --optim:#2F6FED;
-    --optim-bg:#DCE7FB;
-    --optim-ink:#1B3E86;
+    --optim:#2E8B99;
+    --optim-bg:#DBEEF0;
+    --optim-ink:#134A50;
 
-    --pass:#2F7D5C;
-    --pass-bg:#E1F0E7;
-    --pass-ink:#1B4B37;
+    --pass:#22BF9C;
+    --pass-bg:#DEF5EB;
+    --pass-ink:#0F6A56;
 
     --font-display:'Space Grotesk', 'Helvetica Neue', sans-serif;
     --font-body:'Inter', 'Helvetica Neue', sans-serif;
@@ -69,8 +69,9 @@
   .sidebar{
     position:fixed; top:0; left:0; bottom:0; width:var(--sidebar-w);
     background:var(--surface); border-right:1px solid var(--line-strong);
-    overflow-y:auto; padding:26px 18px 40px; z-index:40;
+    display:flex; flex-direction:column; z-index:40;
   }
+  .sb-scroll{ flex:1 1 auto; min-height:0; overflow-y:auto; padding:26px 18px 20px; }
   .sb-brand{
     display:flex; align-items:center; gap:14px; padding:0 4px 20px;
     border-bottom:1px solid var(--line); margin-bottom:14px; cursor:pointer;
@@ -82,6 +83,12 @@
   }
   .sb-logo-box img{ width:100%; height:100%; object-fit:contain; display:block; }
   .sb-brand-title{ font-family:var(--font-display); font-weight:700; font-size:19px; line-height:1.15; color:var(--brand-dark); }
+  .sb-footer{
+    flex:none; display:flex; align-items:flex-end; justify-content:space-between; gap:10px;
+    padding:16px 18px; border-top:1px solid var(--line);
+  }
+  .sb-footer-credit{ font-family:var(--font-mono); font-size:9.5px; letter-spacing:.05em; line-height:1.5; color:var(--ink-faint); text-transform:uppercase; }
+  .sb-footer-version{ font-family:var(--font-mono); font-size:9.5px; letter-spacing:.05em; color:var(--ink-faint); flex:none; }
 
   .expand-all-btn{
     all:unset; box-sizing:border-box; cursor:pointer; display:block; width:100%;
@@ -161,7 +168,7 @@
     font-family:var(--font-display); font-weight:700; font-size:clamp(32px,4.6vw,50px);
     line-height:1.08; margin:0 0 22px; letter-spacing:-0.015em;
   }
-  .hero-lede{ max-width:580px; color:var(--ink-soft); font-size:16.5px; margin-bottom:8px; }
+  .hero-lede{ color:var(--ink-soft); font-size:16.5px; margin-bottom:8px; }
 
   .methodology{
     margin:36px 0 48px; padding:20px 22px; border:1px solid var(--line-strong); border-radius:10px;
@@ -171,12 +178,13 @@
   .methodology p{ margin:0; font-size:13.5px; color:var(--ink-soft); line-height:1.6; }
   .methodology p + p{ margin-top:10px; }
 
-  .specsheet{ display:grid; grid-template-columns:repeat(2,1fr); gap:0; border-top:1px solid var(--line-strong); border-bottom:1px solid var(--line-strong); padding:6px 0; margin:36px 0; }
-  .specsheet div{ padding:12px 0; border-bottom:1px dashed var(--line-strong); }
-  .specsheet dt{ font-family:var(--font-mono); font-size:11px; color:var(--ink-faint); letter-spacing:.04em; margin-bottom:4px; }
-  .specsheet dd{ margin:0; font-size:14.5px; font-weight:500; }
+  .specsheet{ display:flex; flex-wrap:wrap; gap:22px 34px; border-top:1px solid var(--line); padding:18px 0 2px; margin:40px 0 0; }
+  .specsheet div{ flex:none; }
+  .specsheet dt{ font-family:var(--font-mono); font-size:9.5px; color:var(--ink-faint); letter-spacing:.04em; margin-bottom:3px; text-transform:uppercase; }
+  .specsheet dd{ margin:0; font-size:12px; color:var(--ink-soft); font-weight:400; }
 
   .struct-label{ font-family:var(--font-mono); font-size:11px; color:var(--ink-faint); letter-spacing:.05em; margin-bottom:14px; display:flex; align-items:center; gap:10px; }
+  .prose + .struct-label{ margin-top:36px; }
   .struct-label::after{ content:''; flex:1; height:1px; background:var(--line-strong); }
 
   .struct-list{ list-style:none; margin:0 0 10px; padding:0; }
@@ -197,6 +205,56 @@
     color:var(--ink-faint);
   }
   .struct-list li.struct-subgroup:first-child{ padding-top:2px; }
+
+  .stat-strip{
+    margin:26px 0 6px; padding:22px 24px 20px;
+    border:1px solid var(--line-strong); border-radius:12px; background:var(--surface);
+  }
+  .stat-strip-title{ font-family:var(--font-display); font-weight:700; font-size:19px; color:var(--ink); margin-bottom:6px; }
+  .stat-strip-desc{ font-size:13.5px; color:var(--ink-soft); line-height:1.6; margin-bottom:18px; }
+  .stat-strip-desc b{ color:var(--ink); font-weight:600; }
+  .scope-row{ display:flex; flex-wrap:wrap; margin-bottom:26px; }
+  .scope-item{ flex:1 1 120px; display:flex; flex-direction:column; gap:5px; padding:0 18px; border-right:1px solid var(--line); }
+  .scope-item:first-child{ padding-left:0; }
+  .scope-item:last-child{ border-right:none; padding-right:0; }
+  .scope-num{ font-family:var(--font-display); font-weight:700; font-size:22px; color:var(--ink); }
+  .scope-label{ font-family:var(--font-mono); font-size:10px; letter-spacing:.04em; color:var(--ink-faint); text-transform:uppercase; }
+  @media (max-width:600px){ .scope-item{ flex:1 1 45%; padding:6px 12px; border-right:none; } }
+
+  .stat-highlight{ display:flex; align-items:center; gap:18px; margin-bottom:16px; }
+  .stat-highlight-num{ flex:none; text-align:center; }
+  .stat-highlight-num .ssi-num{ font-family:var(--font-display); font-weight:700; font-size:24px; color:var(--ink); line-height:1; display:block; }
+  .stat-highlight-num .ssi-label{ font-family:var(--font-mono); font-size:9px; letter-spacing:.04em; color:var(--ink-faint); text-transform:uppercase; display:block; margin-top:3px; }
+  .stat-ribbon{ flex:1; display:flex; height:18px; border-radius:5px; overflow:hidden; }
+  .stat-ribbon-seg.critical{ background:var(--critical); }
+  .stat-ribbon-seg.jelentos{ background:var(--jelentos); }
+  .stat-ribbon-seg.javitando{ background:var(--javitando); }
+  .stat-ribbon-seg.optim{ background:var(--optim); }
+  .stat-ribbon-seg.pass{ background:var(--pass); }
+  .stat-legend{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px; }
+  .stat-legend-item{ display:flex; align-items:center; gap:6px; font-size:12px; color:var(--ink-soft); }
+  .stat-legend-item b{ color:var(--ink); font-weight:600; }
+  .stat-legend-item .sev-dot{ width:8px; height:8px; }
+  .sev-dot{ width:9px; height:9px; border-radius:50%; flex:none; }
+  .sev-dot.critical{ background:var(--critical); }
+  .sev-dot.jelentos{ background:var(--jelentos); }
+  .sev-dot.javitando{ background:var(--javitando); }
+  .sev-dot.optim{ background:var(--optim); }
+  .sev-dot.pass{ background:var(--pass); }
+
+  .entry-cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:8px 0 26px; }
+  .entry-card{
+    cursor:pointer; display:flex; flex-direction:column; gap:7px;
+    padding:20px 20px 18px; border:1px solid var(--line-strong); border-radius:12px; background:var(--surface);
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .entry-card:hover{ border-color:var(--brand); background:var(--brand-bg); }
+  .entry-card:hover .ec-name{ color:var(--brand-dark); }
+  .ec-kicker{ font-family:var(--font-mono); font-size:10px; letter-spacing:.05em; color:var(--ink-faint); text-transform:uppercase; }
+  .ec-name{ font-family:var(--font-display); font-weight:700; font-size:17px; color:var(--ink); transition:color .15s ease; }
+  .ec-desc{ font-size:13px; color:var(--ink-soft); line-height:1.55; flex:1; }
+  .ec-arrow{ font-family:var(--font-mono); color:var(--ink-faint); font-size:15px; }
+  @media (max-width:880px){ .entry-cards{ grid-template-columns:1fr; } }
 
   /* ---------- structural (01–06) pages ---------- */
   /* ---------- subsection pages (real content) ---------- */
@@ -424,6 +482,7 @@
 <div class="app">
 
   <nav class="sidebar" aria-label="Audit fejezetek">
+   <div class="sb-scroll">
     <div class="sb-brand" data-page="overview" role="button" aria-label="Vissza az áttekintéshez">
       <div class="sb-logo-box"><img src="magnet-logo.svg" alt="MagNet Bank logó"></div>
       <div class="sb-brand-title">Design System<br>Audit</div>
@@ -432,12 +491,12 @@
 
     <ul class="tree">
       <li class="tree-group-label">Áttekintés</li>
-      <li class="tree-node"><button class="tree-parent" data-page="overview-methodology"><span class="tnum"></span>Módszertan</button></li>
-      <li class="tree-node"><button class="tree-parent" data-page="overview-designer"><span class="tnum"></span>Designer összefoglaló</button></li>
-      <li class="tree-node"><button class="tree-parent" data-page="overview-stakeholder"><span class="tnum"></span>Stakeholder összefoglaló</button></li>
+      <li class="tree-node"><button class="tree-parent" data-page="overview-methodology">Módszertan</button></li>
+      <li class="tree-node"><button class="tree-parent" data-page="overview-stakeholder">Stakeholder összefoglaló</button></li>
+      <li class="tree-node"><button class="tree-parent" data-page="overview-designer">Designer összefoglaló</button></li>
       <li class="tree-subgroup-label tree-subgroup-label--top">Szűrések</li>
-      <li class="tree-node"><button class="tree-parent" data-page="filters-area"><span class="tnum"></span>Érintett terület szerint</button></li>
-      <li class="tree-node"><button class="tree-parent" data-page="filters-severity"><span class="tnum"></span>Súlyosság szerint</button></li>
+      <li class="tree-node"><button class="tree-parent" data-page="filters-area">Érintett terület szerint</button></li>
+      <li class="tree-node"><button class="tree-parent" data-page="filters-severity">Súlyosság szerint</button></li>
       <li class="tree-group-label">Minőségi átvilágítás</li>
       <li class="tree-node">
         <div class="tree-parent-row">
@@ -520,6 +579,11 @@
         </ul>
       </li>
     </ul>
+   </div>
+    <div class="sb-footer">
+      <span class="sb-footer-credit">Készítette<br>Stereogram Studio</span>
+      <span class="sb-footer-version">V.01</span>
+    </div>
   </nav>
 
   <div class="main">
@@ -532,27 +596,69 @@
           <h1 class="title">MagNet Bank<br>Design System Audit</h1>
           <p class="hero-lede">Ez a dokumentum a MagNet Bank design rendszerének átvilágítására készült interaktív audit-jelentés. A fejezetek két csoportba rendezve követhetők: elöl a minőségi átvilágítás vizsgálati szempontjai, hátul a komponensrendszer szerkezeti bemutatása.</p>
 
-          <div class="methodology">
-            <div class="m-label">MÓDSZERTAN ÉS ÖSSZEFOGLALÓK</div>
-            <p>A dokumentum két fő blokkra épül: elöl (01–05) a design system egészére alkalmazott vizsgálati nézőpontok — Komponensminőség, Rendezettség/kereshetőség, Brandeltség/esztétika, Accessibility, Fejleszthetőség/teljesség —, hátul (06, Vizsgált komponensek) a rendszer saját felépülésének logikája: Tokenstruktúra → Alapvető komponensek → Komplex komponensek.</p>
-            <p>A módszertan részletei — súlyossági szintek, érintett területek — valamint a designereknek és az üzleti döntéshozóknak szóló külön összefoglalók az alábbi alfejezetekben érhetők el.</p>
+          <div class="stat-strip">
+            <div class="stat-strip-title">A Design System állapota</div>
+            <div class="stat-strip-desc">Minden komponenst egyenként, több szempont szerint vizsgáltunk végig — ebből <b>47 esetben</b> találtunk fejlesztésre érdemes pontot vagy hibát.</div>
+
+            <div class="struct-label" style="margin:0 0 14px;">DESIGN SYSTEM ADATAI</div>
+            <div class="scope-row">
+              <div class="scope-item"><span class="scope-num">80</span><span class="scope-label">Figma oldal</span></div>
+              <div class="scope-item"><span class="scope-num">850</span><span class="scope-label">Komponens</span></div>
+              <div class="scope-item"><span class="scope-num">1 324</span><span class="scope-label">Token / változó</span></div>
+              <div class="scope-item"><span class="scope-num">7 317</span><span class="scope-label">Komponens instance</span></div>
+            </div>
+
+            <div class="struct-label" style="margin:0 0 14px;">AUDIT MEGÁLLAPÍTÁSAI</div>
+            <div class="stat-highlight">
+              <div class="stat-highlight-num"><span class="ssi-num">47</span><span class="ssi-label">Megállapítás</span></div>
+              <div class="stat-ribbon">
+                <div class="stat-ribbon-seg critical" style="flex:1;"></div>
+                <div class="stat-ribbon-seg jelentos" style="flex:14;"></div>
+                <div class="stat-ribbon-seg javitando" style="flex:13;"></div>
+                <div class="stat-ribbon-seg optim" style="flex:15;"></div>
+                <div class="stat-ribbon-seg pass" style="flex:4;"></div>
+              </div>
+            </div>
+            <div class="stat-legend">
+              <span class="stat-legend-item"><span class="sev-dot critical"></span>Kritikus <b>1</b></span>
+              <span class="stat-legend-item"><span class="sev-dot jelentos"></span>Jelentős <b>14</b></span>
+              <span class="stat-legend-item"><span class="sev-dot javitando"></span>Javítandó <b>13</b></span>
+              <span class="stat-legend-item"><span class="sev-dot optim"></span>Optimalizálás <b>15</b></span>
+              <span class="stat-legend-item"><span class="sev-dot pass"></span>Megfelelő <b>4</b></span>
+            </div>
+          </div>
+          <p class="sub-note" style="margin:10px 0 0;">Részletes bontás és indoklás: <span class="inline-link" data-goto="overview-stakeholder">Stakeholder összefoglaló</span>.</p>
+
+          <div class="struct-label" style="margin-top:36px;">KEZDD ITT</div>
+          <div class="entry-cards">
+            <div class="entry-card" data-goto="overview-methodology">
+              <div class="ec-kicker">Útmutató</div>
+              <div class="ec-name">Módszertan</div>
+              <div class="ec-desc">Súlyossági rendszer és érintett területek magyarázata</div>
+              <span class="ec-arrow">→</span>
+            </div>
+            <div class="entry-card" data-goto="overview-stakeholder">
+              <div class="ec-kicker">Döntéshozóknak</div>
+              <div class="ec-name">Stakeholder összefoglaló</div>
+              <div class="ec-desc">Állapot százalékban, prioritások, időtáv és üzleti hatás</div>
+              <span class="ec-arrow">→</span>
+            </div>
+            <div class="entry-card" data-goto="overview-designer">
+              <div class="ec-kicker">Designereknek</div>
+              <div class="ec-name">Designer összefoglaló</div>
+              <div class="ec-desc">Amire biztonsággal lehet építeni, és amire figyelni kell</div>
+              <span class="ec-arrow">→</span>
+            </div>
           </div>
 
-          <div class="struct-label">ÁTTEKINTÉS ALFEJEZETEI</div>
-          <ul class="struct-list">
-            <li data-goto="overview-methodology"><span class="sl-num">—</span><div class="sl-body"><span class="sl-name">Módszertan</span><div class="sl-desc">Súlyossági rendszer és érintett területek magyarázata</div></div><span class="sl-arrow">→</span></li>
-            <li data-goto="overview-designer"><span class="sl-num">—</span><div class="sl-body"><span class="sl-name">Designer összefoglaló</span><div class="sl-desc">Amire biztonsággal lehet építeni, és amire figyelni kell</div></div><span class="sl-arrow">→</span></li>
-            <li data-goto="overview-stakeholder"><span class="sl-num">—</span><div class="sl-body"><span class="sl-name">Stakeholder összefoglaló</span><div class="sl-desc">Állapot százalékban, prioritások, időtáv és üzleti hatás</div></div><span class="sl-arrow">→</span></li>
-          </ul>
-
-          <dl class="specsheet">
-            <div><dt>Ügyfél</dt><dd>MagNet Bank</dd></div>
-            <div><dt>Cél</dt><dd>Design System Audit</dd></div>
-            <div><dt>Vizsgált rendszer</dt><dd>kitöltés alatt</dd></div>
-            <div><dt>Terjedelem</dt><dd>kitöltés alatt</dd></div>
-            <div><dt>Vizsgálati keret</dt><dd>WCAG 2.1 AA + egyedi szempontrendszer</dd></div>
-            <div><dt>Dátum</dt><dd>2026. augusztus</dd></div>
-          </dl>
+          <div class="methodology">
+            <div class="m-label">A DOKUMENTUM FELÉPÍTÉSE</div>
+            <p>A dokumentum két fő blokkra épül:</p>
+            <ul class="plain-list" style="margin:6px 0 0;">
+              <li><b>01–05 — vizsgálati nézőpontok</b> a design system egészére alkalmazva: Komponensminőség, Rendezettség/kereshetőség, Brandeltség/esztétika, Accessibility, Fejleszthetőség/teljesség.</li>
+              <li><b>06 — Vizsgált komponensek</b>: a rendszer saját felépülésének logikája — Tokenstruktúra → Alapvető komponensek → Komplex komponensek.</li>
+            </ul>
+          </div>
 
           <div class="struct-label">STRUKTÚRA</div>
           <ul class="struct-list">
@@ -563,6 +669,13 @@
             <li data-goto="maturity"><span class="sl-num">05</span><div class="sl-body"><span class="sl-name">Fejleszthetőség, teljesség</span><div class="sl-desc">Bővíthetőség, skálázhatóság, hiányzó komponensek</div></div><span class="sl-arrow">→</span></li>
             <li data-goto="composition"><span class="sl-num">06</span><div class="sl-body"><span class="sl-name">Vizsgált komponensek</span><div class="sl-desc">Tokenstruktúra, alapvető és komplex komponensek felépítése</div></div><span class="sl-arrow">→</span></li>
           </ul>
+
+          <dl class="specsheet">
+            <div><dt>Ügyfél</dt><dd>MagNet Bank</dd></div>
+            <div><dt>Cél</dt><dd>Design System Audit</dd></div>
+            <div><dt>Vizsgálati keret</dt><dd>WCAG 2.1 AA + egyedi szempontrendszer</dd></div>
+            <div><dt>Dátum</dt><dd>2026. augusztus</dd></div>
+          </dl>
         </div>
       </div>
     </section>
@@ -1424,6 +1537,12 @@ Semantic spacing
           <p class="sec-desc">A design system saját felépülésének logikája: tokenstruktúra, alapvető és komplex komponensek</p>
           <p class="sec-intro">Ez a fejezet a rendszer saját felépülését követi végig: a legalapabb réteget (design tokenek, stílusok), az abból építkező alapvető komponenseket (properties, variánsok, layout), majd az ezekből összeálló komplex, több komponensből felépülő elemeket (komponens-kombinációk, minták, folyamatok).</p>
 
+          <div class="content-label">MIÉRT EZEK A KOMPONENSEK SZEREPELNEK ITT</div>
+          <div class="prose">
+            <p>A vizsgálat a design system teljes komponenskészletét áttekintette. Ebbe a fejezetbe azok a komponensek kerültek be, amelyeknél egyértelmű fejlesztési lehetőséget azonosítottunk, vagy ahol tényleges hibát találtunk — a többi komponens a vizsgálat alapján megfelelő állapotban van.</p>
+            <p>Minden egyes megállapításhoz konkrét, alkalmazható megoldási javaslat tartozik.</p>
+          </div>
+
           <div class="struct-label">ALFEJEZETEK</div>
           <ul class="struct-list">
             <li class="struct-subgroup">Tokenstruktúra</li>
@@ -1442,7 +1561,6 @@ Semantic spacing
             <li data-goto="composition-category-sorter"><span class="sl-num">6.11</span><div class="sl-body"><span class="sl-name">Category sorter</span><div class="sl-desc">Komponensstruktúra és vizuális hierarchia</div></div><span class="sl-arrow">→</span></li>
             <li data-goto="composition-transaction-card"><span class="sl-num">6.12</span><div class="sl-body"><span class="sl-name">Tranzakciós kártya</span><div class="sl-desc">Összegek kontrasztja és információs hierarchiája</div></div><span class="sl-arrow">→</span></li>
           </ul>
-          <p class="sub-note">Themes — hamarosan.</p>
         </div>
       </div>
     </section>
@@ -1677,17 +1795,9 @@ Semantic spacing
           <p class="sec-desc">Felépítés, állapotok, tokenhasználat, mikrointerakciók</p>
           <p class="sec-intro">Ez a fejezet a komponensek minőségét vizsgálja: a felépítésüket és beállíthatóságukat, az állapot- és property-rendszerüket, a frame-szintű felépítést és tokenhasználatot, valamint a beépített mikrointerakciókat.</p>
 
-          <div class="struct-label">ALFEJEZETEK</div>
-          <ul class="struct-list">
-            <li data-goto="quality-structure"><span class="sl-num">1.1</span><div class="sl-body"><span class="sl-name">Komponensek felépítése és beállíthatósága</span><div class="sl-desc">Kétrétegű komponensstruktúra lehetősége komplex elemeknél</div></div><span class="sl-arrow">→</span></li>
-            <li data-goto="quality-states"><span class="sl-num">1.2</span><div class="sl-body"><span class="sl-name">Állapotok és egyéb property-k</span><div class="sl-desc">Rendszerszintű state modell és state vocabulary</div></div><span class="sl-arrow">→</span></li>
-            <li data-goto="quality-tokens"><span class="sl-num">1.3</span><div class="sl-body"><span class="sl-name">Frame felépítés és tokenhasználat</span><div class="sl-desc">Auto Layout, responsiveness, spacing és typography tokenek</div></div><span class="sl-arrow">→</span></li>
-            <li data-goto="quality-microinteractions"><span class="sl-num">1.4</span><div class="sl-body"><span class="sl-name">Beépített mikrointerakciók</span><div class="sl-desc">Állapotátmenetek összekötése a Figma prototyping rendszerében</div></div><span class="sl-arrow">→</span></li>
-          </ul>
-
           <div class="content-label">ÖSSZKÉP</div>
           <div class="prose">
-            <p>A komponensrendszer alapvetően jó minőségű és megfelelő strukturális alapokra épül. A vizsgálat alapján nem azonosítható olyan általános komponensarchitekturális probléma, amely alapvető újratervezést tenne szükségessé.</p>
+            <p>A komponensrendszer <b>alapvetően jó minőségű</b> és megfelelő strukturális alapokra épül. A vizsgálat alapján nem azonosítható olyan általános komponensarchitekturális probléma, amely alapvető újratervezést tenne szükségessé.</p>
             <p>A legfontosabb fejlesztési lehetőségek inkább a rendszer következetesebbé és hatékonyabban újrahasználhatóvá tételére irányulnak:</p>
             <ul class="plain-list">
               <li>egységes rendszerszintű state modell,</li>
@@ -1695,8 +1805,16 @@ Semantic spacing
               <li>a meglévő spacing és typography tokenek következetesebb komponensszintű alkalmazása,</li>
               <li>valamint a komponensekhez tartozó mikrointerakciók Figma prototypingben történő előzetes beállítása.</li>
             </ul>
-            <p>A komponensrendszer jelenlegi állapota ezért összességében megfelelőnek tekinthető; a következő fejlesztési lépések elsősorban a konzisztencia, újrahasználhatóság és skálázhatóság növelését szolgálják.</p>
+            <p>A komponensrendszer jelenlegi állapota ezért összességében <b>megfelelőnek tekinthető</b>; a következő fejlesztési lépések elsősorban a konzisztencia, újrahasználhatóság és skálázhatóság növelését szolgálják.</p>
           </div>
+
+          <div class="struct-label">ALFEJEZETEK</div>
+          <ul class="struct-list">
+            <li data-goto="quality-structure"><span class="sl-num">1.1</span><div class="sl-body"><span class="sl-name">Komponensek felépítése és beállíthatósága</span><div class="sl-desc">Kétrétegű komponensstruktúra lehetősége komplex elemeknél</div></div><span class="sl-arrow">→</span></li>
+            <li data-goto="quality-states"><span class="sl-num">1.2</span><div class="sl-body"><span class="sl-name">Állapotok és egyéb property-k</span><div class="sl-desc">Rendszerszintű state modell és state vocabulary</div></div><span class="sl-arrow">→</span></li>
+            <li data-goto="quality-tokens"><span class="sl-num">1.3</span><div class="sl-body"><span class="sl-name">Frame felépítés és tokenhasználat</span><div class="sl-desc">Auto Layout, responsiveness, spacing és typography tokenek</div></div><span class="sl-arrow">→</span></li>
+            <li data-goto="quality-microinteractions"><span class="sl-num">1.4</span><div class="sl-body"><span class="sl-name">Beépített mikrointerakciók</span><div class="sl-desc">Állapotátmenetek összekötése a Figma prototyping rendszerében</div></div><span class="sl-arrow">→</span></li>
+          </ul>
         </div>
       </div>
     </section>
@@ -1861,25 +1979,25 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
           <p class="sec-desc">Oldalstruktúra, naming konvenció, annotációk és handoff</p>
           <p class="sec-intro">Ez a fejezet a Figma fájl rendezettségét vizsgálja: az oldalakra tagolást, a komponensek és tokenek elnevezési konvencióját, valamint a hozzájuk kapcsolódó dokumentációt és fejlesztői handoffot.</p>
 
-          <div class="struct-label">ALFEJEZETEK</div>
-          <ul class="struct-list">
-            <li data-goto="organization-pages"><span class="sl-num">2.1</span><div class="sl-body"><span class="sl-name">Oldalakra rendezettség</span><div class="sl-desc">A Figma fájl struktúrájának átláthatósága</div></div><span class="sl-arrow">→</span></li>
-            <li data-goto="organization-naming"><span class="sl-num">2.2</span><div class="sl-body"><span class="sl-name">Komponens naming konvenció</span><div class="sl-desc">Layer- és tokennevek egységessége</div></div><span class="sl-arrow">→</span></li>
-            <li data-goto="organization-handoff"><span class="sl-num">2.3</span><div class="sl-body"><span class="sl-name">Annotációk és handoff</span><div class="sl-desc">Dokumentáció mélysége és edge case-ek</div></div><span class="sl-arrow">→</span></li>
-          </ul>
-
           <div class="content-label">ÖSSZKÉP</div>
           <div class="prose">
-            <p>A rendezettség és kereshetőség a MagNet Design System egyik legerősebb területe. Az oldalstruktúra jól szervezett, a komponensek elnevezései jellemzően következetesek, és a hozzájuk tartozó dokumentáció megfelelő részletességű.</p>
-            <p>A feltárt hiányosságok ezért nem strukturális problémák, hanem elsősorban finomhangolási lehetőségek. A legfontosabb további lépések:</p>
+            <p>A rendezettség és kereshetőség a MagNet Design System <b>egyik legerősebb területe</b>. Az oldalstruktúra jól szervezett, a komponensek elnevezései jellemzően következetesek, és a hozzájuk tartozó dokumentáció megfelelő részletességű.</p>
+            <p>A feltárt hiányosságok ezért <b>nem strukturális problémák</b>, hanem elsősorban finomhangolási lehetőségek. A legfontosabb további lépések:</p>
             <ul class="plain-list">
               <li>az általános Frame X jellegű layer-nevek megszüntetése,</li>
               <li>a tokenek – különösen az állapotokat jelölő tokenek – naming konvenciójának egységesítése,</li>
               <li>a tipográfiai tokenrendszer további finomítása,</li>
               <li>valamint az edge case-ek következetesebb dokumentálása.</li>
             </ul>
-            <p>Ezek a módosítások tovább javítanák a Design System kereshetőségét, a dokumentáció minőségét és a fejlesztői handoff hatékonyságát, miközben a jelenlegi struktúra alapvető megváltoztatására nincs szükség.</p>
+            <p>Ezek a módosítások tovább javítanák a Design System kereshetőségét, a dokumentáció minőségét és a fejlesztői handoff hatékonyságát, miközben a jelenlegi struktúra alapvető megváltoztatására <b>nincs szükség</b>.</p>
           </div>
+
+          <div class="struct-label">ALFEJEZETEK</div>
+          <ul class="struct-list">
+            <li data-goto="organization-pages"><span class="sl-num">2.1</span><div class="sl-body"><span class="sl-name">Oldalakra rendezettség</span><div class="sl-desc">A Figma fájl struktúrájának átláthatósága</div></div><span class="sl-arrow">→</span></li>
+            <li data-goto="organization-naming"><span class="sl-num">2.2</span><div class="sl-body"><span class="sl-name">Komponens naming konvenció</span><div class="sl-desc">Layer- és tokennevek egységessége</div></div><span class="sl-arrow">→</span></li>
+            <li data-goto="organization-handoff"><span class="sl-num">2.3</span><div class="sl-body"><span class="sl-name">Annotációk és handoff</span><div class="sl-desc">Dokumentáció mélysége és edge case-ek</div></div><span class="sl-arrow">→</span></li>
+          </ul>
         </div>
       </div>
     </section>
@@ -1991,6 +2109,13 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
           <p class="sec-desc">Vizuális egységesség és tipográfia</p>
           <p class="sec-intro">Ez a fejezet a rendszer vizuális karakterét vizsgálja: mennyire egyedi és a MagNet márkához illeszkedő az összhatás, valamint hogyan szolgálja ezt a tipográfiai rendszer.</p>
 
+          <div class="content-label">ÖSSZKÉP</div>
+          <div class="prose">
+            <p>A fejezet mindkét vizsgált pontja — a vizuális egységesség és a tipográfia — <b>ugyanarra a gyökérproblémára</b> vezethető vissza: a Design System befelé konzisztens és technikailag jól működik, de nem igazodik kellően szorosan a MagNet teljes márkaportfóliójához (weboldal, print, bankfiók).</p>
+            <p>A magnetbank.hu felületéhez képest az alkalmazás <b>visszafogottabb, generikusabb megjelenést</b> mutat — eltérő gombszín-használat, lekerekítés és fotóstílus jellemzi —, a tipográfiai rendszer pedig túl sok, párhuzamosan használt betűkészletet tartalmaz egyértelmű szerepkör-kiosztás nélkül; a weboldalon már bevezetett Display font (Rubrik) sincs átvezetve a rendszerbe.</p>
+            <p>Egyik pont sem igényel alapvető szerkezeti újratervezést: a jelenlegi tokenalapú architektúra <b>megfelelő alapot ad a korrekcióhoz</b>. A javasolt következő lépés egy rövid, cross-channel brand-alignment workshop a marketing/brand csapattal, amely kijelöli az egységes vizuális irányt és a font-architektúra szerepköreit.</p>
+          </div>
+
           <div class="struct-label">ALFEJEZETEK</div>
           <ul class="struct-list">
             <li data-goto="brand-visual"><span class="sl-num">3.1</span><div class="sl-body"><span class="sl-name">Vizuális egységesség és brandeltség</span><div class="sl-desc">Az összhatás egyedisége és illeszkedése a MagNet márkához</div></div><span class="sl-arrow">→</span></li>
@@ -2101,6 +2226,13 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
           <p class="sec-desc">WCAG 2.1 AA, fókusz, kontraszt, touch target, képernyőolvasók</p>
           <p class="sec-intro">Az Accessibility a Design System vizsgálatának egyik kiemelt területe. Az audit során a WCAG 2.1 AA követelményeit vettük alapul, és az egyes komponenseknél külön vizsgáltuk a releváns accessibility szempontokat.</p>
 
+          <div class="content-label">ÖSSZKÉP</div>
+          <div class="prose">
+            <p>Az Accessibility területén a Design System <b>megfelelő alapokkal rendelkezik</b>, és a legtöbb vizsgált szempont esetében a szükséges megoldások vagy dokumentáció már rendelkezésre állnak.</p>
+            <p>A legfontosabb további feladatok <b>a kontrasztproblémák rendszerszintű kezelése</b> és a releváns komponensek egységes fókuszállapotának kialakítása. Ezek mellett érdemes hosszabb távon az APCA-alapú vizsgálatot is beépíteni a design review folyamatába.</p>
+            <p>A képernyőolvasókkal kapcsolatos dokumentáció és a touch target méretek ezzel szemben <b>jelenleg erős pontjai</b> a rendszernek.</p>
+          </div>
+
           <div class="struct-label">ALFEJEZETEK</div>
           <ul class="struct-list">
             <li data-goto="accessibility-wcag"><span class="sl-num">4.1</span><div class="sl-body"><span class="sl-name">WCAG 2.1 AA</span><div class="sl-desc">Vizsgálati keret és APCA kiegészítő módszertan</div></div><span class="sl-arrow">→</span></li>
@@ -2109,13 +2241,6 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
             <li data-goto="accessibility-touch"><span class="sl-num">4.4</span><div class="sl-body"><span class="sl-name">Touch target méretek</span><div class="sl-desc">Interaktív elemek mérete</div></div><span class="sl-arrow">→</span></li>
             <li data-goto="accessibility-screenreader"><span class="sl-num">4.5</span><div class="sl-body"><span class="sl-name">Képernyőolvasók és szemantikai réteg</span><div class="sl-desc">ARIA-attribútumok dokumentáltsága</div></div><span class="sl-arrow">→</span></li>
           </ul>
-
-          <div class="content-label">ÖSSZKÉP</div>
-          <div class="prose">
-            <p>Az Accessibility területén a Design System megfelelő alapokkal rendelkezik, és a legtöbb vizsgált szempont esetében a szükséges megoldások vagy dokumentáció már rendelkezésre állnak.</p>
-            <p>A legfontosabb további feladatok a kontrasztproblémák rendszerszintű kezelése és a releváns komponensek egységes fókuszállapotának kialakítása. Ezek mellett érdemes hosszabb távon az APCA-alapú vizsgálatot is beépíteni a design review folyamatába.</p>
-            <p>A képernyőolvasókkal kapcsolatos dokumentáció és a touch target méretek ezzel szemben jelenleg erős pontjai a rendszernek.</p>
-          </div>
         </div>
       </div>
     </section>
@@ -2275,6 +2400,13 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
           <h1 class="sec-title">Fejleszthetőség, teljesség</h1>
           <p class="sec-desc">Bővíthetőség, skálázhatóság, hiányzó komponensek</p>
           <p class="sec-intro">Ez a fejezet azt vizsgálja, mennyire bővíthető és mennyire teljes a jelenlegi komponenskészlet: alkalmas-e a rendszer a későbbi növekedésre, és vannak-e hiányzó, érdemben pótlandó komponensek.</p>
+
+          <div class="content-label">ÖSSZKÉP</div>
+          <div class="prose">
+            <p>A Fejleszthetőség, teljesség a Design System <b>egyik legerősebb területe</b>. A skálázhatóság vizsgálata nem talált olyan architekturális korlátot, amely a rendszer későbbi bővítését akadályozná — a rétegzett tokenrendszer és a komplex komponenseknél alkalmazott Slots-alapú felépítés jó alapot ad új komponensek és tematikus variánsok bevezetéséhez.</p>
+            <p>A komponenskészlet lefedettsége is <b>megfelelőnek tekinthető</b>: nem azonosítottunk olyan hiányosságot, amely érdemben akadályozná a termékfejlesztést. Két kisebb bővítési lehetőség merült fel — egy kompaktabb gombméret sűrűbb UI-helyzetekhez, valamint egy klasszikus Modal/Dialog komponens a Bottom Sheet mellé —, ezek azonban inkább a rendszer rugalmasságát növelnék, nem tényleges hiánypótlások.</p>
+            <p>Összességében ez a fejezet <b>nem igényel beavatkozást</b>; a javasolt bővítések opcionálisak és alacsony prioritásúak.</p>
+          </div>
 
           <div class="struct-label">ALFEJEZETEK</div>
           <ul class="struct-list">
@@ -2538,7 +2670,7 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
 
   /* ---------- next-chapter navigation ---------- */
   var readingOrder = [
-    'overview-methodology','overview-designer','overview-stakeholder',
+    'overview-methodology','overview-stakeholder','overview-designer',
     'quality-structure','quality-states','quality-tokens','quality-microinteractions',
     'organization-pages','organization-naming','organization-handoff',
     'brand-visual','brand-typography',
