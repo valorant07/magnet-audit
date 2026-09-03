@@ -2764,6 +2764,18 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
     });
   }
 
+  function recNumKey(item){
+    var el = item.querySelector('.rec-num');
+    if(!el) return [999,999];
+    var parts = el.textContent.trim().split('.');
+    return [parseInt(parts[0],10) || 0, parseInt(parts[1],10) || 0];
+  }
+  function byRecNum(a,b){
+    var ka = recNumKey(a), kb = recNumKey(b);
+    if(ka[0] !== kb[0]) return ka[0] - kb[0];
+    return ka[1] - kb[1];
+  }
+
   function renderAreaFilter(){
     var results = document.getElementById('areaFilterResults');
     if(!results) return;
@@ -2775,6 +2787,7 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
       var areas = it.getAttribute('data-areas').split(',');
       if(areas.indexOf(currentArea) > -1){ matches.push(it); }
     });
+    matches.sort(byRecNum);
     if(matches.length === 0){
       results.innerHTML = '<div class="empty-state"><div class="es-mark">NINCS TALÁLAT</div><p>Ehhez a területhez egyelőre nincs kapcsolódó megállapítás.</p></div>';
       return;
@@ -2822,6 +2835,7 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
       if(it.closest('.filter-results')) return;
       if(getSeverity(it) === currentSeverity){ matches.push(it); }
     });
+    matches.sort(byRecNum);
     if(matches.length === 0){
       results.innerHTML = '<div class="empty-state"><div class="es-mark">NINCS TALÁLAT</div><p>Ehhez a súlyossági szinthez egyelőre nincs kapcsolódó megállapítás.</p></div>';
       return;
