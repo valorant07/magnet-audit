@@ -6,21 +6,21 @@
 <title>MagNet Bank — Design System Audit</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 
   :root{
-    --paper:#FAFAFA;
+    --paper:#FBFDF7;
     --surface:#FFFFFF;
-    --ink:#15181C;
-    --ink-soft:#565C60;
-    --ink-faint:#8A9096;
-    --line:#E4E5E0;
-    --line-strong:#D2D4CC;
+    --ink:#16300F;
+    --ink-soft:#4E6A3C;
+    --ink-faint:#7A9560;
+    --line:#DCEAC6;
+    --line-strong:#CBDFAE;
 
-    --brand:#3D8B40;
-    --brand-dark:#2B6A2D;
-    --brand-bg:#E7F3E5;
+    --brand:#4A6B32;
+    --brand-dark:#35521F;
+    --brand-bg:#E8F2D8;
 
     --critical:#D8402B;
     --critical-bg:#FBE7E2;
@@ -42,8 +42,8 @@
     --pass-bg:#DEF5EB;
     --pass-ink:#0F6A56;
 
-    --font-display:'Space Grotesk', 'Helvetica Neue', sans-serif;
-    --font-body:'Inter', 'Helvetica Neue', sans-serif;
+    --font-display:'Rubik', 'Helvetica Neue', sans-serif;
+    --font-body:'Rubik', 'Helvetica Neue', sans-serif;
     --font-mono:'IBM Plex Mono', 'Courier New', monospace;
 
     --sidebar-w:280px;
@@ -87,7 +87,8 @@
     flex:none; display:flex; align-items:flex-end; justify-content:space-between; gap:10px;
     padding:16px 18px; border-top:1px solid var(--line);
   }
-  .sb-footer-credit{ font-family:var(--font-mono); font-size:9.5px; letter-spacing:.05em; line-height:1.5; color:var(--ink-faint); text-transform:uppercase; }
+  .sb-footer-credit{ font-family:var(--font-mono); font-size:9.5px; letter-spacing:.05em; line-height:1.5; color:var(--ink-faint); text-transform:uppercase; display:flex; align-items:center; gap:7px; }
+  .sb-footer-logo{ width:15px; height:auto; flex:none; color:var(--ink-faint); }
   .sb-footer-version{ font-family:var(--font-mono); font-size:9.5px; letter-spacing:.05em; color:var(--ink-faint); flex:none; }
 
   .expand-all-btn{
@@ -241,6 +242,57 @@
   .sev-dot.javitando{ background:var(--javitando); }
   .sev-dot.optim{ background:var(--optim); }
   .sev-dot.pass{ background:var(--pass); }
+
+  .area-bars{ display:flex; flex-direction:column; gap:14px; margin:14px 0 4px; }
+  .area-bar-row{ display:flex; align-items:center; gap:10px; }
+  .area-bar-label{ width:190px; flex:none; font-size:13px; color:var(--ink); font-weight:500; }
+  .area-bar-track{ flex:1; height:18px; }
+  .area-bar-fill{ height:100%; display:flex; border-radius:3px; overflow:hidden; }
+  .area-bar-count{ width:26px; text-align:right; font-family:var(--font-mono); font-size:12.5px; color:var(--ink); font-weight:500; flex:none; }
+
+  .matrix-card{ border:1px solid var(--line-strong); border-radius:12px; background:var(--surface); padding:26px 30px 20px; margin:8px 0 24px; max-width:640px; }
+  .matrix-wrap{ display:flex; }
+  .matrix-ylabel{
+    writing-mode:vertical-rl; transform:rotate(180deg); font-family:var(--font-mono); font-size:10px;
+    color:var(--ink-faint); text-transform:uppercase; letter-spacing:.04em; padding-right:10px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .matrix-plot{ flex:1; position:relative; height:300px; border-left:1px solid var(--line-strong); border-bottom:1px solid var(--line-strong); margin-bottom:2px; }
+  .matrix-plot::before{ content:''; position:absolute; left:0; right:0; top:50%; border-top:1px dashed var(--line); }
+  .matrix-plot::after{ content:''; position:absolute; top:0; bottom:0; left:50%; border-left:1px dashed var(--line); }
+  .matrix-quadrant{ position:absolute; font-family:var(--font-mono); font-size:9px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.03em; }
+  .matrix-point{ position:absolute; transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center; }
+  .matrix-dot{ width:11px; height:11px; border-radius:50%; border:2px solid var(--surface); background:var(--jelentos); box-shadow:0 0 0 1px var(--jelentos); }
+  .matrix-dot.critical{ background:var(--critical); box-shadow:0 0 0 1px var(--critical); }
+  .matrix-point.featured .matrix-dot{ width:14px; height:14px; box-shadow:0 0 0 2px var(--ink); }
+  .matrix-point-label{ font-family:var(--font-display); font-weight:700; font-size:11px; color:var(--ink); margin-top:4px; white-space:nowrap; }
+  .matrix-xlabels{ display:flex; justify-content:space-between; margin:8px 0 4px 24px; font-family:var(--font-mono); font-size:10px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.04em; }
+  .matrix-xaxis-title{ text-align:center; font-family:var(--font-mono); font-size:10px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.04em; margin-left:24px; }
+
+  .seg-tabs{ display:inline-flex; gap:4px; padding:4px; border:1px solid var(--line-strong); border-radius:10px; background:var(--paper); margin-bottom:18px; }
+  .seg-tab{ all:unset; box-sizing:border-box; cursor:pointer; padding:8px 14px; border-radius:7px; font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); transition:background .15s ease, color .15s ease; }
+  .seg-tab:hover{ color:var(--ink); }
+  .seg-tab.active{ background:var(--ink); color:var(--surface); font-weight:500; }
+  .seg-panel{ display:none; }
+  .seg-panel.active{ display:block; }
+
+  .roadmap-card{ border:1px solid var(--line-strong); border-radius:12px; background:var(--surface); padding:22px 26px 20px; max-width:640px; }
+  .roadmap-row{ display:flex; align-items:stretch; padding:14px 0; border-bottom:1px solid var(--line); }
+  .roadmap-row:last-of-type{ border-bottom:none; padding-bottom:2px; }
+  .roadmap-when{ width:120px; flex:none; display:flex; flex-direction:column; justify-content:center; }
+  .roadmap-when-label{ font-family:var(--font-display); font-weight:700; font-size:13.5px; color:var(--ink); }
+  .roadmap-when-period{ font-family:var(--font-mono); font-size:9.5px; color:var(--ink-faint); text-transform:uppercase; margin-top:2px; }
+  .roadmap-items{ flex:1; display:flex; gap:10px; flex-wrap:wrap; align-items:center; padding-left:14px; border-left:1px solid var(--line); }
+  .roadmap-chip{ border-radius:8px; padding:8px 14px; display:flex; align-items:center; gap:8px; }
+  .roadmap-chip.critical{ border:1px solid var(--critical); background:var(--critical-bg); }
+  .roadmap-chip.critical .roadmap-chip-label{ color:var(--critical-ink); }
+  .roadmap-chip.jelentos{ border:1px solid var(--jelentos); background:var(--jelentos-bg); }
+  .roadmap-chip.jelentos .roadmap-chip-label{ color:var(--jelentos-ink); }
+  .roadmap-chip.featured{ box-shadow:0 0 0 2px var(--ink); }
+  .roadmap-chip-dot{ width:8px; height:8px; border-radius:50%; flex:none; }
+  .roadmap-chip-dot.critical{ background:var(--critical); }
+  .roadmap-chip-dot.jelentos{ background:var(--jelentos); }
+  .roadmap-chip-label{ font-family:var(--font-display); font-weight:700; font-size:12px; }
 
   .entry-cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:8px 0 26px; }
   .entry-card{
@@ -421,7 +473,7 @@
   }
   .lightbox-close:hover{ background:rgba(255,255,255,0.2); }
 
-  .sub-note{ font-family:var(--font-mono); font-size:12px; color:var(--ink-faint); margin-top:28px; }
+  .sub-note{ font-family:var(--font-mono); font-size:12px; color:var(--ink-faint); margin-top:28px; border-left:2px solid var(--line-strong); padding-left:12px; }
 
   .sec-head{ padding:80px 0 0; }
   .sec-title{ font-family:var(--font-display); font-weight:700; font-size:clamp(34px,4.8vw,50px); line-height:1.1; margin:0 0 16px; letter-spacing:-0.015em; text-wrap:balance; }
@@ -491,6 +543,7 @@
 
     <ul class="tree">
       <li class="tree-group-label">Áttekintés</li>
+      <li class="tree-node"><button class="tree-parent" data-page="overview">Audit összefoglaló</button></li>
       <li class="tree-node"><button class="tree-parent" data-page="overview-methodology">Módszertan</button></li>
       <li class="tree-node"><button class="tree-parent" data-page="overview-stakeholder">Stakeholder összefoglaló</button></li>
       <li class="tree-node"><button class="tree-parent" data-page="overview-designer">Designer összefoglaló</button></li>
@@ -581,8 +634,8 @@
     </ul>
    </div>
     <div class="sb-footer">
-      <span class="sb-footer-credit">Készítette<br>Stereogram Studio</span>
-      <span class="sb-footer-version">V.01</span>
+      <span class="sb-footer-credit"><svg class="sb-footer-logo" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8.68259 4.84491C10.7883 4.84491 12.5 6.54981 12.5 8.64642C12.5 10.743 10.7883 12.4479 8.68259 12.4479C6.57693 12.4479 4.86524 10.743 4.86524 8.64642C4.86297 6.54981 6.57693 4.84491 8.68259 4.84491Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.137 8.64642C20.137 6.54981 18.4253 4.84491 16.3196 4.84491C16.1883 4.84491 16.0592 4.8517 15.9302 4.86529C16.5256 5.9951 16.8653 7.28114 16.8653 8.64642C16.8653 10.0117 16.5279 11.2977 15.9302 12.4275C16.057 12.4411 16.1883 12.4479 16.3196 12.4479C18.423 12.4479 20.137 10.743 20.137 8.64642Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.5 15.8509C13.6411 16.4509 14.9385 16.7928 16.3174 16.7928C20.8366 16.7928 24.5 13.1453 24.5 8.64641C24.5 4.14755 20.8366 0.5 16.3174 0.5C14.9385 0.5 13.6411 0.841887 12.5 1.44189C13.9604 2.2117 15.1604 3.40717 15.9302 4.86528C16.057 4.8517 16.1883 4.84491 16.3196 4.84491C18.4253 4.84491 20.137 6.54981 20.137 8.64641C20.137 10.743 18.4253 12.4479 16.3196 12.4479C16.1883 12.4479 16.0592 12.4411 15.9302 12.4275" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M16.3174 4.84491C18.423 4.84491 20.1347 6.54981 20.1347 8.64642C20.1347 10.743 18.423 12.4479 16.3174 12.4479C14.2117 12.4479 12.5 10.743 12.5 8.64642C12.5 6.54981 14.214 4.84491 16.3174 4.84491Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M4.86304 8.64642C4.86304 10.743 6.57474 12.4479 8.6804 12.4479C8.81172 12.4479 8.94077 12.4411 9.06983 12.4275C8.47436 11.2977 8.13474 10.0117 8.13474 8.64642C8.13474 7.28114 8.47209 5.9951 9.06983 4.86529C8.94304 4.8517 8.81172 4.84491 8.6804 4.84491C6.577 4.84491 4.86304 6.54981 4.86304 8.64642Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.5 1.44189C11.3589 0.841887 10.0615 0.5 8.68264 0.5C4.1634 0.5 0.5 4.14755 0.5 8.64641C0.5 13.1453 4.1634 16.7928 8.68264 16.7928C10.0615 16.7928 11.3611 16.4509 12.5 15.8509C11.0396 15.0811 9.83962 13.8857 9.06981 12.4275C8.94302 12.4411 8.8117 12.4479 8.68038 12.4479C6.57472 12.4479 4.86302 10.743 4.86302 8.64641C4.86302 6.54981 6.57472 4.84491 8.68038 4.84491C8.8117 4.84491 8.94075 4.8517 9.06981 4.86528" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Készítette<br>Stereogram Studio</span></span>
+      <span class="sb-footer-version">V.1.1</span>
     </div>
   </nav>
 
@@ -837,20 +890,139 @@
             <p>Egy pont azonban a többinél nagyobb súllyal esik latba: a Design System vizuális nyelvének összehangolása a MagNet teljes márkaélményével. Ez elsősorban stratégiai, nem technikai kérdés.</p>
           </div>
 
-          <div class="content-label">MEGÁLLAPÍTÁSOK SÚLYOSSÁG SZERINT</div>
-          <table class="data-table">
-            <thead><tr><th>Súlyosság</th><th>Darabszám</th><th>Arány</th></tr></thead>
-            <tbody>
-              <tr><td>🔴 Kritikus</td><td>1</td><td>2%</td></tr>
-              <tr><td>🟠 Jelentős</td><td>14</td><td>30%</td></tr>
-              <tr><td>🟡 Javítandó</td><td>13</td><td>28%</td></tr>
-              <tr><td>🔵 Optimalizálás</td><td>15</td><td>32%</td></tr>
-              <tr><td>🟢 Megfelelő</td><td>4</td><td>9%</td></tr>
-              <tr><td><b>Összesen</b></td><td><b>47</b></td><td><b>100%</b></td></tr>
-            </tbody>
-          </table>
+          <div class="content-label">A MEGÁLLAPÍTÁSOK ÁTTEKINTÉSE</div>
+          <div class="seg-control">
+            <div class="seg-tabs">
+              <button class="seg-tab active" data-seg-target="seg-audit-summary">Súlyosság szerint</button>
+              <button class="seg-tab" data-seg-target="seg-area-severity">Érintett terület szerint</button>
+            </div>
 
-          <p class="sub-note" style="margin-top:10px;">Megjegyzés: a WCAG 2.1 AA az audit vizsgálati alapelve, nem önálló hibajegy, ezért nem szerepel a fenti severity-megállapítások között.</p>
+            <div class="seg-panel active" id="seg-audit-summary">
+              <div class="stat-highlight">
+                <div class="stat-highlight-num"><span class="ssi-num">47</span><span class="ssi-label">Megállapítás</span></div>
+                <div class="stat-ribbon">
+                  <div class="stat-ribbon-seg critical" style="flex:1;"></div>
+                  <div class="stat-ribbon-seg jelentos" style="flex:14;"></div>
+                  <div class="stat-ribbon-seg javitando" style="flex:13;"></div>
+                  <div class="stat-ribbon-seg optim" style="flex:15;"></div>
+                  <div class="stat-ribbon-seg pass" style="flex:4;"></div>
+                </div>
+              </div>
+
+              <table class="data-table">
+                <thead><tr><th>Súlyosság</th><th>Darabszám</th><th>Arány</th></tr></thead>
+                <tbody>
+                  <tr><td>🔴 Kritikus</td><td>1</td><td>2%</td></tr>
+                  <tr><td>🟠 Jelentős</td><td>14</td><td>30%</td></tr>
+                  <tr><td>🟡 Javítandó</td><td>13</td><td>28%</td></tr>
+                  <tr><td>🔵 Optimalizálás</td><td>15</td><td>32%</td></tr>
+                  <tr><td>🟢 Megfelelő</td><td>4</td><td>9%</td></tr>
+                  <tr><td><b>Összesen</b></td><td><b>47</b></td><td><b>100%</b></td></tr>
+                </tbody>
+              </table>
+
+              <p class="sub-note" style="margin-top:10px;">Megjegyzés: a WCAG 2.1 AA az audit vizsgálati alapelve, nem önálló hibajegy, ezért nem szerepel a fenti severity-megállapítások között.</p>
+            </div>
+
+            <div class="seg-panel" id="seg-area-severity">
+              <div class="area-bars">
+                <div class="area-bar-row">
+                  <div class="area-bar-label">👤 Használhatóság</div>
+                  <div class="area-bar-track">
+                    <div class="area-bar-fill" style="width:100%;">
+                      <div class="stat-ribbon-seg critical" style="width:6.7%;"></div>
+                      <div class="stat-ribbon-seg jelentos" style="width:26.7%;"></div>
+                      <div class="stat-ribbon-seg javitando" style="width:30.0%;"></div>
+                      <div class="stat-ribbon-seg optim" style="width:33.3%;"></div>
+                      <div class="stat-ribbon-seg pass" style="width:3.3%;"></div>
+                    </div>
+                  </div>
+                  <div class="area-bar-count">30</div>
+                </div>
+                <div class="area-bar-row">
+                  <div class="area-bar-label">♿ Akadálymentesség</div>
+                  <div class="area-bar-track">
+                    <div class="area-bar-fill" style="width:76.7%;">
+                      <div class="stat-ribbon-seg critical" style="width:8.7%;"></div>
+                      <div class="stat-ribbon-seg jelentos" style="width:34.8%;"></div>
+                      <div class="stat-ribbon-seg javitando" style="width:39.1%;"></div>
+                      <div class="stat-ribbon-seg optim" style="width:8.7%;"></div>
+                      <div class="stat-ribbon-seg pass" style="width:8.7%;"></div>
+                    </div>
+                  </div>
+                  <div class="area-bar-count">23</div>
+                </div>
+                <div class="area-bar-row">
+                  <div class="area-bar-label">⚙️ Karbantarthatóság</div>
+                  <div class="area-bar-track">
+                    <div class="area-bar-fill" style="width:73.3%;">
+                      <div class="stat-ribbon-seg jelentos" style="width:36.4%;"></div>
+                      <div class="stat-ribbon-seg javitando" style="width:18.2%;"></div>
+                      <div class="stat-ribbon-seg optim" style="width:36.4%;"></div>
+                      <div class="stat-ribbon-seg pass" style="width:9.1%;"></div>
+                    </div>
+                  </div>
+                  <div class="area-bar-count">22</div>
+                </div>
+                <div class="area-bar-row">
+                  <div class="area-bar-label">🎨 Fejlesztői együttműködés</div>
+                  <div class="area-bar-track">
+                    <div class="area-bar-fill" style="width:70.0%;">
+                      <div class="stat-ribbon-seg jelentos" style="width:38.1%;"></div>
+                      <div class="stat-ribbon-seg javitando" style="width:28.6%;"></div>
+                      <div class="stat-ribbon-seg optim" style="width:33.3%;"></div>
+                    </div>
+                  </div>
+                  <div class="area-bar-count">21</div>
+                </div>
+                <div class="area-bar-row">
+                  <div class="area-bar-label">🏢 Márkakonzisztencia</div>
+                  <div class="area-bar-track">
+                    <div class="area-bar-fill" style="width:56.7%;">
+                      <div class="stat-ribbon-seg critical" style="width:5.9%;"></div>
+                      <div class="stat-ribbon-seg jelentos" style="width:23.5%;"></div>
+                      <div class="stat-ribbon-seg javitando" style="width:41.2%;"></div>
+                      <div class="stat-ribbon-seg optim" style="width:29.4%;"></div>
+                    </div>
+                  </div>
+                  <div class="area-bar-count">17</div>
+                </div>
+                <div class="area-bar-row">
+                  <div class="area-bar-label">📈 Skálázhatóság</div>
+                  <div class="area-bar-track">
+                    <div class="area-bar-fill" style="width:33.3%;">
+                      <div class="stat-ribbon-seg jelentos" style="width:40.0%;"></div>
+                      <div class="stat-ribbon-seg optim" style="width:50.0%;"></div>
+                      <div class="stat-ribbon-seg pass" style="width:10.0%;"></div>
+                    </div>
+                  </div>
+                  <div class="area-bar-count">10</div>
+                </div>
+                <div class="area-bar-row">
+                  <div class="area-bar-label" style="color:var(--ink-soft); font-weight:400; font-style:italic;">Egyéb területek (8)</div>
+                  <div class="area-bar-track">
+                    <div class="area-bar-fill" style="width:63.3%;">
+                      <div class="stat-ribbon-seg jelentos" style="width:5.3%;"></div>
+                      <div class="stat-ribbon-seg javitando" style="width:5.3%;"></div>
+                      <div class="stat-ribbon-seg optim" style="width:63.2%;"></div>
+                      <div class="stat-ribbon-seg pass" style="width:26.3%;"></div>
+                    </div>
+                  </div>
+                  <div class="area-bar-count">19</div>
+                </div>
+              </div>
+
+              <div class="stat-legend" style="margin-top:6px;">
+                <span class="stat-legend-item"><span class="sev-dot critical"></span>Kritikus</span>
+                <span class="stat-legend-item"><span class="sev-dot jelentos"></span>Jelentős</span>
+                <span class="stat-legend-item"><span class="sev-dot javitando"></span>Javítandó</span>
+                <span class="stat-legend-item"><span class="sev-dot optim"></span>Optimalizálás</span>
+                <span class="stat-legend-item"><span class="sev-dot pass"></span>Megfelelő</span>
+              </div>
+
+              <p class="sub-note" style="margin-top:10px;">A sáv teljes hossza az adott terület összesített megállapításszámát mutatja, a színes szakaszok pedig ennek súlyossági megoszlását. Az Egyéb területek sor a fennmaradó 8, egyenként kisebb súlyú terület összevont adata — a teljes, területenkénti bontás az Érintett terület szerinti szűrőben található.</p>
+            </div>
+          </div>
 
           <div class="content-label">KIEMELT STRATÉGIAI KÉRDÉS</div>
           <div class="headline-finding">
@@ -924,17 +1096,82 @@
             </li>
           </ul>
 
-          <div class="content-label">PRIORITÁSOK</div>
-          <table class="data-table">
-            <thead><tr><th>Prioritás</th><th>Terület</th><th>Időtáv</th></tr></thead>
-            <tbody>
-              <tr><td>🔴 1. Azonnali</td><td>Appbar kontraszt</td><td>Napok</td></tr>
-              <tr><td>🟠 2. Magas</td><td>Kontrasztok rendszerszinten</td><td>1 sprint</td></tr>
-              <tr><td>🟠 3. Magas</td><td>Fókuszállapotok egységesítése</td><td>1 sprint</td></tr>
-              <tr><td>🟠 4. Középtáv</td><td>Frame- és tokenhasználat</td><td>Fokozatos</td></tr>
-              <tr><td>🟠 5. Stratégiai</td><td>Brand alignment + tipográfia</td><td>Döntéstől függően</td></tr>
-            </tbody>
-          </table>
+          <div class="content-label">HOGYAN NÉZZÜK A PRIORITÁSOKAT</div>
+          <div class="seg-control">
+            <div class="seg-tabs">
+              <button class="seg-tab" data-seg-target="seg-priorities">Prioritások</button>
+              <button class="seg-tab active" data-seg-target="seg-matrix">Ráfordítás és hatás</button>
+              <button class="seg-tab" data-seg-target="seg-roadmap">Roadmap</button>
+            </div>
+
+            <div class="seg-panel" id="seg-priorities">
+              <table class="data-table">
+                <thead><tr><th>Prioritás</th><th>Terület</th><th>Időtáv</th></tr></thead>
+                <tbody>
+                  <tr><td>🔴 1. Azonnali</td><td>Appbar kontraszt</td><td>Napok</td></tr>
+                  <tr><td>🟠 2. Magas</td><td>Kontrasztok rendszerszinten</td><td>1 sprint</td></tr>
+                  <tr><td>🟠 3. Magas</td><td>Fókuszállapotok egységesítése</td><td>1 sprint</td></tr>
+                  <tr><td>🟠 4. Középtáv</td><td>Frame- és tokenhasználat</td><td>Fokozatos</td></tr>
+                  <tr><td>🟠 5. Stratégiai</td><td>Brand alignment + tipográfia</td><td>Döntéstől függően</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="seg-panel active" id="seg-matrix">
+              <div class="matrix-card">
+                <div class="matrix-wrap">
+                  <div class="matrix-ylabel">Üzleti hatás →</div>
+                  <div class="matrix-plot">
+                    <div class="matrix-quadrant" style="left:6px; top:8px;">Gyors nyereség</div>
+                    <div class="matrix-quadrant" style="right:6px; top:8px; text-align:right;">Nagy projekt</div>
+                    <div class="matrix-quadrant" style="left:6px; bottom:6px;">Kitöltő</div>
+                    <div class="matrix-quadrant" style="right:6px; bottom:6px; text-align:right;">Megfontolandó</div>
+
+                    <div class="matrix-point" style="left:9%; top:22%;"><span class="matrix-dot critical"></span><span class="matrix-point-label">Appbar kontraszt</span></div>
+                    <div class="matrix-point" style="left:32%; top:16%;"><span class="matrix-dot"></span><span class="matrix-point-label">Kontrasztok rendszerszinten</span></div>
+                    <div class="matrix-point" style="left:32%; top:42%;"><span class="matrix-dot"></span><span class="matrix-point-label">Fókuszállapotok</span></div>
+                    <div class="matrix-point" style="left:52%; top:58%;"><span class="matrix-dot"></span><span class="matrix-point-label">Frame- és tokenhasználat</span></div>
+                    <div class="matrix-point" style="left:78%; top:28%;"><span class="matrix-dot"></span><span class="matrix-point-label">Tipográfia</span></div>
+                    <div class="matrix-point featured" style="left:85%; top:9%;"><span class="matrix-dot"></span><span class="matrix-point-label">Vizuális egységesség</span></div>
+                  </div>
+                </div>
+                <div class="matrix-xlabels"><span>Azonnali</span><span>Rövid táv</span><span>Középtáv</span><span>Stratégiai</span></div>
+                <div class="matrix-xaxis-title">Időtáv / ráfordítás →</div>
+              </div>
+            </div>
+
+            <div class="seg-panel" id="seg-roadmap">
+              <div class="roadmap-card">
+                <div class="roadmap-row">
+                  <div class="roadmap-when"><span class="roadmap-when-label">Azonnali</span><span class="roadmap-when-period">Október eleje</span></div>
+                  <div class="roadmap-items">
+                    <div class="roadmap-chip critical"><span class="roadmap-chip-dot critical"></span><span class="roadmap-chip-label">Appbar kontraszt</span></div>
+                  </div>
+                </div>
+                <div class="roadmap-row">
+                  <div class="roadmap-when"><span class="roadmap-when-label">Rövid táv</span><span class="roadmap-when-period">Október</span></div>
+                  <div class="roadmap-items">
+                    <div class="roadmap-chip jelentos"><span class="roadmap-chip-dot jelentos"></span><span class="roadmap-chip-label">Kontrasztok rendszerszinten</span></div>
+                    <div class="roadmap-chip jelentos"><span class="roadmap-chip-dot jelentos"></span><span class="roadmap-chip-label">Fókuszállapotok</span></div>
+                  </div>
+                </div>
+                <div class="roadmap-row">
+                  <div class="roadmap-when"><span class="roadmap-when-label">Középtáv</span><span class="roadmap-when-period">November–december</span></div>
+                  <div class="roadmap-items">
+                    <div class="roadmap-chip jelentos"><span class="roadmap-chip-dot jelentos"></span><span class="roadmap-chip-label">Frame- és tokenhasználat</span></div>
+                  </div>
+                </div>
+                <div class="roadmap-row">
+                  <div class="roadmap-when"><span class="roadmap-when-label">Stratégiai</span><span class="roadmap-when-period">2027 Q1-től</span></div>
+                  <div class="roadmap-items">
+                    <div class="roadmap-chip jelentos"><span class="roadmap-chip-dot jelentos"></span><span class="roadmap-chip-label">Tipográfia</span></div>
+                    <div class="roadmap-chip jelentos featured"><span class="roadmap-chip-dot jelentos"></span><span class="roadmap-chip-label">Vizuális egységesség</span></div>
+                  </div>
+                </div>
+                <p class="sub-note" style="margin-top:16px;">Becslés: ha a munka 2026 októberében elindul, a kritikus és jelentős pontok döntő része 2026 végéig lezárható. A stratégiai brand-kérdés időzítése a márkadöntéstől függ, ezért az 2027-re csúszhat.</p>
+              </div>
+            </div>
+          </div>
 
           <div class="content-label">ÖSSZEFOGLALÓ</div>
           <div class="rec-subhead">Ami jól működik</div>
@@ -1537,6 +1774,23 @@ Semantic spacing
           <p class="sec-desc">A design system saját felépülésének logikája: tokenstruktúra, alapvető és komplex komponensek</p>
           <p class="sec-intro">Ez a fejezet a rendszer saját felépülését követi végig: a legalapabb réteget (design tokenek, stílusok), az abból építkező alapvető komponenseket (properties, variánsok, layout), majd az ezekből összeálló komplex, több komponensből felépülő elemeket (komponens-kombinációk, minták, folyamatok).</p>
 
+          <div class="struct-label">E FEJEZET MEGÁLLAPÍTÁSAI</div>
+          <div class="stat-highlight">
+            <div class="stat-highlight-num"><span class="ssi-num">32</span><span class="ssi-label">Megállapítás</span></div>
+            <div class="stat-ribbon">
+              <div class="stat-ribbon-seg critical" style="flex:1;"></div>
+              <div class="stat-ribbon-seg jelentos" style="flex:9;"></div>
+              <div class="stat-ribbon-seg javitando" style="flex:13;"></div>
+              <div class="stat-ribbon-seg optim" style="flex:9;"></div>
+            </div>
+          </div>
+          <div class="stat-legend">
+            <span class="stat-legend-item"><span class="sev-dot critical"></span>Kritikus <b>1</b></span>
+            <span class="stat-legend-item"><span class="sev-dot jelentos"></span>Jelentős <b>9</b></span>
+            <span class="stat-legend-item"><span class="sev-dot javitando"></span>Javítandó <b>13</b></span>
+            <span class="stat-legend-item"><span class="sev-dot optim"></span>Optimalizálás <b>9</b></span>
+          </div>
+
           <div class="content-label">MIÉRT EZEK A KOMPONENSEK SZEREPELNEK ITT</div>
           <div class="prose">
             <p>A vizsgálat a design system teljes komponenskészletét áttekintette. Ebbe a fejezetbe azok a komponensek kerültek be, amelyeknél egyértelmű fejlesztési lehetőséget azonosítottunk, vagy ahol tényleges hibát találtunk — a többi komponens a vizsgálat alapján megfelelő állapotban van.</p>
@@ -1795,6 +2049,19 @@ Semantic spacing
           <p class="sec-desc">Felépítés, állapotok, tokenhasználat, mikrointerakciók</p>
           <p class="sec-intro">Ez a fejezet a komponensek minőségét vizsgálja: a felépítésüket és beállíthatóságukat, az állapot- és property-rendszerüket, a frame-szintű felépítést és tokenhasználatot, valamint a beépített mikrointerakciókat.</p>
 
+          <div class="struct-label">E FEJEZET MEGÁLLAPÍTÁSAI</div>
+          <div class="stat-highlight">
+            <div class="stat-highlight-num"><span class="ssi-num">4</span><span class="ssi-label">Megállapítás</span></div>
+            <div class="stat-ribbon">
+              <div class="stat-ribbon-seg jelentos" style="flex:1;"></div>
+              <div class="stat-ribbon-seg optim" style="flex:3;"></div>
+            </div>
+          </div>
+          <div class="stat-legend">
+            <span class="stat-legend-item"><span class="sev-dot jelentos"></span>Jelentős <b>1</b></span>
+            <span class="stat-legend-item"><span class="sev-dot optim"></span>Optimalizálás <b>3</b></span>
+          </div>
+
           <div class="content-label">ÖSSZKÉP</div>
           <div class="prose">
             <p>A komponensrendszer <b>alapvetően jó minőségű</b> és megfelelő strukturális alapokra épül. A vizsgálat alapján nem azonosítható olyan általános komponensarchitekturális probléma, amely alapvető újratervezést tenne szükségessé.</p>
@@ -1979,6 +2246,19 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
           <p class="sec-desc">Oldalstruktúra, naming konvenció, annotációk és handoff</p>
           <p class="sec-intro">Ez a fejezet a Figma fájl rendezettségét vizsgálja: az oldalakra tagolást, a komponensek és tokenek elnevezési konvencióját, valamint a hozzájuk kapcsolódó dokumentációt és fejlesztői handoffot.</p>
 
+          <div class="struct-label">E FEJEZET MEGÁLLAPÍTÁSAI</div>
+          <div class="stat-highlight">
+            <div class="stat-highlight-num"><span class="ssi-num">3</span><span class="ssi-label">Megállapítás</span></div>
+            <div class="stat-ribbon">
+              <div class="stat-ribbon-seg optim" style="flex:2;"></div>
+              <div class="stat-ribbon-seg pass" style="flex:1;"></div>
+            </div>
+          </div>
+          <div class="stat-legend">
+            <span class="stat-legend-item"><span class="sev-dot optim"></span>Optimalizálás <b>2</b></span>
+            <span class="stat-legend-item"><span class="sev-dot pass"></span>Megfelelő <b>1</b></span>
+          </div>
+
           <div class="content-label">ÖSSZKÉP</div>
           <div class="prose">
             <p>A rendezettség és kereshetőség a MagNet Design System <b>egyik legerősebb területe</b>. Az oldalstruktúra jól szervezett, a komponensek elnevezései jellemzően következetesek, és a hozzájuk tartozó dokumentáció megfelelő részletességű.</p>
@@ -2109,6 +2389,17 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
           <p class="sec-desc">Vizuális egységesség és tipográfia</p>
           <p class="sec-intro">Ez a fejezet a rendszer vizuális karakterét vizsgálja: mennyire egyedi és a MagNet márkához illeszkedő az összhatás, valamint hogyan szolgálja ezt a tipográfiai rendszer.</p>
 
+          <div class="struct-label">E FEJEZET MEGÁLLAPÍTÁSAI</div>
+          <div class="stat-highlight">
+            <div class="stat-highlight-num"><span class="ssi-num">2</span><span class="ssi-label">Megállapítás</span></div>
+            <div class="stat-ribbon">
+              <div class="stat-ribbon-seg jelentos" style="flex:1;"></div>
+            </div>
+          </div>
+          <div class="stat-legend">
+            <span class="stat-legend-item"><span class="sev-dot jelentos"></span>Jelentős <b>2</b></span>
+          </div>
+
           <div class="content-label">ÖSSZKÉP</div>
           <div class="prose">
             <p>A fejezet mindkét vizsgált pontja — a vizuális egységesség és a tipográfia — <b>ugyanarra a gyökérproblémára</b> vezethető vissza: a Design System befelé konzisztens és technikailag jól működik, de nem igazodik kellően szorosan a MagNet teljes márkaportfóliójához (weboldal, print, bankfiók).</p>
@@ -2225,6 +2516,19 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
           <h1 class="sec-title">Accessibility</h1>
           <p class="sec-desc">WCAG 2.1 AA, fókusz, kontraszt, touch target, képernyőolvasók</p>
           <p class="sec-intro">Az Accessibility a Design System vizsgálatának egyik kiemelt területe. Az audit során a WCAG 2.1 AA követelményeit vettük alapul, és az egyes komponenseknél külön vizsgáltuk a releváns accessibility szempontokat.</p>
+
+          <div class="struct-label">E FEJEZET MEGÁLLAPÍTÁSAI</div>
+          <div class="stat-highlight">
+            <div class="stat-highlight-num"><span class="ssi-num">4</span><span class="ssi-label">Megállapítás</span></div>
+            <div class="stat-ribbon">
+              <div class="stat-ribbon-seg jelentos" style="flex:1;"></div>
+              <div class="stat-ribbon-seg pass" style="flex:1;"></div>
+            </div>
+          </div>
+          <div class="stat-legend">
+            <span class="stat-legend-item"><span class="sev-dot jelentos"></span>Jelentős <b>2</b></span>
+            <span class="stat-legend-item"><span class="sev-dot pass"></span>Megfelelő <b>2</b></span>
+          </div>
 
           <div class="content-label">ÖSSZKÉP</div>
           <div class="prose">
@@ -2400,6 +2704,19 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
           <h1 class="sec-title">Fejleszthetőség, teljesség</h1>
           <p class="sec-desc">Bővíthetőség, skálázhatóság, hiányzó komponensek</p>
           <p class="sec-intro">Ez a fejezet azt vizsgálja, mennyire bővíthető és mennyire teljes a jelenlegi komponenskészlet: alkalmas-e a rendszer a későbbi növekedésre, és vannak-e hiányzó, érdemben pótlandó komponensek.</p>
+
+          <div class="struct-label">E FEJEZET MEGÁLLAPÍTÁSAI</div>
+          <div class="stat-highlight">
+            <div class="stat-highlight-num"><span class="ssi-num">2</span><span class="ssi-label">Megállapítás</span></div>
+            <div class="stat-ribbon">
+              <div class="stat-ribbon-seg optim" style="flex:1;"></div>
+              <div class="stat-ribbon-seg pass" style="flex:1;"></div>
+            </div>
+          </div>
+          <div class="stat-legend">
+            <span class="stat-legend-item"><span class="sev-dot optim"></span>Optimalizálás <b>1</b></span>
+            <span class="stat-legend-item"><span class="sev-dot pass"></span>Megfelelő <b>1</b></span>
+          </div>
 
           <div class="content-label">ÖSSZKÉP</div>
           <div class="prose">
@@ -2616,7 +2933,7 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
     if(prefix === 'dna' || prefix === 'anatomy'){ prefix = 'composition'; }
     parents.forEach(function(p){
       var dp = p.getAttribute('data-page');
-      p.classList.toggle('active', dp === id || dp === prefix);
+      p.classList.toggle('active', dp === id || (dp === prefix && prefix !== 'overview'));
     });
     children.forEach(function(c){ c.classList.toggle('active', c.getAttribute('data-page') === id); });
     expandForPage(prefix);
@@ -2887,6 +3204,18 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
       if(badge){ badge.textContent = count; }
     });
   }
+
+  document.querySelectorAll('.seg-control').forEach(function(group){
+    var tabs = group.querySelectorAll('.seg-tab');
+    var panels = group.querySelectorAll('.seg-panel');
+    tabs.forEach(function(tab){
+      tab.addEventListener('click', function(){
+        tabs.forEach(function(t){ t.classList.toggle('active', t === tab); });
+        var target = tab.getAttribute('data-seg-target');
+        panels.forEach(function(p){ p.classList.toggle('active', p.id === target); });
+      });
+    });
+  });
 
   showPage('overview');
   renderAreaFilter();
