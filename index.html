@@ -22,25 +22,26 @@
     --brand-dark:#35521F;
     --brand-bg:#E8F2D8;
 
-    --critical:#D8402B;
-    --critical-bg:#FBE7E2;
-    --critical-ink:#7A2115;
+    /* súlyossági színek — V1.1.1: az átadó prezentáció palettája */
+    --critical:#FF7459;
+    --critical-bg:#FFE9E4;
+    --critical-ink:#9A2E1A;
 
-    --jelentos:#E2792B;
-    --jelentos-bg:#FBEBDB;
-    --jelentos-ink:#7A3D0E;
+    --jelentos:#FB9629;
+    --jelentos-bg:#FEF0E0;
+    --jelentos-ink:#8A4A0C;
 
-    --javitando:#E8B23C;
-    --javitando-bg:#FBF1D8;
-    --javitando-ink:#6B4D0A;
+    --javitando:#FFE41A;
+    --javitando-bg:#FFF9D6;
+    --javitando-ink:#6B5A00;
 
-    --optim:#2E8B99;
-    --optim-bg:#DBEEF0;
-    --optim-ink:#134A50;
+    --optim:#A9DCE4;
+    --optim-bg:#EAF6F8;
+    --optim-ink:#2D6570;
 
-    --pass:#22BF9C;
-    --pass-bg:#DEF5EB;
-    --pass-ink:#0F6A56;
+    --pass:#A6D681;
+    --pass-bg:#EEF7E6;
+    --pass-ink:#3D6A22;
 
     --font-display:'Rubik', 'Helvetica Neue', sans-serif;
     --font-body:'Rubik', 'Helvetica Neue', sans-serif;
@@ -525,9 +526,29 @@
     .app{ flex-direction:column; }
   }
 
+
+  /* V1.1.1 · színes súlyossági jelölő (a korábbi kör-emojik helyett) */
+  .sev-mark{ display:inline-block; width:9px; height:9px; border-radius:50%; flex:none; vertical-align:.02em; margin-right:.5em; background:var(--ink-faint); }
+  .sev-chip .sev-mark, .filter-chip .sev-mark{ margin-right:0; }
+  .sev-mark.critical{ background:var(--critical); }
+  .sev-mark.jelentos{ background:var(--jelentos); }
+  .sev-mark.javitando{ background:var(--javitando); }
+  .sev-mark.optim{ background:var(--optim); }
+  .sev-mark.pass{ background:var(--pass); }
+  /* ---------- V1.1.1 · beágyazott mód (?embed=1) és közvetlen hivatkozás kiemelése ---------- */
+  html.embed .sidebar{ display:none; }
+  html.embed .main{ margin-left:0; }
+  html.embed .next-nav{ display:none; }
+  .rec-item{ scroll-margin-top:24px; }
+  .rec-item.is-target{ animation:recflash 2.8s ease; border-radius:10px; }
+  @keyframes recflash{
+    0%,35%{ background:rgba(140,191,68,.16); box-shadow:0 0 0 14px rgba(140,191,68,.16); }
+    100%{ background:rgba(140,191,68,0); box-shadow:0 0 0 14px rgba(140,191,68,0); }
+  }
 </style>
 </head>
 <body>
+<script>if(/[?&]embed=1(&|$)/.test(location.search)){ document.documentElement.classList.add('embed'); }</script>
 
 <h1 class="sr-only">MagNet Bank Design System Audit — interaktív jelentés, hat fejezettel két csoportban: Minőségi átvilágítás (Komponensminőség, Rendezettség/kereshetőség, Brandeltség/esztétika, Accessibility, Fejleszthetőség/teljesség) és Komponens vizsgálat (Vizsgált komponensek: Tokenstruktúra, Alapvető komponensek, Komplex komponensek).</h1>
 
@@ -635,7 +656,7 @@
    </div>
     <div class="sb-footer">
       <span class="sb-footer-credit"><svg class="sb-footer-logo" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8.68259 4.84491C10.7883 4.84491 12.5 6.54981 12.5 8.64642C12.5 10.743 10.7883 12.4479 8.68259 12.4479C6.57693 12.4479 4.86524 10.743 4.86524 8.64642C4.86297 6.54981 6.57693 4.84491 8.68259 4.84491Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.137 8.64642C20.137 6.54981 18.4253 4.84491 16.3196 4.84491C16.1883 4.84491 16.0592 4.8517 15.9302 4.86529C16.5256 5.9951 16.8653 7.28114 16.8653 8.64642C16.8653 10.0117 16.5279 11.2977 15.9302 12.4275C16.057 12.4411 16.1883 12.4479 16.3196 12.4479C18.423 12.4479 20.137 10.743 20.137 8.64642Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.5 15.8509C13.6411 16.4509 14.9385 16.7928 16.3174 16.7928C20.8366 16.7928 24.5 13.1453 24.5 8.64641C24.5 4.14755 20.8366 0.5 16.3174 0.5C14.9385 0.5 13.6411 0.841887 12.5 1.44189C13.9604 2.2117 15.1604 3.40717 15.9302 4.86528C16.057 4.8517 16.1883 4.84491 16.3196 4.84491C18.4253 4.84491 20.137 6.54981 20.137 8.64641C20.137 10.743 18.4253 12.4479 16.3196 12.4479C16.1883 12.4479 16.0592 12.4411 15.9302 12.4275" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M16.3174 4.84491C18.423 4.84491 20.1347 6.54981 20.1347 8.64642C20.1347 10.743 18.423 12.4479 16.3174 12.4479C14.2117 12.4479 12.5 10.743 12.5 8.64642C12.5 6.54981 14.214 4.84491 16.3174 4.84491Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M4.86304 8.64642C4.86304 10.743 6.57474 12.4479 8.6804 12.4479C8.81172 12.4479 8.94077 12.4411 9.06983 12.4275C8.47436 11.2977 8.13474 10.0117 8.13474 8.64642C8.13474 7.28114 8.47209 5.9951 9.06983 4.86529C8.94304 4.8517 8.81172 4.84491 8.6804 4.84491C6.577 4.84491 4.86304 6.54981 4.86304 8.64642Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.5 1.44189C11.3589 0.841887 10.0615 0.5 8.68264 0.5C4.1634 0.5 0.5 4.14755 0.5 8.64641C0.5 13.1453 4.1634 16.7928 8.68264 16.7928C10.0615 16.7928 11.3611 16.4509 12.5 15.8509C11.0396 15.0811 9.83962 13.8857 9.06981 12.4275C8.94302 12.4411 8.8117 12.4479 8.68038 12.4479C6.57472 12.4479 4.86302 10.743 4.86302 8.64641C4.86302 6.54981 6.57472 4.84491 8.68038 4.84491C8.8117 4.84491 8.94075 4.8517 9.06981 4.86528" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Készítette<br>Stereogram Studio</span></span>
-      <span class="sb-footer-version">V.1.1</span>
+      <span class="sb-footer-version">V.1.1.1</span>
     </div>
   </nav>
 
@@ -756,27 +777,27 @@
           <ul class="rec-list">
             <li class="rec-item">
               <div class="rec-head"><h3>Kritikus</h3></div>
-              <span class="sev-chip critical">🔴 Kritikus</span>
+              <span class="sev-chip critical"><i class="sev-mark critical" aria-hidden="true"></i>Kritikus</span>
               <p>Alapelvi szinten határozza meg a rendszer megfelelőségét, vagy ténylegesen kizár egy felhasználói csoportot a használatból (pl. egy komponens kontrasztja miatt a tartalom ténylegesen nem olvasható). Azonnali beavatkozást igényel.</p>
             </li>
             <li class="rec-item">
               <div class="rec-head"><h3>Jelentős</h3></div>
-              <span class="sev-chip jelentos">🟠 Jelentős</span>
+              <span class="sev-chip jelentos"><i class="sev-mark jelentos" aria-hidden="true"></i>Jelentős</span>
               <p>Érdemben rontja a felhasználói élményt, a márka konzisztenciáját vagy a rendszer karbantarthatóságát, de nem zár ki senkit a használatból. Prioritással kezelendő, jellemzően a következő fejlesztési ciklusban.</p>
             </li>
             <li class="rec-item">
               <div class="rec-head"><h3>Javítandó</h3></div>
-              <span class="sev-chip javitando">🟡 Javítandó</span>
+              <span class="sev-chip javitando"><i class="sev-mark javitando" aria-hidden="true"></i>Javítandó</span>
               <p>Azonosítható hiányosság vagy inkonzisztencia, amely nem akadályozza érdemben a használatot, de javítása mérhetően javítja a rendszer minőségét vagy konzisztenciáját. Ütemezhető, nem sürgős.</p>
             </li>
             <li class="rec-item">
               <div class="rec-head"><h3>Optimalizálás</h3></div>
-              <span class="sev-chip optim">🔵 Optimalizálás</span>
+              <span class="sev-chip optim"><i class="sev-mark optim" aria-hidden="true"></i>Optimalizálás</span>
               <p>Egy már működő megoldás továbbfejlesztési lehetősége — nem hiba, hanem a rendszer érettségét növelő javaslat.</p>
             </li>
             <li class="rec-item">
               <div class="rec-head"><h3>Megfelelő</h3></div>
-              <span class="sev-chip pass">🟢 Megfelelő</span>
+              <span class="sev-chip pass"><i class="sev-mark pass" aria-hidden="true"></i>Megfelelő</span>
               <p>A vizsgált terület megfelel az elvárásoknak, nincs azonosított teendő.</p>
             </li>
           </ul>
@@ -912,11 +933,11 @@
               <table class="data-table">
                 <thead><tr><th>Súlyosság</th><th>Darabszám</th><th>Arány</th></tr></thead>
                 <tbody>
-                  <tr><td>🔴 Kritikus</td><td>1</td><td>2%</td></tr>
-                  <tr><td>🟠 Jelentős</td><td>14</td><td>30%</td></tr>
-                  <tr><td>🟡 Javítandó</td><td>13</td><td>28%</td></tr>
-                  <tr><td>🔵 Optimalizálás</td><td>15</td><td>32%</td></tr>
-                  <tr><td>🟢 Megfelelő</td><td>4</td><td>9%</td></tr>
+                  <tr><td><i class="sev-mark critical" aria-hidden="true"></i>Kritikus</td><td>1</td><td>2%</td></tr>
+                  <tr><td><i class="sev-mark jelentos" aria-hidden="true"></i>Jelentős</td><td>14</td><td>30%</td></tr>
+                  <tr><td><i class="sev-mark javitando" aria-hidden="true"></i>Javítandó</td><td>13</td><td>28%</td></tr>
+                  <tr><td><i class="sev-mark optim" aria-hidden="true"></i>Optimalizálás</td><td>15</td><td>32%</td></tr>
+                  <tr><td><i class="sev-mark pass" aria-hidden="true"></i>Megfelelő</td><td>4</td><td>9%</td></tr>
                   <tr><td><b>Összesen</b></td><td><b>47</b></td><td><b>100%</b></td></tr>
                 </tbody>
               </table>
@@ -1028,7 +1049,7 @@
           <div class="headline-finding">
             <div class="hf-label">VEZETŐI SZINTŰ DÖNTÉS — NEM DESIGN SYSTEM-EN BELÜLI KÉRDÉS</div>
             <h3>Vizuális egységesség és brandeltség</h3>
-            <span class="sev-chip jelentos">🟠 Jelentős</span>
+            <span class="sev-chip jelentos"><i class="sev-mark jelentos" aria-hidden="true"></i>Jelentős</span>
 
             <p>A Design System technikailag stabil és koherens, vizuális karaktere azonban több ponton eltér a MagNet más csatornáin – különösen a weboldalon – megjelenő márkaképtől. Az alkalmazás emiatt visszafogottabb és generikusabb hatást kelthet, miközben a webes megjelenés karakteresebb színekkel, tipográfiával és vizuális elemekkel dolgozik.</p>
             <p>Ez elsősorban brandstratégiai kérdés, nem a Design System alapvető újratervezését igénylő probléma. A jelenlegi tokenalapú architektúra megfelelő alapot biztosít a vizuális nyelv összehangolásához.</p>
@@ -1051,7 +1072,7 @@
           <ul class="rec-list">
             <li class="rec-item">
               <div class="rec-head"><span class="rec-num">1</span><h3>Appbar kontraszt</h3></div>
-              <span class="sev-chip critical">🔴 Kritikus</span>
+              <span class="sev-chip critical"><i class="sev-mark critical" aria-hidden="true"></i>Kritikus</span>
               <p>Az Appbar egyes színkombinációi nem biztosítanak megfelelő kontrasztot – ez az auditban azonosított egyetlen ténylegesen azonnali beavatkozást igénylő pont.</p>
               <dl class="priority-meta">
                 <dt>Időtáv</dt><dd>Azonnali (napok) — a meglévő color tokenek módosításával kezelhető, a komponens struktúrájának megváltoztatása nélkül.</dd>
@@ -1060,7 +1081,7 @@
             </li>
             <li class="rec-item">
               <div class="rec-head"><span class="rec-num">2</span><h3>Kontrasztarányok rendszerszinten</h3></div>
-              <span class="sev-chip jelentos">🟠 Jelentős</span>
+              <span class="sev-chip jelentos"><i class="sev-mark jelentos" aria-hidden="true"></i>Jelentős</span>
               <p>Több komponensnél is WCAG 2.1 AA alatti színkombináció azonosítható, jellemzően szöveg/háttér vagy állapot-megkülönböztetés esetén.</p>
               <dl class="priority-meta">
                 <dt>Időtáv</dt><dd>Rövid táv (egy fókuszált sprint) — a problémák jelentős része token szinten kezelhető, így nem szükséges komponensenként külön megoldást kialakítani.</dd>
@@ -1069,7 +1090,7 @@
             </li>
             <li class="rec-item">
               <div class="rec-head"><span class="rec-num">3</span><h3>Fókuszállapotok</h3></div>
-              <span class="sev-chip jelentos">🟠 Jelentős</span>
+              <span class="sev-chip jelentos"><i class="sev-mark jelentos" aria-hidden="true"></i>Jelentős</span>
               <p>A komponensek több esetben rendelkeznek fókuszállapottal, azonban annak vizuális megjelenítése és szemantikai elkülönítése nem mindenhol egységes és kellően egyértelmű.</p>
               <dl class="priority-meta">
                 <dt>Időtáv</dt><dd>Rövid táv (egy sprint) — egységes focus token és vizuális treatment kialakításával a releváns komponensek következetesen kezelhetők.</dd>
@@ -1078,7 +1099,7 @@
             </li>
             <li class="rec-item">
               <div class="rec-head"><span class="rec-num">4</span><h3>Tipográfia és fontarchitektúra</h3></div>
-              <span class="sev-chip jelentos">🟠 Jelentős</span>
+              <span class="sev-chip jelentos"><i class="sev-mark jelentos" aria-hidden="true"></i>Jelentős</span>
               <p>A jelenlegi fontkészlet több párhuzamos betűcsaládot használ, ami nehezíti az egységes tipográfiai karakter kialakítását. Emellett a weboldalon használt Display font jelenleg nincs beemelve a Design Systembe. Ennek bevezetése azonban már a brandstratégiai irány kijelölését igényli.</p>
               <dl class="priority-meta">
                 <dt>Időtáv</dt><dd>Stratégiai — brand alignment után.</dd>
@@ -1087,7 +1108,7 @@
             </li>
             <li class="rec-item">
               <div class="rec-head"><span class="rec-num">5</span><h3>Frame- és tokenhasználat konzisztenciája</h3></div>
-              <span class="sev-chip jelentos">🟠 Jelentős</span>
+              <span class="sev-chip jelentos"><i class="sev-mark jelentos" aria-hidden="true"></i>Jelentős</span>
               <p>A meglévő spacing- és typography-tokenek nem mindenhol kerülnek következetesen alkalmazásra komponensszinten, helyettük egyedi értékek jelennek meg.</p>
               <dl class="priority-meta">
                 <dt>Időtáv</dt><dd>Rövid–középtáv, fokozatosan, komponensenként — a meglévő tokenek következetesebb használata javasolt; új tokenek létrehozása első körben nem szükséges.</dd>
@@ -1108,11 +1129,11 @@
               <table class="data-table">
                 <thead><tr><th>Prioritás</th><th>Terület</th><th>Időtáv</th></tr></thead>
                 <tbody>
-                  <tr><td>🔴 1. Azonnali</td><td>Appbar kontraszt</td><td>Napok</td></tr>
-                  <tr><td>🟠 2. Magas</td><td>Kontrasztok rendszerszinten</td><td>1 sprint</td></tr>
-                  <tr><td>🟠 3. Magas</td><td>Fókuszállapotok egységesítése</td><td>1 sprint</td></tr>
-                  <tr><td>🟠 4. Középtáv</td><td>Frame- és tokenhasználat</td><td>Fokozatos</td></tr>
-                  <tr><td>🟠 5. Stratégiai</td><td>Brand alignment + tipográfia</td><td>Döntéstől függően</td></tr>
+                  <tr><td><i class="sev-mark critical" aria-hidden="true"></i>1. Azonnali</td><td>Appbar kontraszt</td><td>Napok</td></tr>
+                  <tr><td><i class="sev-mark jelentos" aria-hidden="true"></i>2. Magas</td><td>Kontrasztok rendszerszinten</td><td>1 sprint</td></tr>
+                  <tr><td><i class="sev-mark jelentos" aria-hidden="true"></i>3. Magas</td><td>Fókuszállapotok egységesítése</td><td>1 sprint</td></tr>
+                  <tr><td><i class="sev-mark jelentos" aria-hidden="true"></i>4. Középtáv</td><td>Frame- és tokenhasználat</td><td>Fokozatos</td></tr>
+                  <tr><td><i class="sev-mark jelentos" aria-hidden="true"></i>5. Stratégiai</td><td>Brand alignment + tipográfia</td><td>Döntéstől függően</td></tr>
                 </tbody>
               </table>
             </div>
@@ -1235,7 +1256,7 @@
           <ul class="rec-list">
             <li class="rec-item" data-areas="karbantarthatosag,felhasznaloi-bizalom" data-source-page="dna-color-tokens" data-source-label="Vizsgált komponensek / Color Tokens">
               <div class="rec-head"><span class="rec-num">6.1</span><h3>Primitive tokenek racionalizálása</h3></div>
-              <span class="sev-chip javitando">🟡 Javítandó</span>
+              <span class="sev-chip javitando"><i class="sev-mark javitando" aria-hidden="true"></i>Javítandó</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>⚙️ <b>Karbantarthatóság</b> · 🧠 <b>Felhasználói bizalom</b></div>
               <p>A primitive rétegben – különösen az alpha channelhez kapcsolódó színeknél – a tényleges használati igényhez képest magas granularitás figyelhető meg.</p>
               <p>Érdemes a használati gyakoriság alapján felülvizsgálni ezeket, és csak a ténylegesen szükséges értékeket fenntartani. A jelenlegi struktúra önmagában nem jelent problémát, és a jövőbeli felhasználás miatt indokolt lehet bizonyos tartalék értékek megtartása is.</p>
@@ -1243,7 +1264,7 @@
             </li>
             <li class="rec-item" data-areas="akadalymentesseg,hasznalhatosag,markakonzisztencia" data-source-page="dna-color-tokens" data-source-label="Vizsgált komponensek / Color Tokens">
               <div class="rec-head"><span class="rec-num">6.1</span><h3>Szövegszínek elkülönítése a Color Theme rétegben</h3></div>
-              <span class="sev-chip javitando">🟡 Javítandó</span>
+              <span class="sev-chip javitando"><i class="sev-mark javitando" aria-hidden="true"></i>Javítandó</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>♿ <b>Akadálymentesség</b> · 👤 <b>Használhatóság</b> · 🏢 <b>Márkakonzisztencia</b></div>
               <p>Accessibility és konzisztencia szempontjából érdemes lehet a Color Theme második rétegében egy külön, Text színcsoport létrehozása, például: Primary · Secondary · Tertiary · Disabled · Inverse.</p>
               <p>Ez lehetővé tenné, hogy a szövegek ne közvetlenül az általános brand- vagy neutral színpalettából válasszanak, hanem előre definiált, szerepkör alapú és kontrollált színértékeket használjanak.</p>
@@ -1251,21 +1272,21 @@
             </li>
             <li class="rec-item" data-areas="fejlesztoi-handoff,karbantarthatosag" data-source-page="dna-color-tokens" data-source-label="Vizsgált komponensek / Color Tokens">
               <div class="rec-head"><span class="rec-num">6.1</span><h3>Naming konvenciók egységesítése</h3></div>
-              <span class="sev-chip javitando">🟡 Javítandó</span>
+              <span class="sev-chip javitando"><i class="sev-mark javitando" aria-hidden="true"></i>Javítandó</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>🎨 <b>Fejlesztői együttműködés</b> · ⚙️ <b>Karbantarthatóság</b></div>
               <p>A tokenek elnevezési konvenciója néhány helyen egységesítésre szorul. Az interakciós állapotok megnevezése nem minden esetben követ azonos logikát (enabled, default, hovered, tapped, focused).</p>
               <p>Érdemes egységes state vocabulary-t meghatározni, amely minden komponensnél következetesen alkalmazható. Ez javítaná a rendszer áttekinthetőségét, a tokenek könnyebb használatát és a Design–Development handoffot.</p>
             </li>
             <li class="rec-item" data-areas="karbantarthatosag,fejlesztoi-handoff,skalazhatosag" data-source-page="dna-color-tokens" data-source-label="Vizsgált komponensek / Color Tokens">
               <div class="rec-head"><span class="rec-num">6.1</span><h3>Globális Interaction / Effects tokenek</h3></div>
-              <span class="sev-chip optim">🔵 Optimalizálás</span>
+              <span class="sev-chip optim"><i class="sev-mark optim" aria-hidden="true"></i>Optimalizálás</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>⚙️ <b>Karbantarthatóság</b> · 🎨 <b>Fejlesztői együttműködés</b> · 📈 <b>Skálázhatóság</b></div>
               <p>Érdemes lehet külön, szűk Interaction / Effects réteget kialakítani azokhoz a vizuális szabályokhoz, amelyek több komponensben is azonos módon jelennek meg – például a focus indicator vagy a pressed overlay.</p>
               <p>Ezzel elkerülhető, hogy ugyanaz a szabály több komponensben külön-külön tokenként legyen definiálva. A komponensek saját, egyedi vizuális döntései továbbra is a Component layerben maradhatnak.</p>
             </li>
             <li class="rec-item" data-areas="karbantarthatosag,skalazhatosag,fejlesztoi-handoff" data-source-page="dna-color-tokens" data-source-label="Vizsgált komponensek / Color Tokens">
               <div class="rec-head"><span class="rec-num">6.1</span><h3>Core és product-specific tokenek elkülönítése</h3></div>
-              <span class="sev-chip jelentos">🟠 Jelentős</span>
+              <span class="sev-chip jelentos"><i class="sev-mark jelentos" aria-hidden="true"></i>Jelentős</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>⚙️ <b>Karbantarthatóság</b> · 📈 <b>Skálázhatóság</b> · 🎨 <b>Fejlesztői együttműködés</b></div>
               <p>A Component layer hosszú távú karbantarthatósága érdekében érdemes egyértelműen elválasztani a core design systemhez tartozó, újrahasznosítható komponenseket a konkrét termékhez vagy feature-höz kötődő tokenektől.</p>
               <p>Ez segíthet megelőzni, hogy a közös design system fokozatosan egyes képernyők és funkciók egyedi igényeivel bővüljön, és ezáltal nehezen áttekinthetővé váljon.</p>
@@ -1317,7 +1338,7 @@
           <ul class="rec-list">
             <li class="rec-item" data-areas="karbantarthatosag,fejlesztoi-handoff,skalazhatosag" data-source-page="dna-spacing-tokens" data-source-label="Vizsgált komponensek / Spacing Tokens">
               <div class="rec-head"><span class="rec-num">6.2</span><h3>Semantic spacing layer kialakítása</h3></div>
-              <span class="sev-chip optim">🔵 Optimalizálás</span>
+              <span class="sev-chip optim"><i class="sev-mark optim" aria-hidden="true"></i>Optimalizálás</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>⚙️ <b>Karbantarthatóság</b> · 🎨 <b>Fejlesztői együttműködés</b> · 📈 <b>Skálázhatóság</b></div>
               <p>Érdemes lehet a jelenlegi spacing skála fölé egy szűk, szemantikus réteget kialakítani, amely nem új értékeket definiál, hanem a meglévő primitive-eknek ad használati jelentést. Például:</p>
 
@@ -1388,7 +1409,7 @@ Semantic spacing
           <ul class="rec-list">
             <li class="rec-item" data-areas="fejlesztoi-handoff,karbantarthatosag,skalazhatosag" data-source-page="dna-typography-tokens" data-source-label="Vizsgált komponensek / Typography Tokens">
               <div class="rec-head"><span class="rec-num">6.3</span><h3>Typography Style réteg kialakítása</h3></div>
-              <span class="sev-chip jelentos">🟠 Jelentős</span>
+              <span class="sev-chip jelentos"><i class="sev-mark jelentos" aria-hidden="true"></i>Jelentős</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>🎨 <b>Fejlesztői együttműködés</b> · ⚙️ <b>Karbantarthatóság</b> · 📈 <b>Skálázhatóság</b></div>
               <p>A Typography Style collection jelenleg csak részlegesen van kialakítva. A ténylegesen használt tipográfiai stílusokat érdemes teljes körűen tokenizálni, például: Heading 1–6 · Body 1–4 · Label · Caption.</p>
               <p>Ezeknek nemcsak a font size-t, hanem a font family, weight és line-height értékeket is egyértelműen definiálniuk kell.</p>
@@ -1396,7 +1417,7 @@ Semantic spacing
             </li>
             <li class="rec-item" data-areas="markakonzisztencia,karbantarthatosag,fejlesztoi-handoff" data-source-page="dna-typography-tokens" data-source-label="Vizsgált komponensek / Typography Tokens">
               <div class="rec-head"><span class="rec-num">6.3</span><h3>A font family-k szerepének pontosítása</h3></div>
-              <span class="sev-chip javitando">🟡 Javítandó</span>
+              <span class="sev-chip javitando"><i class="sev-mark javitando" aria-hidden="true"></i>Javítandó</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>🏢 <b>Márkakonzisztencia</b> · ⚙️ <b>Karbantarthatóság</b> · 🎨 <b>Fejlesztői együttműködés</b></div>
               <p>A jelenlegi Primary / Secondary / Tertiary elnevezés nem határozza meg egyértelműen, hogy az egyes fontok milyen szerepet töltenek be. Érdemes inkább funkcionális szerepekben gondolkodni:</p>
               <ul class="plain-list">
@@ -1407,7 +1428,7 @@ Semantic spacing
             </li>
             <li class="rec-item" data-areas="hasznalhatosag,felhasznaloi-bizalom,markakonzisztencia" data-source-page="dna-typography-tokens" data-source-label="Vizsgált komponensek / Typography Tokens">
               <div class="rec-head"><span class="rec-num">6.3</span><h3>Body font felülvizsgálata</h3></div>
-              <span class="sev-chip optim">🔵 Optimalizálás</span>
+              <span class="sev-chip optim"><i class="sev-mark optim" aria-hidden="true"></i>Optimalizálás</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>👤 <b>Használhatóság</b> · 🧠 <b>Felhasználói bizalom</b> · 🏢 <b>Márkakonzisztencia</b></div>
               <p>A jelenlegi Manrope technikailag jól használható UI-font, de érdemes megvizsgálni, hogy karakterében és hosszabb szövegek olvashatóságában valóban ez illeszkedik-e legjobban a MagNethez.</p>
               <p>A MagNet jelenlegi kommunikációja az emberközpontúságot, átláthatóságot, tudatosságot és inspirációt hangsúlyozza.</p>
@@ -1417,7 +1438,7 @@ Semantic spacing
             </li>
             <li class="rec-item" data-areas="hasznalhatosag,akadalymentesseg,fejlesztoi-handoff" data-source-page="dna-typography-tokens" data-source-label="Vizsgált komponensek / Typography Tokens">
               <div class="rec-head"><span class="rec-num">6.3</span><h3>Line-height rendszer továbbépítése</h3></div>
-              <span class="sev-chip javitando">🟡 Javítandó</span>
+              <span class="sev-chip javitando"><i class="sev-mark javitando" aria-hidden="true"></i>Javítandó</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>👤 <b>Használhatóság</b> · ♿ <b>Akadálymentesség</b> · 🎨 <b>Fejlesztői együttműködés</b></div>
               <p>A Foundation rétegben jelenleg nem látható a font size rendszerrel arányosan felépített, teljes line-height struktúra.</p>
               <p>Érdemes a különböző heading és body méretekhez következetes line-height rendszert kialakítani, amelyet a Typography Style-ok egységesen használnak.</p>
@@ -1425,14 +1446,14 @@ Semantic spacing
             </li>
             <li class="rec-item" data-areas="hasznalhatosag,fejlesztoi-handoff,karbantarthatosag" data-source-page="dna-typography-tokens" data-source-label="Vizsgált komponensek / Typography Tokens">
               <div class="rec-head"><span class="rec-num">6.3</span><h3>Responsive typography értékek felülvizsgálata</h3></div>
-              <span class="sev-chip jelentos">🟠 Jelentős</span>
+              <span class="sev-chip jelentos"><i class="sev-mark jelentos" aria-hidden="true"></i>Jelentős</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>👤 <b>Használhatóság</b> · 🎨 <b>Fejlesztői együttműködés</b> · ⚙️ <b>Karbantarthatóság</b></div>
               <p>A Theme rétegben a Heading és Body szerepekhez különböző responsive értékek vannak definiálva, ami jó irány. Ugyanakkor néhány érték jelenleg 0, például a Heading/6 mobile és a Body/4 tablet értéke.</p>
               <p>Ezeket mindenképpen felül kell vizsgálni. Ha ténylegesen használt értékek, működési problémát okozhatnak; ha placeholderként szerepelnek, a Style layer véglegesítése előtt érdemes rendezni őket.</p>
             </li>
             <li class="rec-item" data-areas="fejlesztoi-handoff,karbantarthatosag,hasznalhatosag" data-source-page="dna-typography-tokens" data-source-label="Vizsgált komponensek / Typography Tokens">
               <div class="rec-head"><span class="rec-num">6.3</span><h3>Fallback font stratégia dokumentálása</h3></div>
-              <span class="sev-chip optim">🔵 Optimalizálás</span>
+              <span class="sev-chip optim"><i class="sev-mark optim" aria-hidden="true"></i>Optimalizálás</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>🎨 <b>Fejlesztői együttműködés</b> · ⚙️ <b>Karbantarthatóság</b> · 👤 <b>Használhatóság</b></div>
               <p>A fallback fontoknak nem feltétlenül kell külön tokenként megjelenniük, de dokumentációs szinten egyértelműen definiálni kell őket.</p>
 
@@ -1501,7 +1522,7 @@ Semantic spacing
           <ul class="rec-list">
             <li class="rec-item" data-areas="akadalymentesseg,hasznalhatosag" data-source-page="anatomy-buttons" data-source-label="Vizsgált komponensek / Gombok">
               <div class="rec-head"><span class="rec-num">6.4</span><h3>A hover állapot egyértelműbb jelzése</h3></div>
-              <span class="sev-chip javitando">🟡 Javítandó</span>
+              <span class="sev-chip javitando"><i class="sev-mark javitando" aria-hidden="true"></i>Javítandó</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>♿ <b>Akadálymentesség</b> · 👤 <b>Használhatóság</b></div>
               <p>A gombok rendelkeznek külön <code>hovered</code> állapottal, azonban annak vizuális változása nem minden gombtípusnál egyformán hangsúlyos. Különösen a <code>Tertiary</code> változatnál nehezebb lehet egyértelműen érzékelni, hogy a gomb interaktív állapotba került.</p>
               <p>A hover állapot erősebb megkülönböztetése javítja az interakció visszajelzését, és egyértelműbbé teszi a gomb viselkedését.</p>
@@ -1517,7 +1538,7 @@ Semantic spacing
             </li>
             <li class="rec-item" data-areas="akadalymentesseg,hasznalhatosag,fejlesztoi-handoff" data-source-page="anatomy-buttons" data-source-label="Vizsgált komponensek / Gombok">
               <div class="rec-head"><span class="rec-num">6.4</span><h3>A fókuszindikátor láthatóságának növelése</h3></div>
-              <span class="sev-chip jelentos">🟠 Jelentős</span>
+              <span class="sev-chip jelentos"><i class="sev-mark jelentos" aria-hidden="true"></i>Jelentős</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>♿ <b>Akadálymentesség</b> · 👤 <b>Használhatóság</b> · 🎨 <b>Fejlesztői együttműködés</b></div>
               <p>A gombkomponens rendelkezik külön <code>focused</code> állapottal, azonban a fókuszt jelenleg egy nagyon finom árnyék jelzi. Ez billentyűzetes navigáció során nem biztosít kellően egyértelmű vizuális visszajelzést.</p>
               <p>A fókuszindikátort ezért érdemes a gomb saját vizuális állapotától független, jól látható elemként kezelni.</p>
@@ -1568,7 +1589,7 @@ Semantic spacing
           <ul class="rec-list">
             <li class="rec-item" data-areas="karbantarthatosag,markakonzisztencia,fejlesztoi-handoff" data-source-page="anatomy-category-selector" data-source-label="Vizsgált komponensek / Kategóriaválasztó">
               <div class="rec-head"><span class="rec-num">6.5</span><h3>Idegen tipográfiai stílus használata</h3></div>
-              <span class="sev-chip javitando">🟡 Javítandó</span>
+              <span class="sev-chip javitando"><i class="sev-mark javitando" aria-hidden="true"></i>Javítandó</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>⚙️ <b>Karbantarthatóság</b> · 🏢 <b>Márkakonzisztencia</b> · 🎨 <b>Fejlesztői együttműködés</b></div>
               <p>A komponens szövege Inter betűtípussal van beállítva, miközben a design system saját tipográfiai rendszerét és stílusait használja. Ez eltérést eredményez a rendszerben definiált tipográfiai megjelenéstől.</p>
               <p>Érdemes a komponens szövegét a központilag definiált tipográfiai stílushoz kötni, így a komponens automatikusan követi a design system későbbi tipográfiai változásait is.</p>
@@ -1578,7 +1599,7 @@ Semantic spacing
             </li>
             <li class="rec-item" data-areas="akadalymentesseg,hasznalhatosag" data-source-page="anatomy-category-selector" data-source-label="Vizsgált komponensek / Kategóriaválasztó">
               <div class="rec-head"><span class="rec-num">6.5</span><h3>APCA alapján nem megfelelő színkontraszt</h3></div>
-              <span class="sev-chip jelentos">🟠 Jelentős</span>
+              <span class="sev-chip jelentos"><i class="sev-mark jelentos" aria-hidden="true"></i>Jelentős</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>♿ <b>Akadálymentesség</b> · 👤 <b>Használhatóság</b></div>
               <p>A jelenlegi színkombináció a hagyományos WCAG kontrasztmérés alapján megfelelőnek bizonyul, azonban APCA mérés szerint nem éri el a javasolt kontrasztszintet. Ez különösen kisebb méretű szövegnél jelenthet olvashatósági problémát.</p>
               <p>A probléma a meglévő színrendszeren belül egyszerűen javítható.</p>
@@ -1615,7 +1636,7 @@ Semantic spacing
           <ul class="rec-list">
             <li class="rec-item" data-areas="akadalymentesseg,hasznalhatosag,fejlesztoi-handoff,karbantarthatosag" data-source-page="anatomy-account-dropdown" data-source-label="Vizsgált komponensek / Dropdown számlaválasztó">
               <div class="rec-head"><span class="rec-num">6.6</span><h3>Szövegszínek szemantikus meghatározása</h3></div>
-              <span class="sev-chip jelentos">🟠 Jelentős</span>
+              <span class="sev-chip jelentos"><i class="sev-mark jelentos" aria-hidden="true"></i>Jelentős</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>♿ <b>Akadálymentesség</b> · 👤 <b>Használhatóság</b> · 🎨 <b>Fejlesztői együttműködés</b> · ⚙️ <b>Karbantarthatóság</b></div>
               <p>A vizsgált komponensben a számlaszám szövegszíne nem biztosít megfelelő kontrasztot, ezért a szöveg olvashatósága sérül.</p>
               <p>A probléma túlmutat az egyedi komponensen: jelenleg nincsenek egyértelműen definiált, szemantikus szövegszínek, például Primary / Secondary / Tertiary / Disabled. Emiatt a komponensekben a szövegszínek egyedi döntések alapján kerülhetnek kiválasztásra, ami növeli a kontrasztproblémák és a vizuális inkonzisztencia kockázatát.</p>
@@ -1630,7 +1651,7 @@ Semantic spacing
             </li>
             <li class="rec-item" data-areas="akadalymentesseg,hasznalhatosag,fejlesztoi-handoff,karbantarthatosag" data-source-page="anatomy-account-dropdown" data-source-label="Vizsgált komponensek / Dropdown számlaválasztó">
               <div class="rec-head"><span class="rec-num">6.6</span><h3>Fókuszindikátor</h3></div>
-              <span class="sev-chip jelentos">🟠 Jelentős</span>
+              <span class="sev-chip jelentos"><i class="sev-mark jelentos" aria-hidden="true"></i>Jelentős</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>♿ <b>Akadálymentesség</b> · 👤 <b>Használhatóság</b> · 🎨 <b>Fejlesztői együttműködés</b> · ⚙️ <b>Karbantarthatóság</b></div>
               <p>A komponens rendelkezik fókuszállapottal, azonban a fókuszt jelenleg egy nagyon halvány árnyék jelzi, amely nem biztosít kellően egyértelmű vizuális visszajelzést.</p>
 
@@ -1671,7 +1692,7 @@ Semantic spacing
           <ul class="rec-list">
             <li class="rec-item" data-areas="akadalymentesseg,hasznalhatosag,fejlesztoi-handoff" data-source-page="anatomy-input-fields" data-source-label="Vizsgált komponensek / Input mezők">
               <div class="rec-head"><span class="rec-num">6.7</span><h3>Active és Focused állapotok szétválasztása</h3></div>
-              <span class="sev-chip javitando">🟡 Javítandó</span>
+              <span class="sev-chip javitando"><i class="sev-mark javitando" aria-hidden="true"></i>Javítandó</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>♿ <b>Akadálymentesség</b> · 👤 <b>Használhatóság</b> · 🎨 <b>Fejlesztői együttműködés</b></div>
               <p>Az <code>Active / Focused</code> jelenleg egy közös állapotként jelenik meg, miközben a két állapot eltérő interakciós helyzetet jelöl. A Focused a navigáció során aktuális fókuszt, míg az Active az aktív interakciót jelenti.</p>
 
@@ -1680,7 +1701,7 @@ Semantic spacing
             </li>
             <li class="rec-item" data-areas="akadalymentesseg,hasznalhatosag,fejlesztoi-handoff,karbantarthatosag" data-source-page="anatomy-input-fields" data-source-label="Vizsgált komponensek / Input mezők">
               <div class="rec-head"><span class="rec-num">6.7</span><h3>Fókuszindikátor egyértelműsítése</h3></div>
-              <span class="sev-chip jelentos">🟠 Jelentős</span>
+              <span class="sev-chip jelentos"><i class="sev-mark jelentos" aria-hidden="true"></i>Jelentős</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>♿ <b>Akadálymentesség</b> · 👤 <b>Használhatóság</b> · 🎨 <b>Fejlesztői együttműködés</b> · ⚙️ <b>Karbantarthatóság</b></div>
               <p>A jelenlegi Focused állapotot elsősorban egy halvány árnyék jelzi, amely nem biztosít kellően jól látható visszajelzést a fókusz helyéről.</p>
 
@@ -1689,7 +1710,7 @@ Semantic spacing
             </li>
             <li class="rec-item" data-areas="akadalymentesseg,hasznalhatosag,fejlesztoi-handoff" data-source-page="anatomy-input-fields" data-source-label="Vizsgált komponensek / Input mezők">
               <div class="rec-head"><span class="rec-num">6.7</span><h3>Read only és Disabled állapot vizuális elkülönítése</h3></div>
-              <span class="sev-chip javitando">🟡 Javítandó</span>
+              <span class="sev-chip javitando"><i class="sev-mark javitando" aria-hidden="true"></i>Javítandó</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>♿ <b>Akadálymentesség</b> · 👤 <b>Használhatóság</b> · 🎨 <b>Fejlesztői együttműködés</b></div>
               <p>A két állapot eltérő jelentést hordoz, ezért fontos, hogy vizuálisan is egyértelműen megkülönböztethetők legyenek. A Read only mező továbbra is információt hordoz és olvasható, míg a Disabled mező jelenleg nem használható.</p>
 
@@ -1698,7 +1719,7 @@ Semantic spacing
             </li>
             <li class="rec-item" data-areas="hasznalhatosag,akadalymentesseg,markakonzisztencia" data-source-page="anatomy-input-fields" data-source-label="Vizsgált komponensek / Input mezők">
               <div class="rec-head"><span class="rec-num">6.7</span><h3>A mezőcím és a tartalom vizuális hierarchiája</h3></div>
-              <span class="sev-chip optim">🔵 Optimalizálás</span>
+              <span class="sev-chip optim"><i class="sev-mark optim" aria-hidden="true"></i>Optimalizálás</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>👤 <b>Használhatóság</b> · ♿ <b>Akadálymentesség</b> · 🏢 <b>Márkakonzisztencia</b></div>
               <p>A mező címének visszafogottabb színezése segíthet abban, hogy a felhasználó figyelme elsősorban a mező aktuális tartalmára irányuljon. Ez különösen több inputot tartalmazó űrlapok esetén javíthatja a vizuális hierarchiát és a gyors áttekinthetőséget.</p>
 
@@ -1739,7 +1760,7 @@ Semantic spacing
           <ul class="rec-list">
             <li class="rec-item" data-areas="akadalymentesseg,hasznalhatosag,markakonzisztencia" data-source-page="anatomy-tabs" data-source-label="Vizsgált komponensek / Tab elemek">
               <div class="rec-head"><span class="rec-num">6.8</span><h3>Inaktív Tab vizuális elkülönítése</h3></div>
-              <span class="sev-chip javitando">🟡 Javítandó</span>
+              <span class="sev-chip javitando"><i class="sev-mark javitando" aria-hidden="true"></i>Javítandó</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>♿ <b>Akadálymentesség</b> · 👤 <b>Használhatóság</b> · 🏢 <b>Márkakonzisztencia</b></div>
               <p>Az aktív és az inaktív Tab között jelenleg nincs megfelelő vizuális kontraszt. Az inaktív elemek színe túl közel áll az aktív állapot vizuális súlyához, ezért a navigáció aktuális pozíciója kevésbé egyértelmű.</p>
 
@@ -1748,7 +1769,7 @@ Semantic spacing
             </li>
             <li class="rec-item" data-areas="hasznalhatosag,markakonzisztencia,felhasznaloi-bizalom" data-source-page="anatomy-tabs" data-source-label="Vizsgált komponensek / Tab elemek">
               <div class="rec-head"><span class="rec-num">6.8</span><h3>A betűvastagság csökkentése</h3></div>
-              <span class="sev-chip optim">🔵 Optimalizálás</span>
+              <span class="sev-chip optim"><i class="sev-mark optim" aria-hidden="true"></i>Optimalizálás</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>👤 <b>Használhatóság</b> · 🏢 <b>Márkakonzisztencia</b> · 🧠 <b>Felhasználói bizalom</b></div>
               <p>A Tab elemek jelenlegi Bold betűvastagsága vizuálisan túl erős a navigációs szerephez. A nagy betűsúly önmagában is jelentős hangsúlyt ad az elemnek, így a teljes navigációs sáv kissé nehézzé válik, és kevésbé engedi érvényesülni a kapcsolódó tartalmat.</p>
 
@@ -1841,7 +1862,7 @@ Semantic spacing
           <ul class="rec-list">
             <li class="rec-item" data-areas="akadalymentesseg,markakonzisztencia,hasznalhatosag" data-source-page="composition-appbar" data-source-label="Vizsgált komponensek / Appbar">
               <div class="rec-head"><span class="rec-num">6.9</span><h3>Appbar kontraszt javítása</h3></div>
-              <span class="sev-chip critical">🔴 Kritikus</span>
+              <span class="sev-chip critical"><i class="sev-mark critical" aria-hidden="true"></i>Kritikus</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>♿ <b>Akadálymentesség</b> · 🏢 <b>Márkakonzisztencia</b> · 👤 <b>Használhatóság</b></div>
               <p>A brand- és tematikus háttérszínekre helyezett tartalom kontrasztja nem minden esetben megfelelő, különösen a navigációs elemeknél és a címszövegnél. Két lehetséges irány született a javításra:</p>
 
@@ -1880,7 +1901,7 @@ Semantic spacing
           <ul class="rec-list">
             <li class="rec-item" data-areas="hasznalhatosag,markakonzisztencia" data-source-page="composition-cards" data-source-label="Vizsgált komponensek / Kártyák">
               <div class="rec-head"><span class="rec-num">6.10</span><h3>Body text sortávolságának optimalizálása</h3></div>
-              <span class="sev-chip optim">🔵 Optimalizálás</span>
+              <span class="sev-chip optim"><i class="sev-mark optim" aria-hidden="true"></i>Optimalizálás</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>👤 <b>Használhatóság</b> · 🏢 <b>Márkakonzisztencia</b></div>
               <p>A Card body textje jelenleg 150%-os line-height értéket használ. Ez önmagában nem tekinthető hibásnak, azonban a Card komponensekben a 125–135% körüli sortávolság kompaktabb és kiegyensúlyozottabb kompozíciót eredményezhet.</p>
               <p>Az alacsonyabb sortávolság csökkenti a szöveg által elfoglalt helyet, és kedvezőbb arányt teremthet a szöveg és a körülötte lévő tér között. Ez a MagNet Bank letisztult, kompakt vizuális karakteréhez is jobban illeszkedhet.</p>
@@ -1893,7 +1914,7 @@ Semantic spacing
             </li>
             <li class="rec-item" data-areas="hasznalhatosag,akadalymentesseg,markakonzisztencia" data-source-page="composition-cards" data-source-label="Vizsgált komponensek / Kártyák">
               <div class="rec-head"><span class="rec-num">6.10</span><h3>Disabled állapot vizuális erősítése</h3></div>
-              <span class="sev-chip javitando">🟡 Javítandó</span>
+              <span class="sev-chip javitando"><i class="sev-mark javitando" aria-hidden="true"></i>Javítandó</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>👤 <b>Használhatóság</b> · ♿ <b>Akadálymentesség</b> · 🏢 <b>Márkakonzisztencia</b></div>
               <p>A disabled Card esetében a title jelenleg megtartja a primary, fekete színt, miközben a többi elem már visszafogottabb. Emiatt az állapot vizuálisan nem teljesen egységes.</p>
               <p>A title színének megfelelő szürkére váltása erősebb és koherensebb disabled állapotot eredményezhet. A teljes komponens így egységesen kommunikálja, hogy az elem jelenleg nem aktív.</p>
@@ -1906,7 +1927,7 @@ Semantic spacing
             </li>
             <li class="rec-item" data-areas="akadalymentesseg,hasznalhatosag,markakonzisztencia" data-source-page="composition-cards" data-source-label="Vizsgált komponensek / Kártyák">
               <div class="rec-head"><span class="rec-num">6.10</span><h3>Kis méretű másodlagos szövegek méretének növelése</h3></div>
-              <span class="sev-chip javitando">🟡 Javítandó</span>
+              <span class="sev-chip javitando"><i class="sev-mark javitando" aria-hidden="true"></i>Javítandó</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>♿ <b>Akadálymentesség</b> · 👤 <b>Használhatóság</b> · 🏢 <b>Márkakonzisztencia</b></div>
               <p>A mini és speciális Card komponensekben több helyen 12 px-es másodlagos szöveg jelenik meg. Ilyen kis komponenseknél ez már nehezebben olvasható, különösen hosszabb vagy információban gazdag kártyák esetében.</p>
               <p>Javasolt a méret 14 px-re emelése, miközben a szöveg vizuális hierarchiájának megőrzése érdekében továbbra is visszafogott szürke szín használható. A vizsgált <code>#757575</code> érték fehér háttéren 4,6:1 kontrasztot biztosít, így megfelelő kiindulópont lehet.</p>
@@ -1946,7 +1967,7 @@ Semantic spacing
           <ul class="rec-list">
             <li class="rec-item" data-areas="fejlesztoi-handoff,karbantarthatosag,skalazhatosag" data-source-page="composition-category-sorter" data-source-label="Vizsgált komponensek / Category sorter">
               <div class="rec-head"><span class="rec-num">6.11</span><h3>Beágyazott komponensstruktúra kialakítása</h3></div>
-              <span class="sev-chip optim">🔵 Optimalizálás</span>
+              <span class="sev-chip optim"><i class="sev-mark optim" aria-hidden="true"></i>Optimalizálás</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>🎨 <b>Fejlesztői együttműködés</b> · ⚙️ <b>Karbantarthatóság</b> · 📈 <b>Skálázhatóság</b></div>
               <p>A Category sorter jelenleg egyetlen komponensként jelenik meg, beágyazott építőelemek nélkül. Ez korlátozza az egyes kategóriaelemek önálló kezelését, és nagyobb, összetettebb komponenseknél könnyen nehezen áttekinthető property-struktúrát eredményezhet.</p>
               <p>Javasolt a komponens beágyazott komponensstruktúrájú kialakítása: a kategóriaelemek önálló, dokumentált építőelemként kezelhetők saját állapotokkal, míg a teljes Category sorter ezeket kompozit komponensként rendezi egységbe.</p>
@@ -1958,7 +1979,7 @@ Semantic spacing
             </li>
             <li class="rec-item" data-areas="akadalymentesseg,hasznalhatosag,markakonzisztencia" data-source-page="composition-category-sorter" data-source-label="Vizsgált komponensek / Category sorter">
               <div class="rec-head"><span class="rec-num">6.11</span><h3>Állapotkontraszt és vizuális hierarchia finomhangolása</h3></div>
-              <span class="sev-chip javitando">🟡 Javítandó</span>
+              <span class="sev-chip javitando"><i class="sev-mark javitando" aria-hidden="true"></i>Javítandó</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>♿ <b>Akadálymentesség</b> · 👤 <b>Használhatóság</b> · 🏢 <b>Márkakonzisztencia</b></div>
               <p>A Category sorter jelenlegi aktív és passzív állapotai között a vizuális különbség nem elég hangsúlyos. Emellett a komponens a design systemtől idegen betűtípust használ, ami eltérést okoz a rendszer tipográfiai megjelenésében.</p>
               <p>Javasolt az aktív állapot kontrasztjának növelése sötétebb háttérrel és világos szöveggel, hogy a kiválasztott kategória egyértelműen felismerhető legyen. A passzív elemek vizuális hangsúlya ezzel párhuzamosan csökkenthető, miközben a szöveg kontrasztja továbbra is eléri a szükséges olvashatósági szintet.</p>
@@ -1995,7 +2016,7 @@ Semantic spacing
           <ul class="rec-list">
             <li class="rec-item" data-areas="akadalymentesseg,hasznalhatosag,markakonzisztencia" data-source-page="composition-transaction-card" data-source-label="Vizsgált komponensek / Tranzakciós kártya">
               <div class="rec-head"><span class="rec-num">6.12</span><h3>Kontraszt javítása</h3></div>
-              <span class="sev-chip jelentos">🟠 Jelentős</span>
+              <span class="sev-chip jelentos"><i class="sev-mark jelentos" aria-hidden="true"></i>Jelentős</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>♿ <b>Akadálymentesség</b> · 👤 <b>Használhatóság</b> · 🏢 <b>Márkakonzisztencia</b></div>
               <p>A jóváírásokhoz és terhelésekhez használt zöld és piros színek nem teljesítenek megfelelően a kontrasztvizsgálatokon. Két lehetséges irány született a javításra:</p>
 
@@ -2017,7 +2038,7 @@ Semantic spacing
             </li>
             <li class="rec-item" data-areas="hasznalhatosag,markakonzisztencia" data-source-page="composition-transaction-card" data-source-label="Vizsgált komponensek / Tranzakciós kártya">
               <div class="rec-head"><span class="rec-num">6.12</span><h3>Layout és információs hierarchia átgondolása</h3></div>
-              <span class="sev-chip optim">🔵 Optimalizálás</span>
+              <span class="sev-chip optim"><i class="sev-mark optim" aria-hidden="true"></i>Optimalizálás</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>👤 <b>Használhatóság</b> · 🏢 <b>Márkakonzisztencia</b></div>
               <p>A harmadik irány nem kizárólag a kontrasztproblémát kezeli, hanem a Transaction item információs hierarchiáját is újragondolja.</p>
               <p>A jelenlegi elrendezésben az időpont kap hangsúlyosabb pozíciót, miközben a tranzakció összege az adott modul egyik legfontosabb információja. A javasolt változatban az <b>összeg kerül elsődleges pozícióba</b>, az időpont pedig másodlagos információként jelenik meg.</p>
@@ -2097,7 +2118,7 @@ Semantic spacing
           <ul class="rec-list">
             <li class="rec-item" data-areas="komponensstruktura,fejlesztoi-handoff,karbantarthatosag,skalazhatosag" data-source-page="quality-structure" data-source-label="Komponensminőség / Komponensek felépítése és beállíthatósága">
               <div class="rec-head"><span class="rec-num">1.1</span><h3>Komponensek felépítése és beállíthatósága</h3></div>
-              <span class="sev-chip optim">🔵 Optimalizálás</span>
+              <span class="sev-chip optim"><i class="sev-mark optim" aria-hidden="true"></i>Optimalizálás</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>🧱 <b>Komponensstruktúra</b> · 🎨 <b>Fejlesztői együttműködés</b> · ⚙️ <b>Karbantarthatóság</b> · 📈 <b>Skálázhatóság</b></div>
 
               <p>A vizsgált komponensek felépítése és általános minősége összességében megfelelő. A komponensek struktúrája jellemzően átgondolt, a meglévő építőelemek jól használhatók, és nem azonosítható olyan általános strukturális probléma, amely a komponensrendszer újratervezését indokolná.</p>
@@ -2138,7 +2159,7 @@ Category sorter (kompozit komponens)
           <ul class="rec-list">
             <li class="rec-item" data-areas="allapotmodell,akadalymentesseg,hasznalhatosag,fejlesztoi-handoff,karbantarthatosag" data-source-page="quality-states" data-source-label="Komponensminőség / Állapotok és egyéb property-k">
               <div class="rec-head"><span class="rec-num">1.2</span><h3>Állapotok és egyéb property-k</h3></div>
-              <span class="sev-chip optim">🔵 Optimalizálás</span>
+              <span class="sev-chip optim"><i class="sev-mark optim" aria-hidden="true"></i>Optimalizálás</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>🔄 <b>Állapotmodell</b> · ♿ <b>Akadálymentesség</b> · 👤 <b>Használhatóság</b> · 🎨 <b>Fejlesztői együttműködés</b> · ⚙️ <b>Karbantarthatóság</b></div>
 
               <p>A vizsgálat során a komponenseknél elvárt alapvető interakciós állapotok – például hover, focus, active, disabled és error – többségét megfelelően lefedettnek találtam. Azokban az esetekben, ahol egy adott komponensnél hiányzó vagy nem megfelelően definiált állapotot azonosítottam, azt az adott komponenshez kapcsolódó vizsgálatban külön jeleztem.</p>
@@ -2177,7 +2198,7 @@ Category sorter (kompozit komponens)
           <ul class="rec-list">
             <li class="rec-item" data-areas="komponensstruktura,karbantarthatosag,fejlesztoi-handoff,skalazhatosag,markakonzisztencia" data-source-page="quality-tokens" data-source-label="Komponensminőség / Frame felépítés és tokenhasználat">
               <div class="rec-head"><span class="rec-num">1.3</span><h3>Frame felépítés és tokenhasználat</h3></div>
-              <span class="sev-chip jelentos">🟠 Jelentős</span>
+              <span class="sev-chip jelentos"><i class="sev-mark jelentos" aria-hidden="true"></i>Jelentős</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>🧱 <b>Komponensstruktúra</b> · ⚙️ <b>Karbantarthatóság</b> · 🎨 <b>Fejlesztői együttműködés</b> · 📈 <b>Skálázhatóság</b> · 🏢 <b>Márkakonzisztencia</b></div>
 
               <div class="rec-subhead">Auto Layout, responsiveness, min–max, text handling</div>
@@ -2215,7 +2236,7 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
           <ul class="rec-list">
             <li class="rec-item" data-areas="allapotmodell,hasznalhatosag,fejlesztoi-handoff,karbantarthatosag" data-source-page="quality-microinteractions" data-source-label="Komponensminőség / Beépített mikrointerakciók">
               <div class="rec-head"><span class="rec-num">1.4</span><h3>Beépített mikrointerakciók</h3></div>
-              <span class="sev-chip optim">🔵 Optimalizálás</span>
+              <span class="sev-chip optim"><i class="sev-mark optim" aria-hidden="true"></i>Optimalizálás</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>🔄 <b>Állapotmodell</b> · 👤 <b>Használhatóság</b> · 🎨 <b>Fejlesztői együttműködés</b> · ⚙️ <b>Karbantarthatóság</b></div>
 
               <p>A komponensek állapotmodellje alapján a rendszer rendelkezik azokkal az alapokkal, amelyekre a mikrointerakciók és állapotváltások építhetők. A különböző state-ek – például hover, focus, active vagy disabled – megfelelő kiindulópontot biztosítanak az interakciók definiálásához.</p>
@@ -2293,7 +2314,7 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
           <ul class="rec-list">
             <li class="rec-item" data-areas="kereshetoseg,dokumentacio,karbantarthatosag,designeri-egyuttmukodes" data-source-page="organization-pages" data-source-label="Rendezettség, kereshetőség / Oldalakra rendezettség">
               <div class="rec-head"><span class="rec-num">2.1</span><h3>Oldalakra rendezettség</h3></div>
-              <span class="sev-chip pass">🟢 Megfelelő</span>
+              <span class="sev-chip pass"><i class="sev-mark pass" aria-hidden="true"></i>Megfelelő</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>🔎 <b>Kereshetőség</b> · 📚 <b>Dokumentáció</b> · ⚙️ <b>Karbantarthatóság</b> · 🎨 <b>Designeri együttműködés</b></div>
 
               <p>A Design System egyik kiemelkedő erőssége az oldalak és a hozzájuk kapcsolódó tartalmak rendezettsége. A Figma fájl struktúrája jól átlátható és koherens rendszert alkot, amely megkönnyíti a különböző komponensek és kapcsolódó információk megtalálását.</p>
@@ -2316,7 +2337,7 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
           <ul class="rec-list">
             <li class="rec-item" data-areas="kereshetoseg,dokumentacio,designeri-egyuttmukodes,dev-handoff" data-source-page="organization-naming" data-source-label="Rendezettség, kereshetőség / Komponens naming konvenció">
               <div class="rec-head"><span class="rec-num">2.2</span><h3>Komponens naming konvenció</h3></div>
-              <span class="sev-chip optim">🔵 Optimalizálás</span>
+              <span class="sev-chip optim"><i class="sev-mark optim" aria-hidden="true"></i>Optimalizálás</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>🔎 <b>Kereshetőség</b> · 📚 <b>Dokumentáció</b> · 🎨 <b>Designeri együttműködés</b> · 👨‍💻 <b>Fejlesztői handoff</b></div>
 
               <p>A naming konvenciók összességében nagyon magas, körülbelül 95%-os minőségűek, és közel vannak az egységes, következetes rendszerhez.</p>
@@ -2356,7 +2377,7 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
           <ul class="rec-list">
             <li class="rec-item" data-areas="dev-handoff,dokumentacio,hasznalhatosag,karbantarthatosag" data-source-page="organization-handoff" data-source-label="Rendezettség, kereshetőség / Annotációk és handoff">
               <div class="rec-head"><span class="rec-num">2.3</span><h3>Annotációk és handoff</h3></div>
-              <span class="sev-chip optim">🔵 Optimalizálás</span>
+              <span class="sev-chip optim"><i class="sev-mark optim" aria-hidden="true"></i>Optimalizálás</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>👨‍💻 <b>Fejlesztői handoff</b> · 📚 <b>Dokumentáció</b> · 👤 <b>Használhatóság</b> · ⚙️ <b>Karbantarthatóság</b></div>
 
               <p>A komponensekhez kapcsolódó dokumentáció összességében pontos, részletes és jól strukturált. A vizsgált elemek esetében megfelelő mennyiségű információ áll rendelkezésre azok használatáról, viselkedéséről és design specifikációiról.</p>
@@ -2427,7 +2448,7 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
           <ul class="rec-list">
             <li class="rec-item" data-areas="markakonzisztencia,skalazhatosag" data-source-page="brand-visual" data-source-label="Brandeltség, esztétika / Vizuális egységesség és brandeltség">
               <div class="rec-head"><span class="rec-num">3.1</span><h3>Vizuális egységesség és brandeltség</h3></div>
-              <span class="sev-chip jelentos">🟠 Jelentős</span>
+              <span class="sev-chip jelentos"><i class="sev-mark jelentos" aria-hidden="true"></i>Jelentős</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>🏢 <b>Márkakonzisztencia</b> · 📈 <b>Skálázhatóság</b></div>
 
               <p>A Design System technikailag jól működő, koherens rendszert alkot: a színvilág, a komponensek és az általános vizuális nyelv belsőleg konzisztens, és alkalmas arra, hogy egységes digitális felületek épüljenek rá.</p>
@@ -2471,7 +2492,7 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
           <ul class="rec-list">
             <li class="rec-item" data-areas="markakonzisztencia,karbantarthatosag" data-source-page="brand-typography" data-source-label="Brandeltség, esztétika / Tipográfia">
               <div class="rec-head"><span class="rec-num">3.2</span><h3>Tipográfia</h3></div>
-              <span class="sev-chip jelentos">🟠 Jelentős</span>
+              <span class="sev-chip jelentos"><i class="sev-mark jelentos" aria-hidden="true"></i>Jelentős</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>🏢 <b>Márkakonzisztencia</b> · ⚙️ <b>Karbantarthatóság</b></div>
 
               <p>A tipográfiai rendszer egyik legfontosabb fejlesztési lehetősége a használt betűkészletek számának és szerepének racionalizálása.</p>
@@ -2560,7 +2581,7 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
           <ul class="rec-list">
             <li class="rec-item" data-areas="akadalymentesseg,hasznalhatosag" data-source-page="accessibility-wcag" data-source-label="Accessibility / WCAG 2.1 AA">
               <div class="rec-head"><span class="rec-num">4.1</span><h3>WCAG 2.1 AA</h3></div>
-              <span class="sev-chip critical">🔴 Kritikus alapelv</span>
+              <span class="sev-chip critical"><i class="sev-mark critical" aria-hidden="true"></i>Kritikus alapelv</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>♿ <b>Accessibility</b> · 👤 <b>Használhatóság</b></div>
 
               <p>A Design System accessibility szempontú értékelésének alapját a WCAG 2.1 AA szintű követelményeinek való megfelelés jelenti. Az AA szintet minden releváns komponens esetében minimum elvárásként szükséges kezelni, ahol pedig ez indokolt és érdemi többletterhelés nélkül megvalósítható, érdemes az AAA szintű követelményeket is célként kitűzni.</p>
@@ -2588,7 +2609,7 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
           <ul class="rec-list">
             <li class="rec-item" data-areas="akadalymentesseg,hasznalhatosag" data-source-page="accessibility-focus" data-source-label="Accessibility / Fókuszállapotok">
               <div class="rec-head"><span class="rec-num">4.2</span><h3>Fókuszállapotok</h3></div>
-              <span class="sev-chip jelentos">🟠 Jelentős</span>
+              <span class="sev-chip jelentos"><i class="sev-mark jelentos" aria-hidden="true"></i>Jelentős</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>♿ <b>Accessibility</b> · 👤 <b>Használhatóság</b></div>
 
               <p>A fókuszállapotok tekintetében a komponensek többségénél megfelelő alapok állnak rendelkezésre, ugyanakkor ahol a komponens interaktív használata ezt indokolja, érdemes egyértelmű focus indikátort definiálni és implementálni.</p>
@@ -2615,7 +2636,7 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
           <ul class="rec-list">
             <li class="rec-item" data-areas="akadalymentesseg" data-source-page="accessibility-contrast" data-source-label="Accessibility / Kontrasztarányok">
               <div class="rec-head"><span class="rec-num">4.3</span><h3>Kontrasztarányok</h3></div>
-              <span class="sev-chip jelentos">🟠 Jelentős</span>
+              <span class="sev-chip jelentos"><i class="sev-mark jelentos" aria-hidden="true"></i>Jelentős</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>♿ <b>Accessibility</b></div>
 
               <p>A kontrasztvizsgálat során több komponensnél is azonosíthatók voltak olyan színkombinációk, amelyek nem teljesítették a WCAG 2.1 AA követelményeit. Ezek jellemzően a szöveges tartalmak és a háttér közötti kontraszt, illetve bizonyos állapotok vizuális megkülönböztetése esetében jelentkeztek.</p>
@@ -2653,7 +2674,7 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
           <ul class="rec-list">
             <li class="rec-item" data-areas="akadalymentesseg,hasznalhatosag" data-source-page="accessibility-touch" data-source-label="Accessibility / Touch target méretek">
               <div class="rec-head"><span class="rec-num">4.4</span><h3>Touch target méretek</h3></div>
-              <span class="sev-chip pass">🟢 Megfelelő</span>
+              <span class="sev-chip pass"><i class="sev-mark pass" aria-hidden="true"></i>Megfelelő</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>♿ <b>Accessibility</b> · 👤 <b>Használhatóság</b></div>
 
               <p>A touch target méretek tekintetében a Design System nagyon jól teljesít. A vizsgálat során nem találtam olyan problémát, amely a releváns interaktív elemek méretéből fakadó accessibility-kockázatot jelentene.</p>
@@ -2680,7 +2701,7 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
           <ul class="rec-list">
             <li class="rec-item" data-areas="akadalymentesseg,dev-handoff,dokumentacio" data-source-page="accessibility-screenreader" data-source-label="Accessibility / Képernyőolvasók és szemantikai réteg">
               <div class="rec-head"><span class="rec-num">4.5</span><h3>Képernyőolvasók és szemantikai réteg</h3></div>
-              <span class="sev-chip pass">🟢 Megfelelő</span>
+              <span class="sev-chip pass"><i class="sev-mark pass" aria-hidden="true"></i>Megfelelő</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>♿ <b>Accessibility</b> · 👨‍💻 <b>Fejlesztői handoff</b> · 📚 <b>Dokumentáció</b></div>
 
               <p>A képernyőolvasókkal kapcsolatos elvárások a komponensek dokumentációjában megfelelően megjelennek. Több komponens esetében konkrétan definiálva vannak az elvárt ARIA-attribútumok és azok használata, így a fejlesztői implementációhoz szükséges accessibility szempontok megfelelően dokumentáltak.</p>
@@ -2745,7 +2766,7 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
           <ul class="rec-list">
             <li class="rec-item" data-areas="skalazhatosag,karbantarthatosag" data-source-page="maturity-scalability" data-source-label="Fejleszthetőség, teljesség / Design System bővíthetősége, skálázhatósága">
               <div class="rec-head"><span class="rec-num">5.1</span><h3>Design System bővíthetősége, skálázhatósága</h3></div>
-              <span class="sev-chip pass">🟢 Megfelelő</span>
+              <span class="sev-chip pass"><i class="sev-mark pass" aria-hidden="true"></i>Megfelelő</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>📈 <b>Skálázhatóság</b> · ⚙️ <b>Karbantarthatóság</b></div>
 
               <p>A Design System skálázhatósága összességében nagyon jól megoldott. A jelenlegi architektúra megfelelő alapot biztosít új komponensek, variánsok és további vizuális vagy tematikus igények későbbi bevezetéséhez.</p>
@@ -2781,7 +2802,7 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
           <ul class="rec-list">
             <li class="rec-item" data-areas="skalazhatosag,hasznalhatosag,komponenslefedettseg" data-source-page="maturity-missing" data-source-label="Fejleszthetőség, teljesség / Hiányzó komponensek azonosítása">
               <div class="rec-head"><span class="rec-num">5.2</span><h3>Hiányzó komponensek azonosítása</h3></div>
-              <span class="sev-chip optim">🔵 Optimalizálás</span>
+              <span class="sev-chip optim"><i class="sev-mark optim" aria-hidden="true"></i>Optimalizálás</span>
               <div class="rec-areas"><span class="ra-label">ÉRINTETT TERÜLETEK</span>📈 <b>Skálázhatóság</b> · 👤 <b>Használhatóság</b> · 🧩 <b>Komponenslefedettség</b></div>
 
               <p>Az alapvető komponenskészlet összességében teljesnek tekinthető, a vizsgálat során nem azonosítottam olyan jelentős hiányosságot, amely a Design System használhatóságát vagy a termékek fejlesztését érdemben akadályozná.</p>
@@ -2901,11 +2922,11 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
           <p class="sec-intro">A fejezetekben szereplő összes megállapítás szűrhető súlyosság szerint. Egyszerre egy szűrő lehet aktív.</p>
 
           <div class="filter-row" id="severityFilterRow">
-            <button class="filter-chip active" data-severity="critical">🔴 Kritikus<span class="chip-count"></span></button>
-            <button class="filter-chip" data-severity="jelentos">🟠 Jelentős<span class="chip-count"></span></button>
-            <button class="filter-chip" data-severity="javitando">🟡 Javítandó<span class="chip-count"></span></button>
-            <button class="filter-chip" data-severity="optim">🔵 Optimalizálás<span class="chip-count"></span></button>
-            <button class="filter-chip" data-severity="pass">🟢 Megfelelő<span class="chip-count"></span></button>
+            <button class="filter-chip active" data-severity="critical"><i class="sev-mark critical" aria-hidden="true"></i>Kritikus<span class="chip-count"></span></button>
+            <button class="filter-chip" data-severity="jelentos"><i class="sev-mark jelentos" aria-hidden="true"></i>Jelentős<span class="chip-count"></span></button>
+            <button class="filter-chip" data-severity="javitando"><i class="sev-mark javitando" aria-hidden="true"></i>Javítandó<span class="chip-count"></span></button>
+            <button class="filter-chip" data-severity="optim"><i class="sev-mark optim" aria-hidden="true"></i>Optimalizálás<span class="chip-count"></span></button>
+            <button class="filter-chip" data-severity="pass"><i class="sev-mark pass" aria-hidden="true"></i>Megfelelő<span class="chip-count"></span></button>
           </div>
 
           <div class="filter-results" id="severityFilterResults"></div>
@@ -2926,7 +2947,18 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
   var parents = document.querySelectorAll('.tree-parent');
   var children = document.querySelectorAll('.tree-child');
 
-  function showPage(id){
+  /* V1.1.1 · minden megállapítás stabil azonosítót kap: m-<fejezet>-<alfejezet>-<sorszám>, pl. #m-6-9-1 */
+  var recCount = {};
+  document.querySelectorAll('.rec-item[data-source-page]').forEach(function(it){
+    if(it.closest('.filter-results')) return;
+    var numEl = it.querySelector('.rec-num');
+    if(!numEl) return;
+    var num = numEl.textContent.trim();
+    recCount[num] = (recCount[num] || 0) + 1;
+    it.id = 'm-' + num.replace(/\./g, '-') + '-' + recCount[num];
+  });
+
+  function showPage(id, fromRoute){
     pages.forEach(function(p){ p.classList.toggle('active', p.id === 'page-' + id); });
     var prefix = id.indexOf('-') > -1 ? id.split('-')[0] : id;
     /* dna / anatomy / composition all merged under the single "06 Vizsgált komponensek" sidebar node */
@@ -2938,7 +2970,32 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
     children.forEach(function(c){ c.classList.toggle('active', c.getAttribute('data-page') === id); });
     expandForPage(prefix);
     window.scrollTo(0,0);
+    /* V1.1.1 · a címsor mindig a megnyitott oldalt mutatja (megosztható link) */
+    if(!fromRoute && window.history && history.replaceState){
+      try{ history.replaceState(null, '', location.pathname + location.search + '#' + id); }catch(e){}
+    }
   }
+
+  /* V1.1.1 · közvetlen hivatkozás: #oldal (pl. #composition-appbar) vagy #megállapítás (pl. #m-6-9-1) */
+  function routeFromHash(){
+    var h = (location.hash || '').replace(/^#/, '');
+    try{ h = decodeURIComponent(h); }catch(e){}
+    if(!h) return false;
+    h = h.replace(/^page-/, '');
+    if(document.getElementById('page-' + h)){ showPage(h, true); return true; }
+    var el = document.getElementById(h);
+    if(el && el.classList.contains('rec-item') && el.getAttribute('data-source-page')){
+      showPage(el.getAttribute('data-source-page'), true);
+      setTimeout(function(){
+        var y = el.getBoundingClientRect().top + (window.pageYOffset || 0) - 24;
+        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+        el.classList.remove('is-target'); void el.offsetWidth; el.classList.add('is-target');
+      }, 80);
+      return true;
+    }
+    return false;
+  }
+  window.addEventListener('hashchange', routeFromHash);
 
   document.querySelectorAll('[data-page]').forEach(function(el){
     el.addEventListener('click', function(){ showPage(el.getAttribute('data-page')); });
@@ -3043,6 +3100,7 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
   var currentArea = 'komponensstruktura';
 
   function makeAccordion(li){
+    li.removeAttribute('id');
     li.classList.add('acc-item');
     var head = li.querySelector('.rec-head');
     var chip = li.querySelector('.sev-chip');
@@ -3217,7 +3275,7 @@ Font size: 15 (egyedi)      →   Body/2 (Typography Style)</pre>
     });
   });
 
-  showPage('overview');
+  if(!routeFromHash()){ showPage('overview', true); }
   renderAreaFilter();
   renderSeverityFilter();
   updateChipCounts();
