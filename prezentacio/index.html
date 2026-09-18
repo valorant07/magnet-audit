@@ -967,6 +967,106 @@ body.isdark .apbar{background:#2F4A22}
 .sex li.omore:hover{color:var(--ink-2)}
 .sex li.omore:hover b{opacity:1}
 
+/* ===== bevezető ábrák (rendszertérkép, igazságforrás, költség-tartomány) ===== */
+.figbox{margin-top:26px;background:rgba(255,255,255,.72);border:1px solid var(--hair-2);border-radius:16px;
+  padding:clamp(14px,2.2vw,26px);display:flex;justify-content:center;overflow-x:auto}
+.fig{display:block;min-width:0}
+.fig.sysmap{height:min(52vh,500px);width:auto;max-width:100%}
+.fig.wide{width:100%;height:auto;max-height:min(50vh,440px);min-width:560px}
+.fig .fttl{font-family:var(--display);font-weight:600;font-size:16px;fill:var(--ink)}
+.fig .fnode{font-family:var(--display);font-weight:500;font-size:14px;fill:var(--ink)}
+.fig .fnode.sm{font-size:12.5px}
+.fig .flbl{font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;fill:var(--faint)}
+.fig .flbl.acc{fill:var(--acc)}
+.fig .fthread{fill:none;stroke:#9CB87C;stroke-width:1.4;stroke-dasharray:1 5;stroke-linecap:round;opacity:.9}
+.fig .fscat rect{fill:rgba(255,255,255,.6);stroke:var(--hair-2);stroke-dasharray:4 4}
+.fig .fscat text{font-family:var(--mono);font-size:10.5px;fill:#9AA98C}
+.fig .fsurf rect{fill:var(--white);stroke:var(--hair-2)}
+.fig .fsurf.on rect{fill:var(--paper-2);stroke:var(--acc);stroke-width:1.4}
+.fig .fuse rect{fill:rgba(255,255,255,.7);stroke:var(--hair);stroke-dasharray:4 4}
+.fig .flayer rect{fill:rgba(244,248,236,.6);stroke:var(--hair-2)}
+.fig .flayer.on rect{fill:rgba(140,191,68,.12);stroke:var(--acc)}
+.fig .flayer.dash rect{fill:none;stroke-dasharray:5 5}
+.fig .fdot circle{r:5.5;fill:var(--acc)}
+.fig .fdot.pale circle{fill:#A9BE8C;opacity:.65}
+@media (max-height:880px){
+  .figbox{margin-top:18px;padding:14px}
+  .fig .fnode{font-size:13px}
+  .fig .flbl{font-size:9.5px}
+}
+@media (max-height:770px){
+  .figbox{padding:10px;margin-top:14px}
+  .fig.sysmap{height:min(42vh,320px)}
+  .figbox + .note{font-size:13.5px;margin-top:14px!important}
+}
+
+/* rendszertérkép — vastagabb, egységes nyilak és lassan mozgó csomagok */
+.fig .fthread{stroke-width:1.9;stroke-dasharray:2 7}
+.sysmap .fthread{animation:flow 9s linear infinite}
+@keyframes flow{from{stroke-dashoffset:0}to{stroke-dashoffset:-90}}
+.fig .fcore rect{fill:var(--paper-2);stroke:var(--acc);stroke-width:1.6}
+.fig .fcore path{fill:var(--leaf)}
+@media (prefers-reduced-motion:reduce){.sysmap .fthread{animation:none}}
+
+/* ===== Insight dia — két UI-irány csúszkával ===== */
+.insightcols{grid-template-columns:1.05fr .95fr}
+.venn.sm{max-width:390px;margin-top:22px}
+.uiwrap{display:flex;flex-direction:column;align-items:center;gap:14px}
+.uiphone{position:relative;width:min(300px,30vh);aspect-ratio:620/1314;border-radius:26px;overflow:hidden;
+  background:var(--white);box-shadow:0 18px 44px rgba(22,48,15,.14),0 0 0 1px var(--hair-2)}
+.uiphone img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.uiphone .uib{opacity:var(--mix,0)}
+.uictl{width:min(340px,100%);padding-top:2px}
+.uirange{-webkit-appearance:none;appearance:none;width:100%;height:22px;background:transparent;cursor:pointer;display:block}
+.uirange::-webkit-slider-runnable-track{height:6px;border-radius:3px;
+  background:linear-gradient(90deg,var(--leaf) calc(var(--mix,0)*1%),#E4E4E0 calc(var(--mix,0)*1%))}
+.uirange::-moz-range-track{height:6px;border-radius:3px;background:#E4E4E0}
+.uirange::-moz-range-progress{height:6px;border-radius:3px;background:var(--leaf)}
+.uirange::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;margin-top:-8px;border-radius:50%;
+  background:var(--leaf);border:4px solid #DCEDC4;box-shadow:0 2px 6px rgba(22,48,15,.18)}
+.uirange::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--leaf);border:4px solid #DCEDC4}
+.uirange:focus-visible::-webkit-slider-thumb{outline:2px solid var(--ink);outline-offset:2px}
+.uilabels{display:flex;justify-content:space-between;gap:18px;margin-top:8px}
+.uilabels .ul{font-family:var(--display);font-weight:500;font-size:14px;line-height:1.25;color:var(--faint);transition:color .3s}
+.uilabels .ul.b{text-align:right}
+.uilabels .ul.on{color:var(--acc)}
+@media (max-height:880px){
+  .uiphone{width:min(260px,28vh)}
+  .venn.sm{max-width:330px;margin-top:16px}
+  .uilabels .ul{font-size:13px}
+}
+
+/* ===== Designer összefoglaló — két lépés ===== */
+.dsgseg button{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:9px 16px;border-radius:999px;color:var(--muted);transition:background .25s,color .25s}
+.dsgseg button.on{background:var(--ink);color:var(--paper)}
+.dsgstage{position:relative;margin-top:18px}
+.dsgstep{display:none}
+.dsgstep.on{display:block;animation:rise .45s cubic-bezier(.2,.8,.2,1) both}
+.okgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
+.oktile{display:flex;align-items:flex-start;gap:10px;background:var(--white);border:1px solid var(--hair-2);border-radius:10px;padding:12px 12px 13px}
+.oktile .sdot{margin-top:5px}
+.oktile h4{font-family:var(--display);font-weight:500;font-size:15px;line-height:1.25;margin:0}
+.oktile span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-top:5px}
+.oktile .oarr{margin-left:auto;align-self:center}
+.optchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.optchip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--hair-2);background:var(--white);border-radius:999px;
+  padding:5px 11px;font-size:13px;color:var(--ink-2);max-width:270px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.optchip .sdot{width:8px;height:8px;flex:none}
+@media (max-height:880px){
+  .okgrid{gap:8px;margin-top:8px}
+  .oktile{padding:9px 10px 10px}
+  .oktile h4{font-size:14px}
+  .optchip{font-size:12.5px;padding:4px 10px;max-width:230px}
+  .dsgstage{margin-top:12px}
+}
+@media (max-height:770px){
+  .dsgstage{margin-top:8px}
+  .dsgseg button{padding:7px 13px;font-size:10.5px}
+  .dsgstep .cards.c5 .card{padding:12px 13px 13px}
+  .dsgstep .cards.c5 .card p{font-size:13px;line-height:1.4}
+  .dsgstep .cards.c5 .card h3{font-size:15px}
+}
+
 </style>
 </head>
 <body>
@@ -1010,33 +1110,173 @@ body.isdark .apbar{background:#2F4A22}
   <section class="slide chapter" data-chapter="0"></section>
 
   <!-- ======================= [01] KONTEXTUS ======================= -->
-  <section class="slide" data-ch="0" data-nm="Miről lesz szó">
+  <!-- ======================= [01] MI AZ A DESIGN SYSTEM — RENDSZERTÉRKÉP ======================= -->
+  <section class="slide" data-ch="0" data-nm="Rendszertérkép">
     <div class="wrap">
-      <div class="eyebrow">01 — Kontextus <span class="sep"></span> Miről lesz szó</div>
-      <h2 class="sm">Két párhuzamos szál fut. Ma a másodikat adjuk át.</h2>
-      <div class="tracks" style="margin-top:30px">
-        <div class="track">
-          <div class="hatch"></div>
-          <div class="tk">Track A</div>
-          <h3>Homepage + navigáció redesign</h3>
-          <p>A nyitóképernyő és a navigációs szerkezet újratervezése.</p>
-          <span class="flag">Külön átadás</span>
-        </div>
-        <div class="track now">
-          <div class="hatch"></div>
-          <div class="tk">Track B</div>
-          <h3>Design System audit</h3>
-          <p>A meglévő design system átvilágítása és a javítási javaslatok. Ez a mai anyag.</p>
-          <span class="flag">Most ezt nézzük végig</span>
-        </div>
+      <div class="eyebrow">01 — Mi az a design system <span class="sep"></span> Rendszertérkép</div>
+      <h2 class="sm">Egy helyen épül fel — és minden felület onnan indul.</h2>
+      <div class="figbox">
+        <svg class="fig sysmap" viewBox="0 0 1180 620" role="img" aria-label="A design system egyszer épül fel: alapok, tokenek és komponenskönyvtár. Erre épül a netbank, a mobilapp, a marketing weboldalak és a nyomtatott anyagok; a rendszert a belső csapat és az ügynökségi partnerek használják.">
+          <defs>
+            <marker id="ar1" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="4.6" markerHeight="4.6" orient="auto-start-reverse">
+              <path d="M1 1.5 L10 6 L1 10.5" fill="none" stroke="#7E9B5E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+
+          <text x="590" y="20" text-anchor="middle" class="fttl">Design system</text>
+          <text x="590" y="42" text-anchor="middle" class="flbl">Egyszer épül fel · egy csapat gondozza</text>
+          <g class="fcore">
+            <rect x="552" y="72" width="76" height="76" rx="16" transform="rotate(45 590 110)"/>
+            <g transform="translate(573.5,101.5) scale(1.5)"><path d="M1.43164 16.2499C1.43164 16.2499 2.89326 15.0915 3.99498 15.0867C4.52783 13.6979 5.26759 12.8821 5.26759 12.8821C7.28442 10.4137 9.00025 11.0142 9.71861 11.2334C10.5558 11.4891 10.9921 12.5478 10.5155 13.1954C9.94415 13.9716 9.1172 13.8686 8.83699 13.3379C8.42267 12.5515 9.30416 12.2205 9.30416 12.2205C8.67276 12.2283 7.79417 12.9371 8.40041 13.8938C9.22374 15.1917 11.652 14.5821 11.885 12.4883C11.89 12.4398 11.8947 12.3909 11.8963 12.342C12.4335 12.8195 13.2989 13.1624 14.6291 12.6983C14.6291 12.6983 13.6469 9.9664 11.4415 11.0072C10.8186 10.1996 9.6452 9.68552 8.49148 9.76796C8.44903 9.77024 8.40755 9.77527 8.36607 9.77971C10.5774 8.53552 12.1638 8.39832 14.2465 8.57004C15.7738 14.7007 21.4999 11.1207 21.4999 11.1207C20.5279 9.45233 19.5591 8.48675 18.6607 7.96754C19.7843 6.80663 19.7157 4.92101 19.7157 4.92101C15.4663 4.53552 14.4383 7.9365 14.3091 8.4435C14.3053 8.44733 14.3015 8.45021 14.2972 8.45404C13.7887 8.23943 12.7206 7.86856 11.4161 7.87479C13.2404 6.54625 14.2043 4.47632 14.2043 4.47632C14.2043 4.47632 15.3562 5.31644 16.4373 4.24709C17.1599 3.53219 16.8214 1.90636 15.575 1.65519C14.4867 1.43567 13.7682 2.19011 13.635 2.84438C13.4952 3.54166 14.0442 4.27405 14.0442 4.27405C12.9264 6.37849 10.2367 7.79978 9.35991 8.22025C9.28893 8.2447 9.21709 8.27094 9.14574 8.29898C7.88922 8.78573 6.84458 9.41159 6.00517 10.0109C6.36411 9.3609 6.74626 8.3831 6.84809 7.06738C13.4161 6.43996 10.244 0 10.244 0C4.42043 1.90636 6.05391 6.12852 6.68979 6.95486L6.66741 6.94132C6.66741 6.94132 6.16275 9.02838 4.71128 10.4348C4.71128 10.4348 1.71306 13.321 1.43164 16.2499Z" fill="#8CBF44"/><path d="M3.72725 10.5486C3.72725 10.5486 5.59752 6.12502 0.469014 5.10876C0.469014 5.10876 -1.82319 9.83145 3.72725 10.5486Z" fill="#8CBF44"/></g>
+          </g>
+
+          <rect x="300" y="210" width="580" height="150" rx="20" fill="none" stroke="#BCD49C" stroke-width="1.6" stroke-dasharray="8 7"/>
+          <text x="590" y="345" text-anchor="middle" class="flbl acc">Akadálymentesség · WCAG 2.1 AA — nem külön fázis, minden réteg tulajdonsága</text>
+
+          <text x="20" y="242" class="flbl">Be — a márkától</text>
+          <rect x="20" y="256" width="250" height="62" rx="13" fill="var(--white)" stroke="var(--hair-2)"/>
+          <text x="145" y="282" text-anchor="middle" class="fnode">Arculat, brandkönyv</text>
+          <text x="145" y="302" text-anchor="middle" class="flbl">Logó · szín · tipográfia · hangnem</text>
+          <path class="fthread" d="M272 287 H 320" marker-end="url(#ar1)"/>
+
+          <path class="fthread" d="M590 166 C 590 214, 520 224, 452 246" marker-end="url(#ar1)"/>
+          <path class="fthread" d="M590 166 C 590 214, 664 224, 736 246" marker-end="url(#ar1)"/>
+          <rect x="332" y="256" width="240" height="62" rx="15" fill="var(--white)" stroke="var(--hair-2)"/>
+          <text x="452" y="282" text-anchor="middle" class="fnode">Alapok · tokenek</text>
+          <text x="452" y="302" text-anchor="middle" class="flbl">Szín · tipó · spacing · ikonok</text>
+          <rect x="616" y="256" width="240" height="62" rx="15" fill="var(--white)" stroke="var(--hair-2)"/>
+          <text x="736" y="282" text-anchor="middle" class="fnode">Komponenskönyvtár</text>
+          <text x="736" y="302" text-anchor="middle" class="flbl">Gombok · mezők · kártyák · appbar</text>
+
+          <path class="fthread" d="M452 318 C 452 356, 520 374, 576 386"/>
+          <path class="fthread" d="M736 318 C 736 356, 660 374, 604 386"/>
+          <circle cx="590" cy="390" r="5" fill="var(--paper)" stroke="var(--acc)" stroke-width="1.8"/>
+
+          <path class="fthread" d="M590 396 C 590 444, 320 436, 150 458" marker-end="url(#ar1)"/>
+          <path class="fthread" d="M590 396 C 590 440, 470 444, 443 458" marker-end="url(#ar1)"/>
+          <path class="fthread" d="M590 396 C 590 440, 710 444, 737 458" marker-end="url(#ar1)"/>
+          <path class="fthread" d="M590 396 C 590 444, 860 436, 1030 458" marker-end="url(#ar1)"/>
+
+          <g class="fsurf"><rect x="40" y="470" width="220" height="60" rx="14"/><text x="150" y="497" text-anchor="middle" class="fnode">Netbank</text><text x="150" y="516" text-anchor="middle" class="flbl">Webes ügyfélfelület</text></g>
+          <g class="fsurf on"><rect x="333" y="470" width="220" height="60" rx="14"/><text x="443" y="497" text-anchor="middle" class="fnode">Mobilapp</text><text x="443" y="516" text-anchor="middle" class="flbl">A mai audit tárgya</text></g>
+          <g class="fsurf"><rect x="627" y="470" width="220" height="60" rx="14"/><text x="737" y="497" text-anchor="middle" class="fnode">Marketing weboldalak</text><text x="737" y="516" text-anchor="middle" class="flbl">magnetbank.hu · kampányok</text></g>
+          <g class="fsurf"><rect x="920" y="470" width="220" height="60" rx="14"/><text x="1030" y="497" text-anchor="middle" class="fnode">Nyomtatott anyagok</text><text x="1030" y="516" text-anchor="middle" class="flbl">Bankfiók · kiadványok</text></g>
+
+          <path d="M150 560 H 1030" fill="none" stroke="#DDE7CD" stroke-width="1.4" stroke-dasharray="5 6"/>
+          <text x="20" y="564" class="flbl">Használja</text>
+          <g class="fuse"><rect x="333" y="574" width="220" height="36" rx="10"/><text x="443" y="597" text-anchor="middle" class="fnode sm">Belső design- és fejlesztőcsapat</text></g>
+          <g class="fuse"><rect x="627" y="574" width="220" height="36" rx="10"/><text x="737" y="597" text-anchor="middle" class="fnode sm">Ügynökségi partnerek</text></g>
+        </svg>
+      </div>
+      <div class="note" style="margin-top:20px;max-width:88ch">
+        <b>A design system nem UI-kit.</b> Közös alapréteg: a netbank, a mobilapp, a weboldalak és a nyomtatott anyagok ugyanazokat a szabályokat és építőelemeket használják — így a márkaélmény és az akadálymentesség nem felületenként dől el.
       </div>
     </div>
   </section>
 
-  <!-- ======================= [02] CÉL ======================= -->
+  <!-- ======================= [01] EGYETLEN IGAZSÁGFORRÁS ======================= -->
+  <section class="slide" data-ch="0" data-nm="Egyetlen igazságforrás">
+    <div class="wrap">
+      <div class="eyebrow">01 — Mi az a design system <span class="sep"></span> Egyetlen igazságforrás</div>
+      <h2 class="sm">Egy forrás — innen indul a tervezés és a fejlesztés is.</h2>
+      <div class="figbox">
+        <svg class="fig wide" viewBox="0 0 1180 430" role="img" aria-label="Ma szétszórt források: arculati PDF, logócsomag, ügynökségi Figma-fájl, a legutóbbi kampányoldal, és a fejekben lévő tudás. Ezek egyetlen design systembe futnak össze, amely a márkát, a UI-t, a szabályokat és a gépi olvasható kimenetet tartalmazza, és ebből indul a netbank, a mobilapp, a kampányoldalak és minden új funkció.">
+          <defs>
+            <marker id="ar2" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+              <path d="M0.5 1 L9 5 L0.5 9" fill="none" stroke="#7E9B5E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+          <text x="0" y="22" class="flbl">Ma — szétszórtan, gyakran elavultan</text>
+          <g class="fscat" transform="rotate(-3 110 58)"><rect x="10" y="38" width="200" height="40" rx="9"/><text x="110" y="63" text-anchor="middle">arculat_v4.pdf</text></g>
+          <g class="fscat" transform="rotate(2 250 122)"><rect x="150" y="102" width="200" height="40" rx="9"/><text x="250" y="127" text-anchor="middle">hangnem.docx</text></g>
+          <g class="fscat" transform="rotate(1.5 110 186)"><rect x="10" y="166" width="200" height="40" rx="9"/><text x="110" y="191" text-anchor="middle">logo-csomag.zip</text></g>
+          <g class="fscat" transform="rotate(-2 250 250)"><rect x="150" y="230" width="200" height="40" rx="9"/><text x="250" y="255" text-anchor="middle">ügynökségi Figma-fájl</text></g>
+          <g class="fscat" transform="rotate(2.5 110 314)"><rect x="10" y="294" width="200" height="40" rx="9"/><text x="110" y="319" text-anchor="middle">a legutóbbi kampányoldal</text></g>
+          <g class="fscat" transform="rotate(-1.5 250 378)"><rect x="150" y="358" width="200" height="40" rx="9"/><text x="250" y="383" text-anchor="middle">…valaki fejében</text></g>
+
+          <path class="fthread in" d="M212 58 C 320 58, 380 180, 452 206" marker-end="url(#ar2)"/>
+          <path class="fthread in" d="M352 122 C 400 122, 410 190, 452 210" marker-end="url(#ar2)"/>
+          <path class="fthread in" d="M212 186 C 330 186, 390 200, 452 214" marker-end="url(#ar2)"/>
+          <path class="fthread in" d="M352 250 C 400 250, 420 226, 452 218" marker-end="url(#ar2)"/>
+          <path class="fthread in" d="M212 314 C 330 314, 390 250, 452 222" marker-end="url(#ar2)"/>
+          <path class="fthread in" d="M352 378 C 400 378, 420 270, 452 226" marker-end="url(#ar2)"/>
+
+          <text x="660" y="22" text-anchor="middle" class="flbl acc">egyetlen igazságforrás</text>
+          <rect x="460" y="38" width="400" height="360" rx="20" fill="var(--white)" stroke="var(--hair-2)" stroke-width="1.3"/>
+          <text x="660" y="72" text-anchor="middle" class="fttl">Design system</text>
+          <text x="660" y="90" text-anchor="middle" class="flbl">Egy hely · mindig ez az érvényes</text>
+          <g class="flayer on"><rect x="480" y="106" width="360" height="62" rx="12"/><text x="500" y="132" class="fnode">Márka</text><text x="500" y="152" class="flbl">Logó · szín · tipográfia · hangnem</text></g>
+          <g class="flayer on"><rect x="480" y="178" width="360" height="62" rx="12"/><text x="500" y="204" class="fnode">UI</text><text x="500" y="224" class="flbl">Komponensek · tokenek · ikonok · grid</text></g>
+          <g class="flayer"><rect x="480" y="250" width="360" height="62" rx="12"/><text x="500" y="276" class="fnode">Szabályok</text><text x="500" y="296" class="flbl">Akadálymentesség · naming · mit szabad</text></g>
+          <g class="flayer dash"><rect x="480" y="322" width="360" height="58" rx="12"/><text x="500" y="346" class="fnode">Kimenet</text><text x="500" y="366" class="flbl">Gépi olvasható tokenek + dokumentáció</text></g>
+
+          <text x="1180" y="22" text-anchor="end" class="flbl">Ebből indul</text>
+          <path class="fthread out" d="M862 150 C 920 150, 930 96, 976 90" marker-end="url(#ar2)"/>
+          <path class="fthread out" d="M862 180 C 920 180, 930 166, 976 160" marker-end="url(#ar2)"/>
+          <path class="fthread out" d="M862 240 C 920 240, 930 236, 976 230" marker-end="url(#ar2)"/>
+          <path class="fthread out" d="M862 300 C 920 300, 930 306, 976 300" marker-end="url(#ar2)"/>
+          <g class="fsurf"><rect x="976" y="66" width="200" height="46" rx="11"/><text x="1076" y="94" text-anchor="middle" class="fnode">Netbank</text></g>
+          <g class="fsurf on"><rect x="976" y="136" width="200" height="46" rx="11"/><text x="1076" y="164" text-anchor="middle" class="fnode">Mobilapp</text></g>
+          <g class="fsurf"><rect x="976" y="206" width="200" height="46" rx="11"/><text x="1076" y="234" text-anchor="middle" class="fnode">Kampányoldalak</text></g>
+          <g class="fsurf"><rect x="976" y="276" width="200" height="46" rx="11"/><text x="1076" y="304" text-anchor="middle" class="fnode">Minden új funkció</text></g>
+          <text x="1176" y="344" text-anchor="end" class="flbl">Mindegyik ugyanonnan indul</text>
+        </svg>
+      </div>
+      <div class="note" style="margin-top:20px;max-width:88ch">
+        <b>Ettől lesz egyszerűbb a tervezés és a fejlesztés.</b> Nem kell minden projekten újra eldönteni a színt, a távolságokat vagy egy gomb állapotait: a designer és a fejlesztő ugyanabból a forrásból dolgozik, és a változás egy helyen történik.
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= [01] MIÉRT ÉRI MEG ======================= -->
+  <section class="slide" data-ch="0" data-nm="Miért éri meg">
+    <div class="wrap">
+      <div class="eyebrow">01 — Mi az a design system <span class="sep"></span> Miért éri meg</div>
+      <h2 class="sm">A projekt költsége tartomány, nem egyetlen szám.</h2>
+      <div class="figbox">
+        <svg class="fig wide" viewBox="0 0 1180 300" role="img" aria-label="Minden pötty egy projekt, aszerint elhelyezve, hogy a végső költsége és ideje mennyire tért el a becsléstől. Ma a pöttyök messzire szóródnak; design systemmel közel maradnak a becsléshez, így a betervezendő tartomány jóval szűkebb.">
+          <defs>
+            <marker id="ar3" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0.5 1 L9 5 L0.5 9" fill="none" stroke="#B9C4A8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+          <text x="0" y="16" class="flbl">Egy pötty = egy fejlesztési projekt</text>
+          <line x1="300" y1="26" x2="300" y2="258" stroke="#C7D5B4" stroke-width="1" stroke-dasharray="3 4"/>
+          <text x="308" y="16" class="flbl">Ahogy becsültük</text>
+
+          <text x="0" y="66" class="flbl">Ma</text>
+          <rect x="300" y="42" width="820" height="38" rx="19" fill="rgba(74,107,50,.05)" stroke="var(--acc)" stroke-width="1" stroke-dasharray="6 5" opacity=".5"/>
+          <g class="fdot pale">
+            <circle cx="318" cy="61"/><circle cx="372" cy="61"/><circle cx="430" cy="61"/><circle cx="470" cy="61"/>
+            <circle cx="546" cy="61"/><circle cx="620" cy="61"/><circle cx="690" cy="61"/><circle cx="762" cy="61"/>
+            <circle cx="848" cy="61"/><circle cx="940" cy="61"/><circle cx="1030" cy="61"/><circle cx="1102" cy="61"/>
+          </g>
+          <path d="M300 94 V 104 H 1120 V 94" fill="none" stroke="#C7D5B4" stroke-width="1"/>
+          <text x="710" y="124" text-anchor="middle" class="flbl">Ekkora tartományra kell tervezni</text>
+
+          <text x="0" y="196" class="flbl acc">Design systemmel</text>
+          <rect x="300" y="172" width="340" height="38" rx="19" fill="rgba(140,191,68,.14)" stroke="var(--acc)" stroke-width="1.2"/>
+          <g class="fdot">
+            <circle cx="318" cy="191"/><circle cx="350" cy="191"/><circle cx="380" cy="191"/><circle cx="414" cy="191"/>
+            <circle cx="450" cy="191"/><circle cx="488" cy="191"/><circle cx="522" cy="191"/><circle cx="562" cy="191"/>
+            <circle cx="600" cy="191"/><circle cx="626" cy="191"/>
+          </g>
+          <path d="M300 224 V 234 H 640 V 224" fill="none" stroke="var(--acc)" stroke-width="1"/>
+          <text x="470" y="254" text-anchor="middle" class="flbl acc">Ennyire szűkül a tartomány</text>
+
+          <path d="M300 278 H 1140" fill="none" stroke="#DDE7CD" stroke-width="1.2" marker-end="url(#ar3)"/>
+          <text x="1146" y="296" text-anchor="end" class="flbl">Végső költség és idő a becsléshez képest →</text>
+        </svg>
+      </div>
+      <div class="note" style="margin-top:20px;max-width:92ch">
+        <b>Szemléltetés — a kiszámíthatóságról szól, nem az árról.</b> A design system nem teszi olcsóvá a projekteket. Azt a tartományt szűkíti, amelyre tartalékot kell képezni, mert a UI- és UX-döntések nagy részét nem kell minden projekten újra meghozni. Ugyanez igaz az időre: kevesebb az újratervezés és a kör a designer és a fejlesztő között.
+      </div>
+    </div>
+  </section>
+
   <section class="slide" data-ch="0" data-nm="Az audit célja">
     <div class="wrap">
-      <div class="eyebrow">02 — Cél és terjedelem <span class="sep"></span> Az audit célja</div>
+      <div class="eyebrow">02 — Az audit célja <span class="sep"></span> Miért készült</div>
       <h2 class="sm">Tiszta kép a rendszerről — mielőtt tovább bővül.</h2>
       <div class="cards c3" style="margin-top:32px">
         <div class="card accent">
@@ -1057,39 +1297,6 @@ body.isdark .apbar{background:#2F4A22}
       </div>
       <div class="note" style="margin-top:28px;max-width:70ch">
         <b>Két közönségnek készült.</b> A designereknek és az üzleti döntéshozóknak külön összefoglaló szól — ugyanarra a megállapításkészletre építve.
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================= [02] TERJEDELEM ======================= -->
-  <section class="slide" data-ch="0" data-nm="Terjedelem">
-    <div class="wrap">
-      <div class="cols w2" style="align-items:start">
-        <div>
-          <div class="eyebrow">02 — Cél és terjedelem <span class="sep"></span> Scope</div>
-          <h2 class="sm">Egy Figma-fájl, két irányból átvilágítva.</h2>
-          <div class="meta" style="margin-top:26px">
-            <div class="mrow"><span>Vizsgált rendszer</span><p>MagNet Bank Design System — Figma</p></div>
-            <div class="mrow"><span>Vizsgálati keret</span><p>WCAG 2.1 AA + egyedi szempontrendszer</p></div>
-            <div class="mrow"><span>Kiegészítő módszer</span><p>APCA-alapú kontrasztvizsgálat</p></div>
-            <div class="mrow"><span>Brand-viszonyítás</span><p>magnetbank.hu, print, bankfiók</p></div>
-            <div class="mrow"><span>Időszak</span><p>2026. augusztus</p></div>
-          </div>
-        </div>
-        <div class="stack" style="gap:14px">
-          <div class="scope">
-            <div class="sh"><div><b>01 — 05</b><h3>Minőségi átvilágítás</h3><p>Nézőpontok, amelyeket a teljes rendszerre alkalmaztunk.</p></div><div class="num"><b>16</b><span>alfejezet</span></div></div>
-            <div class="chips sm">
-              <span class="chip">Felépítés, beállíthatóság</span><span class="chip">Állapotok, property-k</span><span class="chip">Tokenhasználat</span><span class="chip">Mikrointerakciók</span><span class="chip">Oldalstruktúra</span><span class="chip">Naming</span><span class="chip">Annotációk, handoff</span><span class="chip">Brandeltség</span><span class="chip">Tipográfia</span><span class="chip">WCAG 2.1 AA</span><span class="chip">Fókusz</span><span class="chip">Kontraszt</span><span class="chip">Touch target</span><span class="chip">Képernyőolvasók</span><span class="chip">Skálázhatóság</span><span class="chip">Hiányzó komponensek</span>
-            </div>
-          </div>
-          <div class="scope dk">
-            <div class="sh"><div><b>06 · Vizsgált komponensek</b><h3>Komponens vizsgálat</h3><p>Részletes elemzés a rendszer felépülése mentén.</p></div><div class="num"><b>12</b><span>komponens és tokencsoport</span></div></div>
-            <div class="chips sm">
-              <span class="chip">Color tokens</span><span class="chip">Spacing tokens</span><span class="chip">Typography tokens</span><span class="chip">Gombok</span><span class="chip">Kategóriaválasztó</span><span class="chip">Dropdown számlaválasztó</span><span class="chip">Input mezők</span><span class="chip">Tab elemek</span><span class="chip">Appbar</span><span class="chip">Kártyák</span><span class="chip">Category sorter</span><span class="chip">Tranzakciós kártya</span>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -1195,7 +1402,7 @@ body.isdark .apbar{background:#2F4A22}
               <span class="fp"><p>A hivatkozások egy kattintással a részletekhez visznek, az ábrák nagyíthatók.</p></span></button>
           </div>
           <!-- az élő audit linkje (Vercel) -->
-          <a class="artcard sm" href="../" style="margin-top:14px">
+          <a class="artcard sm" href="#" id="auditlink" style="margin-top:14px">
             <div><div class="ak"><i></i>Vercel · élő jelentés</div><h3>Design System audit</h3></div>
             <span class="go">Megnyitás <svg width="20" height="9" viewBox="0 0 18 8" fill="none"><path d="M0 4h16M12.5 .5 16.5 4l-4 3.5" stroke="currentColor" stroke-width="1.2"/></svg></span>
           </a>
@@ -1267,7 +1474,7 @@ body.isdark .apbar{background:#2F4A22}
   </section>
 
   <!-- ======================= [06] DESIGNER ======================= -->
-  <section class="slide" data-ch="2" data-nm="Designer összefoglaló">
+  <section class="slide" data-ch="2" data-nm="Designer összefoglaló" data-auto="dsg">
     <div class="wrap">
       <div class="eyebrow">06 — Összefoglalók <span class="sep"></span> Designereknek</div>
       <h2 class="sm">Amire biztonsággal lehet építeni — és amire figyelni kell.</h2>
@@ -1283,8 +1490,22 @@ body.isdark .apbar{background:#2F4A22}
           <div class="flow"><small>Slots-alapú kompozíció · komplex komponensek</small><span>Építőelem</span><svg class="ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 12h15.5M13.4 6.2 19.6 12l-6.2 5.8" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Slot</span><svg class="ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 12h15.5M13.4 6.2 19.6 12l-6.2 5.8" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Kompozit komponens</span></div>
         </div>
       </div>
-      <div class="seclbl" style="margin-top:22px;margin-bottom:12px">Amire figyelni érdemes <i>05 pont</i></div>
-      <div class="cards c5" id="dsgcards"></div>
+      <div class="segctl dsgseg" id="dsgseg" style="margin-top:20px">
+        <button class="on" data-s="0">01 · Szilárd alap</button>
+        <button data-s="1">02 · Amire figyelni érdemes</button>
+      </div>
+      <div class="dsgstage">
+        <div class="dsgstep s0 on" id="dsgs0">
+          <div class="seclbl">Ezek az audit szerint rendben vannak <i id="okcnt"></i></div>
+          <div class="okgrid" id="okgrid"></div>
+          <div class="seclbl" style="margin-top:16px">Itt is csak finomhangolás kell — nem hiba, hanem továbbfejlesztési lehetőség <i id="optcnt"></i></div>
+          <div class="optchips" id="optchips"></div>
+        </div>
+        <div class="dsgstep s1" id="dsgs1">
+          <div class="seclbl" style="margin-bottom:12px">Amire figyelni érdemes <i>05 pont</i></div>
+          <div class="cards c5" id="dsgcards"></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1378,7 +1599,7 @@ body.isdark .apbar{background:#2F4A22}
             <div class="altimg">
               <!-- az audit Appbar-ábrája — az audit Vercel-mappájából (prezi-pelda-01.png) -->
               <figure class="ph fit" style="--ar:4/3" data-slot="Appbar · eredeti vs. A / B&#10;audit-inline-image-08.png">
-                <div class="frame"><img src="../prezi-pelda-01.png" alt="Appbar eredeti állapota, valamint két ajánlott irány három színvariánsban"></div>
+                <div class="frame"><img src="prezi-pelda-01.png" alt="Appbar eredeti állapota, valamint két ajánlott irány három színvariánsban"></div>
               </figure>
             </div>
           </div>
@@ -1434,7 +1655,7 @@ body.isdark .apbar{background:#2F4A22}
             <div class="altimg">
               <!-- a fókuszindikátor-példa ábrája — az audit Vercel-mappájából (prezi-pelda-02.png) -->
               <figure class="ph fit" style="--ar:4/3" data-slot="Fókuszindikátor · eredeti vs. ajánlott&#10;prezi-pelda-02.png">
-                <div class="frame"><img src="../prezi-pelda-02.png" alt="Az audit fókuszindikátor-ábrája: javasolt fókuszjelzés gombon és dropdownon"></div>
+                <div class="frame"><img src="prezi-pelda-02.png" alt="Az audit fókuszindikátor-ábrája: javasolt fókuszjelzés gombon és dropdownon"></div>
               </figure>
             </div>
           </div>
@@ -1495,19 +1716,17 @@ body.isdark .apbar{background:#2F4A22}
   </section>
 
   <!-- ======================= [09] INSIGHT ======================= -->
-  <section class="slide" data-ch="2" data-nm="Insight" data-enter="venn">
+  <section class="slide" data-ch="2" data-nm="Insight" data-enter="venn" data-auto="ui">
     <div class="wrap">
-      <div class="cols" style="align-items:center;gap:52px">
+      <div class="cols insightcols" style="align-items:center;gap:48px">
         <div>
           <div class="eyebrow">09 — Takeaways <span class="sep"></span> Insight</div>
           <h2 class="sm">Brand és accessibility: egyszerre, nem egymás rovására.</h2>
           <p class="lead" style="max-width:48ch">A brand designnak és az accessibility standardoknak való megfelelésnek egyszerre kell megvalósulnia.</p>
-          <div class="note warm" style="margin-top:26px">
+          <div class="note warm" style="margin-top:22px">
             <b>Kognitív torzítás: esztétikai–használhatósági hatás.</b> Ha valami szép, azt hajlamosak vagyunk jobban működőnek is érzékelni. A vizuális minőség ezért önmagában nem bizonyítja, hogy a felület mindenkinek működik.
           </div>
-        </div>
-        <div>
-          <svg class="venn" id="venn" viewBox="50 8 460 264" role="img" aria-label="A brand és az accessibility metszete a közös megoldás">
+          <svg class="venn sm" id="venn" viewBox="50 8 460 264" role="img" aria-label="A brand és az accessibility metszete a közös megoldás">
             <g class="ca">
               <circle cx="205" cy="140" r="124" fill="#E2EFD8" fill-opacity=".85" stroke="#8CBF44" stroke-width="1.5" style="mix-blend-mode:multiply"/>
               <text class="lab" x="148" y="128" text-anchor="middle" fill="#2B5220">Brand</text>
@@ -1525,10 +1744,21 @@ body.isdark .apbar{background:#2F4A22}
               <text class="mt" x="280" y="154" text-anchor="middle" fill="#16300F">megoldás</text>
             </g>
           </svg>
-          <div class="seclbl" style="margin-top:14px">Az auditban is ez volt a döntési pont <i>02</i></div>
-          <div class="split">
-            <div class="pane"><div class="pk">Appbar</div><h3>Az A irány</h3><p>Javítja a kontrasztot, és közben megőrzi a brand-szín dominanciáját.</p></div>
-            <div class="pane"><div class="pk">Tranzakciós kártya</div><h3>Szín vagy kiemelő felület</h3><p>A sötétebb színek távolodnak a brandtől — a kiemelő keret megőrzi a karaktert.</p></div>
+        </div>
+
+        <div class="uiwrap">
+          <div class="seclbl">Két irány a mobilapp főoldalára <i>húzd a csúszkát</i></div>
+          <div class="uiphone">
+            <img class="uia" src="prezi-ui-a.jpg" alt="Általánosabb megjelenésű főoldal: fehér háttér, egyszerű kártyák">
+            <img class="uib" src="prezi-ui-b.jpg" alt="Brandet alátámasztó megjelenésű főoldal: zöld fotós háttér, márkás ikonok">
+          </div>
+          <div class="uictl">
+            <input id="uirange" class="uirange" type="range" min="0" max="100" value="0" step="1"
+                   aria-label="Átmenet az általánosabb és a brandet alátámasztó megjelenés között">
+            <div class="uilabels">
+              <span class="ul a on">Általánosabb<br>megjelenés</span>
+              <span class="ul b">Brandet alátámasztó<br>megjelenés</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1576,7 +1806,7 @@ body.isdark .apbar{background:#2F4A22}
         <div class="amk"><span class="svchip" id="amsev"></span><span id="amsrc"></span></div>
         <h3 id="amtitle"></h3>
       </div>
-      <a class="btn amext" id="amext" href="../" target="_blank" rel="noopener">Megnyitás új lapon <span aria-hidden="true">↗</span></a>
+      <a class="btn amext" id="amext" href="#" target="_blank" rel="noopener">Megnyitás új lapon <span aria-hidden="true">↗</span></a>
       <button class="btn amclose" id="amclose" type="button" aria-label="Bezárás">
         <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 2.5l7 7M9.5 2.5l-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </button>
@@ -1676,7 +1906,7 @@ function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;') }
 
 /* ===================== FEJEZETEK ===================== */
 var CHAPTERS=[
- {t:'Bevezetés',      s:'Kontextus, cél és terjedelem',          m:'01 — 02'},
+ {t:'Bevezetés',      s:'Mi az a design system, és mi a mai anyag célja', m:'01 — 02'},
  {t:'Audit folyamat', s:'Vizsgálati szempontok és módszertan',   m:'03 — 04'},
  {t:'Eredmény',       s:'Az audit bemutatása és a tanulságok',   m:'05 — 10'}
 ];
@@ -1852,7 +2082,7 @@ var DSG=[
   d:'Az Enabled / Hovered / Tapped / Focused / Active elnevezések ma nem mindenhol követik ugyanazt a logikát, ami komponensenként eltérő értelmezéshez vezethet.'},
  {t:'Typography Style réteg befejezése',r:'1.3 · Frame felépítés és tokenhasználat',
   d:'Sok helyen egyedi tipográfiai értékek szerepelnek a központilag definiált style helyett — ez minden új komponensnél extra döntést jelent.'},
- {t:'Layer- és tokennaming konzisztencia',r:'2.2 · Komponens naming konvenció',tag:'Komponenseken belül',
+ {t:'Komponenseken belül naming konzisztencia',r:'2.2 · Komponens naming konvenció',
   d:'<b>A komponensek belső layer-struktúrájában</b> (pl. Card row) még előfordulnak Frame 6 / Frame 3 típusú generikus nevek — ez megnehezíti a handoffot és a karbantartást.'},
  {t:'Kontrasztellenőrzés a tervezés fázisában',r:'4.3 · Kontrasztarányok',
   d:'APCA-alapú ellenőrzés a design review-ban, hogy a kontrasztprobléma ne csak utólag, fejlesztéskor derüljön ki.'},
@@ -1860,6 +2090,26 @@ var DSG=[
   d:'A Display/Body szerepek tisztázása és a weboldalon már bevezetett Rubrik figyelembevétele csökkentené a csatornák közötti eltérést.'}
 ];
 
+var dsgOk=FIND.filter(function(f){return f.v==='ok'}), dsgOpt=FIND.filter(function(f){return f.v==='opt'});
+$('okcnt').textContent=dsgOk.length+' terület';
+$('optcnt').textContent=dsgOpt.length+' pont';
+$('okgrid').innerHTML=dsgOk.map(function(f){
+  return '<div class="oktile olink" data-i="'+f.i+'" role="button" tabindex="0" title="Megnyitás az élő auditban"><i class="sdot sv-ok"></i><div><h4>'+esc(f.t)+'</h4><span>'+esc(src(f))+'</span></div><b class="oarr" aria-hidden="true">↗</b></div>';
+}).join('');
+$('optchips').innerHTML=dsgOpt.map(function(f){
+  return '<span class="optchip olink sv-opt" data-i="'+f.i+'" role="button" tabindex="0" title="'+esc(f.n+' · '+f.t)+'"><i class="sdot"></i>'+esc(f.t)+'</span>';
+}).join('');
+[$('okgrid'),$('optchips')].forEach(function(el){ el.addEventListener('click',listOpen); el.addEventListener('keydown',listOpen) });
+
+var dsgStep=0;
+function setDsg(k){
+  dsgStep=k;
+  [].slice.call($('dsgseg').children).forEach(function(b,i){ b.classList.toggle('on',i===k) });
+  $('dsgs0').classList.toggle('on',k===0);
+  $('dsgs1').classList.toggle('on',k===1);
+  if(k===1){ [].slice.call($('dsgcards').children).forEach(function(c,i){ c.style.animation='none'; void c.offsetWidth; c.style.animation='rise .5s cubic-bezier(.2,.8,.2,1) both'; c.style.animationDelay=(i*0.07)+'s' }) }
+}
+[].slice.call($('dsgseg').children).forEach(function(b,i){ b.addEventListener('click',function(){ setDsg(i) }) });
 $('dsgcards').innerHTML=DSG.map(function(x,i){
   return '<div class="card'+(x.tag?' tagged':'')+'"><div class="n">0'+(i+1)+(x.tag?'<span class="ctag">'+x.tag+'</span>':'')+'</div><h3>'+x.t+'</h3><p>'+x.d+'</p><div class="ref">→ '+x.r+'</div></div>';
 }).join('');
@@ -2235,6 +2485,20 @@ window.addEventListener('resize',fitDuo);
 [].slice.call(document.querySelectorAll('.stage .ph.duo img')).forEach(function(i){ i.addEventListener('load',fitDuo) });
 fitDuo();
 
+/* ===================== INSIGHT · két UI-irány csúszkája ===================== */
+var uirange=$('uirange'), uiw=uirange?uirange.closest('.uiwrap'):null;
+function setMix(v){
+  v=Math.max(0,Math.min(100,v));
+  uirange.value=v;
+  uiw.style.setProperty('--mix',v);
+  uiw.querySelector('.ul.a').classList.toggle('on',v<50);
+  uiw.querySelector('.ul.b').classList.toggle('on',v>=50);
+}
+if(uirange){
+  uirange.addEventListener('input',function(){ setMix(+uirange.value) });
+  setMix(0);
+}
+
 /* ===================== 09 · ROADMAP ===================== */
 var TL=[
  {k:'01',t:'Azonnali',s:'Napok',items:[
@@ -2373,7 +2637,16 @@ var AUTO={
     else if(fck>=2){ fcseg.children[1].click() }
     else setFocus(fck+1);
   },
-  tl:function(){ setTL((tlCur+1)%tlcols.length) }
+  tl:function(){ setTL((tlCur+1)%tlcols.length) },
+  dsg:function(){ setDsg(dsgStep?0:1) },
+  ui:function(){                                   /* lassú átúsztatás a két irány között */
+    var to=(+uirange.value)<50?100:0, from=+uirange.value, t0=Date.now();
+    (function step(){
+      var k=Math.min(1,(Date.now()-t0)/900);
+      setMix(from+(to-from)*(k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2));
+      if(k<1) requestAnimationFrame(step);
+    })();
+  }
 };
 var AMS=10000, aT=null, aStart=0, aLeft=AMS, aPaused=false;
 var autop=$('autop'), apbtn=$('apbtn'), apfill=$('apfill');
@@ -2421,13 +2694,16 @@ document.querySelector('.stage').addEventListener('keydown',function(e){
 });
 
 /* ===================== 07 · MEGÁLLAPÍTÁS AZ ÉLŐ AUDITBAN (modal) ===================== */
-/* a prezentáció az audit mellett, a /prezentacio/ mappában fut — az audit így relatív úton érhető el */
-var AUDIT_URL='../';
+/* Az audit elérése:
+   — éles (a prezentáció a /prezentacio/ mappában fut): a szülőmappa;
+   — helyben, ha a két fájl egymás mellett van: az audit fájlneve. */
+var AUDIT_URL = /\/prezentacio\//.test(location.pathname) ? '../' : 'index-audit-v01.html';
 /* az audit V1.1.1-től: ?embed=1 = csak a cikk (oldalsáv nélkül), #m-6-9-1 = az adott megállapítás */
 function auditUrl(f,embed){
   return AUDIT_URL+(embed?'?embed=1':'')+(f.h?'#'+f.h:'');
 }
 var amod=$('amod'), aframe=$('aframe'), amodOpen=false, amodLastFocus=null, amodTimer=null;
+var al=$('auditlink'); if(al) al.setAttribute('href',AUDIT_URL);
 var aframeBase='';
 function openAudit(f){
   var url=auditUrl(f,true), base=url.split('#')[0];
