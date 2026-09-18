@@ -535,6 +535,17 @@
   .sev-mark.javitando{ background:var(--javitando); }
   .sev-mark.optim{ background:var(--optim); }
   .sev-mark.pass{ background:var(--pass); }
+  /* V1.1.2 · link az átadó prezentációra (az oldalsáv alján) */
+  .sb-prezi{
+    flex:none; display:flex; align-items:center; justify-content:space-between; gap:10px;
+    margin:0 14px 12px; padding:10px 12px; border:1px solid var(--line); border-radius:9px;
+    font-family:var(--font-mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--ink-soft); text-decoration:none; background:var(--paper); transition:border-color .2s, color .2s, background .2s;
+  }
+  .sb-prezi:hover{ border-color:var(--brand); color:var(--brand-dark); background:var(--brand-bg); }
+  .sb-prezi-arrow{ font-size:12px; color:var(--brand); }
+  html.embed .sb-prezi{ display:none; }
+
   /* ---------- V1.1.1 · beágyazott mód (?embed=1) és közvetlen hivatkozás kiemelése ---------- */
   html.embed .sidebar{ display:none; }
   html.embed .main{ margin-left:0; }
@@ -654,9 +665,13 @@
       </li>
     </ul>
    </div>
+    <a class="sb-prezi" href="prezentacio/" target="_blank" rel="noopener">
+      <span>Átadó prezentáció</span>
+      <span class="sb-prezi-arrow" aria-hidden="true">↗</span>
+    </a>
     <div class="sb-footer">
       <span class="sb-footer-credit"><svg class="sb-footer-logo" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8.68259 4.84491C10.7883 4.84491 12.5 6.54981 12.5 8.64642C12.5 10.743 10.7883 12.4479 8.68259 12.4479C6.57693 12.4479 4.86524 10.743 4.86524 8.64642C4.86297 6.54981 6.57693 4.84491 8.68259 4.84491Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.137 8.64642C20.137 6.54981 18.4253 4.84491 16.3196 4.84491C16.1883 4.84491 16.0592 4.8517 15.9302 4.86529C16.5256 5.9951 16.8653 7.28114 16.8653 8.64642C16.8653 10.0117 16.5279 11.2977 15.9302 12.4275C16.057 12.4411 16.1883 12.4479 16.3196 12.4479C18.423 12.4479 20.137 10.743 20.137 8.64642Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.5 15.8509C13.6411 16.4509 14.9385 16.7928 16.3174 16.7928C20.8366 16.7928 24.5 13.1453 24.5 8.64641C24.5 4.14755 20.8366 0.5 16.3174 0.5C14.9385 0.5 13.6411 0.841887 12.5 1.44189C13.9604 2.2117 15.1604 3.40717 15.9302 4.86528C16.057 4.8517 16.1883 4.84491 16.3196 4.84491C18.4253 4.84491 20.137 6.54981 20.137 8.64641C20.137 10.743 18.4253 12.4479 16.3196 12.4479C16.1883 12.4479 16.0592 12.4411 15.9302 12.4275" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M16.3174 4.84491C18.423 4.84491 20.1347 6.54981 20.1347 8.64642C20.1347 10.743 18.423 12.4479 16.3174 12.4479C14.2117 12.4479 12.5 10.743 12.5 8.64642C12.5 6.54981 14.214 4.84491 16.3174 4.84491Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M4.86304 8.64642C4.86304 10.743 6.57474 12.4479 8.6804 12.4479C8.81172 12.4479 8.94077 12.4411 9.06983 12.4275C8.47436 11.2977 8.13474 10.0117 8.13474 8.64642C8.13474 7.28114 8.47209 5.9951 9.06983 4.86529C8.94304 4.8517 8.81172 4.84491 8.6804 4.84491C6.577 4.84491 4.86304 6.54981 4.86304 8.64642Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.5 1.44189C11.3589 0.841887 10.0615 0.5 8.68264 0.5C4.1634 0.5 0.5 4.14755 0.5 8.64641C0.5 13.1453 4.1634 16.7928 8.68264 16.7928C10.0615 16.7928 11.3611 16.4509 12.5 15.8509C11.0396 15.0811 9.83962 13.8857 9.06981 12.4275C8.94302 12.4411 8.8117 12.4479 8.68038 12.4479C6.57472 12.4479 4.86302 10.743 4.86302 8.64641C4.86302 6.54981 6.57472 4.84491 8.68038 4.84491C8.8117 4.84491 8.94075 4.8517 9.06981 4.86528" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Készítette<br>Stereogram Studio</span></span>
-      <span class="sb-footer-version">V.1.1.1</span>
+      <span class="sb-footer-version">V.1.1.2</span>
     </div>
   </nav>
 
